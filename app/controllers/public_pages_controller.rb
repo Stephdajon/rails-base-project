@@ -1,3 +1,5 @@
 class PublicPagesController < ApplicationController
-  def landing; end
+  def landing
+    @lessons = Lesson.all
+  end
 end
