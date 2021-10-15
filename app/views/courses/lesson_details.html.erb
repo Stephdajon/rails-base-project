@@ -1,0 +1,26 @@
+<div class="container">
+<h1>Lesson Details</h1>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= @lesson.name %></h5>
+      <p class="card-text">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+      <h2 class="card-text"><%= @lesson.price.to_i %> PHP</h2>
+      <%= link_to add_to_cart_path(@lesson.id), method: :post do %> <button type="button" class="btn btn-sm btn-primary"><i class="fas fa-shopping-basket"> </i> Add to cart</button><% end %>
+      <button type="button" class="btn btn-sm btn-warning"><i class="fas fa-money-bill"> </i> Buy Now</button>
+    </div>
+  </div>
+
+  <h2>Other Details</h2>
+  <p><strong>Review Center</strong>: <%= @lesson.teacher_subject.rc_teacher.review_center.name.capitalize %></p>
+  <p><strong>Instructor</strong>: <%= @lesson.teacher_subject.rc_teacher.user.firstname.capitalize + ' ' +  @lesson.teacher_subject.rc_teacher.user.lastname.capitalize %></p>
+
+  <h2>Course</h2>
+  <%= @lesson_details.name %>
+  <h2>Subject</h2>
+  <%= @lesson.teacher_subject.subject.name %>
+
+  <h2>lessons</h2>
+  <% @lessons.each do |lesson| %>
+    <button class=""><%= lesson.name %></button>
+  <% end %>
+</div>

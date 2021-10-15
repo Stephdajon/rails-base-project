@@ -21,25 +21,43 @@
           </li>
 
         <% elsif current_user %>
-          <li class="nav-item">
-            <%= link_to 'Home', root_path, class:"nav-link active" %>
-          </li>
 
-          <li class="nav-item">
-            <%= link_to 'My Cart', root_path, class:"nav-link active" %>
-          </li>
+          <% if current_user and current_user.type == "Student" %>
 
-          <li class="nav-item">
-            <%= link_to 'My Modules', root_path, class:"nav-link active" %>
-          </li>
+            <li class="nav-item">
+              <%= link_to 'Home', root_path, class:"nav-link active" %>
+            </li>
 
-          <li class="nav-item">
-            <%= link_to 'My Transactions', root_path, class:"nav-link active" %>
-          </li>
+            <li class="nav-item">
+              <%= link_to 'My Cart', user_carts_path, class:"nav-link active" %>
+            </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              My Account
+            <li class="nav-item">
+              <%= link_to 'My Modules', root_path, class:"nav-link active" %>
+            </li>
+
+            <li class="nav-item">
+              <%= link_to 'My Transactions', root_path, class:"nav-link active" %>
+            </li>
+
+
+          <% elsif current_user and current_user.type == "Teacher" %>
+
+            <li class="nav-item">
+              <%= link_to 'TEACHER', root_path, class:"nav-link active btn btn-secondary" %>
+            </li>
+
+          <% elsif current_user and current_user.type == "Admin" %>
+
+            <li class="nav-item">
+              <%= link_to 'ADMIN', root_path, class:"nav-link active btn btn-secondary" %>
+            </li>
+
+          <% end %>
+          
+             <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><%= link_to 'Edit Account', edit_user_registration_path, class:"dropdown-item" %></li>
