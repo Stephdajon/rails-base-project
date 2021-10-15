@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
   <div class="container-fluid">
-    <%= link_to image_tag('TopAcademy.png', id: "drag1") , root_path, class:"navbar-brand" %>
+    <%= link_to image_tag('GoLearning.png', id: "drag1") , root_path, class:"navbar-brand" %>
     <form class="d-flex w-50">
       <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search">
     </form>
@@ -68,10 +68,10 @@
 
         <% else %>
           <li class="nav-item">
-            <%= link_to 'Login', new_user_session_path, class:"nav-link active btn btn-secondary" %>
+            <%= link_to 'Login', new_user_session_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Sign-up', new_user_registration_path, class:"nav-link active btn btn-secondary" %>
+            <%= link_to 'Register', new_user_registration_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to 'Review Center', new_review_center_session_path, class:"nav-link" %>
