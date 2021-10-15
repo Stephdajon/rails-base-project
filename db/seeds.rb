@@ -10,16 +10,7 @@
 # USER 
 
 User.create!([
-  {
-    email: "test@admin.com",
-    username: "admin",
-    firstname: "admin",
-    lastname: "boardemy",
-    type: 'Admin',
-    status: 0,
-    password: "123456",
-    password_confirmation: "123456"
-  },
+
   {
     email: "test@student.com",
     username: "student",
@@ -39,6 +30,16 @@ User.create!([
     status: 0,
     password: "123456",
     password_confirmation: "123456"
+  },
+  {
+    email: "test@admin.com",
+    username: "admin",
+    firstname: "admin",
+    lastname: "boardemy",
+    type: 'Admin',
+    status: 0,
+    password: "123456",
+    password_confirmation: "123456"
   }
 ])
 
@@ -54,15 +55,6 @@ ReviewCenter.create!([
   },
 ])
 
-#RC COURSE 
-
-RcCourse.create!([
-  {
-    review_center_id: 1,
-    course_id: 1,
-  }
-])
-
 # COURSE
 
 Course.create!([
@@ -72,9 +64,18 @@ Course.create!([
   }
 ])
 
+#RC COURSE 
+
+RcCourse.create!([
+  {
+    review_center_id: 1,
+    course_id: 1,
+  }
+])
+
 RcTeacher.create!([
   {
-    user_id: 1,
+    user_id: 2,
     review_center_id: 1
   }
 ])
