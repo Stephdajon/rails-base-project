@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   authenticated :review_center do
     root to: 'rc_pages#home', as: 'authenticated_rc_root'
   end
+  
 
   # STUDENT PAGES
 

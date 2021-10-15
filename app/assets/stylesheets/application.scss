@@ -13,12 +13,7 @@
  *= require_tree .
  *= require_self
  */
-$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
-@import '@fortawesome/fontawesome-free/scss/fontawesome';
-@import '@fortawesome/fontawesome-free/scss/solid';
-@import '@fortawesome/fontawesome-free/scss/regular';
-@import '@fortawesome/fontawesome-free/scss/brands';
-@import '@fortawesome/fontawesome-free/scss/v4-shims';
+
 @import "bootstrap/scss/bootstrap";
 
 //Start landing page style
@@ -86,3 +81,22 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 // }
 
 //End form sign in users
+
+//Start form registration users
+
+.login-reg{
+  text-decoration: none;
+  font-weight: bold;
+}
+
+//End form registration users
+
+
+//Strat Navbar users style
+.nav-item .dropdown {
+  a{
+    color: #fff;
+  }
+}
+
+//End Navbar users style
