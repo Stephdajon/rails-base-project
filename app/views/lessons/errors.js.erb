@@ -1,0 +1,8 @@
+document.querySelector('.errors').innerHTML = "<%= j render 'errors', object: @lesson%>"
+
+
+document.querySelector('.upload-video').disabled = false;
+document.querySelector('.upload-image').disabled = false;
+document.querySelector('.direct-upload').remove()
+
+console.log(document.querySelector('.direct-upload'))
