@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>My Carts</h1>
+
+  <% @user_carts.each do |cart| %>
+  <br><br>
+    <p><%= cart.lesson.name %></p>
+    <p class="card-text" style="wid">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+    <h2><%= cart.lesson.price.to_i %> PHP</h2>
+      <%= link_to lesson_details_path(cart.lesson.teacher_subject.subject.name.split(' ').join, cart.lesson.teacher_subject.subject.course_id, cart.lesson.id) do %><button type="button" class="btn btn-sm btn-primary"><i class="fas fa-eye"> </i> View Details</button><% end %>
+      <button type="button" class="btn btn-sm btn-warning"><i class="fas fa-money-bill"> </i> Buy Now</button>
+      <%= link_to remove_to_cart_path(cart.id), method: :delete, data: { confirm: "Are you sure you want to remove to cart this lesson?" } do %><button type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"> </i> Remove to cart</button><% end %>
+  <% end %>
+
+</div>
