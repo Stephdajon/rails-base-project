@@ -14,7 +14,14 @@
  *= require_self
  */
 
+ @import url('https://fonts.googleapis.com/css2?family=Rakkas&family=Ubuntu:ital@1&display=swap');
+
 @import "bootstrap/scss/bootstrap";
+
+body {
+  font-family: 'Rakkas', serif !important;
+}
+
 
 //Start landing page style
 .bd-placeholder-img {
