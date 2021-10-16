@@ -10,7 +10,7 @@ FactoryBot.define do
     firstname { 'testt' }
     lastname { 'testt' }
     username { 'testt' }
-    type {'Student'}
+    type { 'Student' }
     password { '123456' }
   end
 end

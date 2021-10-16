@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
   let(:user) { build(:user) }
-  
+
   describe 'session' do
     it 'gets /users/sign_in' do
       get new_user_session_path
@@ -25,6 +25,5 @@ RSpec.describe 'Users', type: :request do
       post user_registration_path, params: { user: { email: user.email, firstname: user.firstname, lastname: user.lastname, username: user.username, type: user.type, password: user.password } }
       expect(response).to redirect_to(root_path)
     end
-
   end
 end
