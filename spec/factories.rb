@@ -4,4 +4,13 @@ FactoryBot.define do
     name { 'string' }
     password { 'password' }
   end
+
+  factory :user do
+    email { 'testsssst@student.com' }
+    firstname { 'testt' }
+    lastname { 'testt' }
+    username { 'testt' }
+    type {'Student'}
+    password { '123456' }
+  end
 end
