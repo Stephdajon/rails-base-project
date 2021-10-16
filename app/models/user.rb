@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :username, :firstname, :lastname, :password_confirmation, :type, presence: true, length: { maximum: 75 }
-  validates :username, uniqueness: { case_sensitive: false }, length: { maximum: 75 }
+  validates :username, :firstname, :lastname, :password_confirmation, :type, presence: true, length: { maximum: 20 }
+  validates :username, uniqueness: { case_sensitive: false }, length: { maximum: 20 }
 
   def admin?
     type == 'Admin'
