@@ -21,7 +21,7 @@ RSpec.describe 'Users', type: :request do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'renders new template if creation fails' do
+    it 'renders new template if creation failed' do
       post user_registration_path, params: { user: { email: '', password: user.password } }
       expect(response).to render_template(:new)
     end
