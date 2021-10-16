@@ -5,5 +5,6 @@ RSpec.describe RcCourse, type: :model do
     it { is_expected.to belong_to(:review_center) }
     it { is_expected.to belong_to(:course) }
     it { is_expected.to have_many(:lessons) }
+    it { is_expected.to have_many(:teacher_subjects) }
   end
 end
