@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  # has_many :rc_teachers, dependent: :destroy
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :username, :firstname, :lastname, :password_confirmation, :type, presence: true, length: { maximum: 20 }

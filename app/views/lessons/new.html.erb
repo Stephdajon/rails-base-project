@@ -1,0 +1,51 @@
+<%= form_with scope: :lesson, url: rc_lessons_path do |f| %>
+
+<div class='errors'>
+</div>
+
+  <div>
+    <%= f.label :teacher_subject_id %>
+    <%= f.select :teacher_subject_id, @teacher_subjects.collect { |teacher_subject| [ teacher_subject.subject.name, teacher_subject.id ] } %>
+  </div>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :details %>
+    <%= f.text_area :details %>
+  </div>
+
+  <div>
+    <%= f.label :price %>
+    <%= f.number_field :price, step: :any %>
+  </div>
+
+  <div>
+    <%= f.label :video %>
+    <%= f.file_field :video, accept: 'video/*', direct_upload: true, class: 'upload-video', id: 'upload-video' %>
+  </div>
+
+  <div>
+    <video class='preview-video', controls='true'></video>
+  </div>
+
+  <div>
+    <%= f.label :thumbnail %>
+    <%= f.file_field :thumbnail, accept: 'image/png, image/jpg, image/jpeg', direct_upload: true, class: 'upload-image', id: 'upload-thumbnail' %>
+  </div>
+
+  <div>
+    <img class='preview-image' />
+  </div>
+
+  <div>
+    <%= f.submit id:'save_lesson',  disable_with: false %>
+  </div>
+<% end %>
+
+
+
+<%= javascript_pack_tag 'upload_attachments' %>
+<%= javascript_pack_tag 'direct_uploads' %>

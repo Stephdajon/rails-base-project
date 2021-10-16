@@ -1,0 +1,21 @@
+<div class="container">
+  <div>
+    <span>Title</span>
+    <h1><%= @lesson.name %></h1>
+  </div>
+   
+  <% if @lesson.video.attached? %>
+    <%= cl_video_tag url_for(@lesson.video), controls: true, controlsList: "nodownload", poster: url_for(@lesson.thumbnail) %>
+  <% end %>
+
+  <div>
+    <span>Price</span>
+    <h2><%= number_to_currency(@lesson.price, unit: 'Php ') %></h2>
+  </div>
+
+  <div>
+    <span>Details</span>
+    <h2><%= @lesson.details %></h2>
+  </div>
+ 
+</div>
