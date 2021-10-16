@@ -10,10 +10,10 @@ RSpec.describe User, type: :model do
   end
 
   context 'when validating maximum character length' do
-    it { is_expected.to validate_length_of(:firstname).is_at_most(75) }
-    it { is_expected.to validate_length_of(:lastname).is_at_most(75) }
-    it { is_expected.to validate_length_of(:username).is_at_most(75) }
-    it { is_expected.to validate_length_of(:type).is_at_most(75) }
+    it { is_expected.to validate_length_of(:firstname).is_at_most(20) }
+    it { is_expected.to validate_length_of(:lastname).is_at_most(20) }
+    it { is_expected.to validate_length_of(:username).is_at_most(20) }
+    it { is_expected.to validate_length_of(:type).is_at_most(20) }
   end
 
   context 'when validating uniqueness' do
