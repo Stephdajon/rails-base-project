@@ -1,6 +1,7 @@
 class ReviewCenter < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :rc_teachers, dependent: :destroy
+  has_many :rc_courses, dependent: :destroy
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

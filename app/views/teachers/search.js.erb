@@ -1,0 +1,13 @@
+document.getElementById('search-options').innerHTML = "<%= j render 'search', object: @teachers %>"
+
+
+var teacherOptions = document.getElementsByClassName('teacherOption')
+
+if (teacherOptions) {
+  Array.from(teacherOptions).forEach(function(option) {
+    option.addEventListener('click', function(e) {
+      const textField = document.getElementById('search-field')
+      textField.value = document.getElementById('option-username').innerHTML
+    })
+  })
+}

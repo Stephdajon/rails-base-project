@@ -1,0 +1,12 @@
+<h1>Create Invitation</h1>
+
+<%= form_with scope: :rc_teacher, url: create_invitation_path, local: true do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username, id: 'search-field' %>
+
+  <div id="search-options"></div>
+
+  <%= f.submit %>
+<% end %>
+
+<%= javascript_pack_tag 'search_ajax' %>
