@@ -9,4 +9,3 @@ production:
   secret_key: <%= Rails.application.credentials[:stripe][:production][:secret_key] %>
   webhooks: <%= Rails.application.credentials[:stripe][:production][:webhooks] %>
   secure: true
-  
