@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_15_112135) do
+ActiveRecord::Schema.define(version: 2021_10_18_105201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(version: 2021_10_15_112135) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "enrolled_lessons", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.decimal "price", precision: 8, scale: 2, default: "0.0"
+    t.integer "user_id"
+    t.integer "lesson_id"
+    t.string "status", default: "paid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "lessons", force: :cascade do |t|
     t.string "name"
     t.string "details"
@@ -50,6 +61,18 @@ ActiveRecord::Schema.define(version: 2021_10_15_112135) do
     t.integer "rc_course_id"
     t.float "price"
     t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string "name"
+    t.text "details"
+    t.decimal "price", precision: 8, scale: 2, default: "0.0"
+    t.integer "status", default: 0
+    t.string "reference_number"
+    t.integer "user_id"
+    t.integer "lesson_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -98,6 +121,18 @@ ActiveRecord::Schema.define(version: 2021_10_15_112135) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "rc_course_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.string "name"
+    t.text "details"
+    t.decimal "price", precision: 8, scale: 2, default: "0.0"
+    t.text "reference_number"
+    t.integer "user_id"
+    t.integer "lesson_id"
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "user_carts", force: :cascade do |t|
