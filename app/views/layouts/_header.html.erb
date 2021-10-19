@@ -52,6 +52,7 @@
 
             <li class="nav-item">
               <%= link_to 'Lessons', rc_lessons_path(1), class:"nav-link active btn btn-secondary" %>
+              <%= link_to 'My Portal', teacher_home_path, class:"nav-link active btn btn-secondary" %>
             </li>
 
           <% elsif current_user and current_user.type == "Admin" %>

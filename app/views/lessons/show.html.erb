@@ -1,4 +1,5 @@
 <div class="container">
+  <h1><%= @teacher_subject.subject.name %></h1>
   <div>
     <h2>Title</h2>
     <span><%= @lesson.name %></span>
@@ -17,8 +18,10 @@
     <h2>Details</h2>
     <span><%= @lesson.details %></span>
   </div>
-
   <%= link_to "Back", rc_lessons_path, class: 'w-20 btn btn-lg btn-secondary mt-2' %><br><br>
+</div>
 
- 
+<div class="container">
+  <h1>Other lessons for this subject</h1>
+  <%= render 'lessons/shared/lessons', lessons: @teacher_subject.lessons %>
 </div>

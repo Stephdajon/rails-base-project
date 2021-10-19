@@ -2,6 +2,8 @@
   <%= link_to "Sell New Lesson", new_rc_lesson_path, class: 'w-20 btn btn-lg btn-warning mt-2' %><br><br>
   <% if @lessons.any? %>
     <h1>All lessons here</h1>
+    <%= link_to 'New Lesson', new_rc_lesson_path(@review_center) %>
+
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <% @lessons.each do |lesson| %>
           <div class="col">
