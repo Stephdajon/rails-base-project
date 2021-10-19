@@ -16,6 +16,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'hamlit-rails'
 
+gem 'stripe'
+
 gem 'cloudinary'
 gem "image_processing", ">= 1.2"
 
