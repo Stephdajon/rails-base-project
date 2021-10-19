@@ -13,11 +13,12 @@ class Users::SessionsController < Devise::SessionsController
     set_flash_message!(:notice, :signed_in)
     sign_in(resource_name, resource)
     yield resource if block_given?
-    if current_user.type == 'Admin'
+    case current_user.type
+    when 'Admin'
       respond_with resource, location: admin_path
-    elsif current_user.type == 'Student'
+    when 'Student'
       respond_with resource, location: root_path
-    elsif current_user.type == 'Teacher'
+    when 'Teacher'
       respond_with resource, location: rc_lessons_path(1)
     end
   end

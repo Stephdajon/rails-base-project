@@ -71,5 +71,4 @@ class CheckoutController < ApplicationController
 
   #   redirect_to root_path, alert: 'You are not authorized to perform this action'
   # end
-
 end

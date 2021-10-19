@@ -43,7 +43,7 @@ class LessonsController < ApplicationController
   end
 
   def find_rc_teacher
-    return unless current_user.type == "Teacher"
+    return unless current_user.type == 'Teacher'
 
     @rc_teacher = current_user.rc_teachers.find_by(review_center_id: @review_center.id)
   end
