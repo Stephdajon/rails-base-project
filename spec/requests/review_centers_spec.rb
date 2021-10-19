@@ -22,12 +22,12 @@ RSpec.describe 'ReviewCenters', type: :request do
     end
 
     it 'creates a review center' do
-      expect { post review_center_registration_path, params: { review_center: { name: rc.name, email: rc.email, password: rc.password } } }.to change(ReviewCenter, :count).by(1)
+      expect { post review_center_registration_path, params: { review_center: { name: rc.name, email: rc.email, password: rc.password, password_confirmation: rc.password_confirmation } } }.to change(ReviewCenter, :count).by(1)
     end
 
     it 'redirects to review center home path after registration' do
-      post review_center_registration_path, params: { review_center: { name: rc.name, email: rc.email, password: rc.password } }
-      expect(response).to redirect_to(authenticated_rc_root_path)
+      post review_center_registration_path, params: { review_center: { name: rc.name, email: rc.email, password: rc.password, password_confirmation: rc.password_confirmation } }
+      expect(response).to redirect_to(new_review_center_session_path)
     end
 
     it 'renders new template if creation fails' do

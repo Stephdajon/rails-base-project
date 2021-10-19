@@ -21,6 +21,7 @@ FactoryBot.define do
     email { 'rc@email.com' }
     name { 'string' }
     password { 'password' }
+    password_confirmation { 'password' }
   end
 
   factory :course do
