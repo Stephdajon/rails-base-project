@@ -8,6 +8,15 @@ FactoryBot.define do
     password_confirmation { 'password' }
   end
 
+  factory :user do
+    username { 'string' }
+    firstname { 'string' }
+    lastname { 'string' }
+    email { 'user@email.com' }
+    password { 'password' }
+    password_confirmation { 'password' }
+  end
+
   factory :review_center do
     email { 'rc@email.com' }
     name { 'string' }
