@@ -18,6 +18,6 @@ class TeachersController < ApplicationController
 
   def authorized?
     authenticate_user!
-    redirect_to root_path unless current_user.teacher?
+    redirect_to root_path unless current_user.type == 'Teacher'
   end
 end
