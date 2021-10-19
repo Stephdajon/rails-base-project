@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
   <div class="container-fluid">
-    <%= link_to image_tag('GoLearning.png', id: "drag1") , root_path, class:"navbar-brand" %>
+    <%= link_to image_tag('GoLearning.png', id: "drag1") , root_path, class:"navbar-brand", style: 'width:200px;' %>
     <form class="d-flex w-50">
       <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search">
     </form>
@@ -13,11 +13,18 @@
       
         <% if current_review_center %>
           <li class="nav-item">
-            <%= link_to 'Home-RC', authenticated_rc_root_path, class:"nav-link active" %>
+            <%= link_to 'Home', authenticated_rc_root_path, class:"nav-link active" %>
           </li>
 
-          <li class="nav-item">
-            <%= link_to 'Signout Review Center', destroy_review_center_session_path, method: :delete %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Profile
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><%= link_to 'Edit Account', edit_review_center_registration_path, class:"dropdown-item" %></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><%= link_to 'Sign out', destroy_review_center_session_path, method: :delete, class:"dropdown-item" %></a></li>
+            </ul>
           </li>
 
         <% elsif current_user %>
@@ -33,31 +40,31 @@
             </li>
 
             <li class="nav-item">
-              <%= link_to 'My Modules', root_path, class:"nav-link active" %>
+              <%= link_to 'My Lessons', my_lessons_path, class:"nav-link active" %>
             </li>
 
             <li class="nav-item">
-              <%= link_to 'My Transactions', root_path, class:"nav-link active" %>
+              <%= link_to 'My Transactions', my_transactions_path, class:"nav-link active" %>
             </li>
 
 
           <% elsif current_user and current_user.type == "Teacher" %>
 
             <li class="nav-item">
-              <%= link_to 'TEACHER', root_path, class:"nav-link active btn btn-secondary" %>
+              <%= link_to 'Lessons', rc_lessons_path(1), class:"nav-link active btn btn-secondary" %>
             </li>
 
           <% elsif current_user and current_user.type == "Admin" %>
 
             <li class="nav-item">
-              <%= link_to 'ADMIN', root_path, class:"nav-link active btn btn-secondary" %>
+              <%= link_to 'Dashboard', admin_path, class:"nav-link active btn btn-secondary" %>
             </li>
 
           <% end %>
           
-             <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+              Profile
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><%= link_to 'Edit Account', edit_user_registration_path, class:"dropdown-item" %></li>
@@ -67,6 +74,9 @@
           </li>
 
         <% else %>
+          <li class="nav-item">
+            <%= link_to 'Home', root_path, class:"nav-link" %>
+          </li>
           <li class="nav-item">
             <%= link_to 'Login', new_user_session_path, class:"nav-link" %>
           </li>
