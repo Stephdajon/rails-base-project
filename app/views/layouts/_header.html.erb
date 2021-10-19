@@ -2,9 +2,10 @@
   <div class="container-fluid">
     <%= link_to image_tag('GoLearning.png', id: "drag1"), root_path, class:"navbar-brand" %>
 
-    <form class="d-flex w-50">
-      <input class="form-control rounded-pill shadow-sm" type="search" placeholder="Search" aria-label="Search">
-    </form>
+    <%= form_tag(root_path, method: :get, class: 'd-flex w-50') do %>
+      <%= search_field_tag :search, params[:search], class: 'form-control me-2 rounded-pill', placeholder: 'Search Lesson Here...', :required => true %>
+      <% button_tag "Search" %>
+    <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

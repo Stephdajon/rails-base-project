@@ -5,7 +5,7 @@ class Lesson < ApplicationRecord
   has_one_attached :thumbnail
 
   validates :name, presence: true
-  validates :price, presence: true
+  validates :price, presence: true, numericality: { greater_than: 60, less_than: 1000000 }
   validates :video, presence: true
   validates :thumbnail, presence: true
   validate :video_validation
