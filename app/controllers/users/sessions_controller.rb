@@ -19,7 +19,7 @@ class Users::SessionsController < Devise::SessionsController
     when 'Student'
       respond_with resource, location: root_path
     when 'Teacher'
-      respond_with resource, location: rc_lessons_path(1)
+      respond_with resource, location: teacher_home_path
     end
   end
 
