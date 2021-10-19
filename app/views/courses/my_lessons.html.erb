@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>My Lesson</h1>
+
+  <% @lessons.each do |lesson| %>
+  <br><br>
+    <div style="border:2px solid; padding:15px;">
+      <h2> Lesson Title </h2>
+    <p><%= lesson.title %></p>
+      <h2> Details </h2>
+    <p class="card-text" style="wid"><%= lesson.description %></p>
+      <h2> Price</h2>
+    <p><%= lesson.price.to_i %> PHP</p>
+    <%= link_to paid_lesson_access_path(lesson.lesson_id) do %> <button class="btn btn-md btn-primary"> View </button> <% end %>
+    </div>
+  <% end %>
+
+</div>

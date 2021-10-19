@@ -1,4 +1,5 @@
 <div class="container">
+  <%= link_to "Sell New Lesson", new_rc_lesson_path, class: 'w-20 btn btn-lg btn-warning mt-2' %><br><br>
   <% if @lessons.any? %>
     <h1>All lessons here</h1>
     <%= link_to 'New Lesson', new_rc_lesson_path(@review_center) %>
@@ -8,7 +9,7 @@
           <div class="col">
             <div class="card shadow-sm">
               <% if lesson.thumbnail.attached? %>
-                <%= image_tag url_for(lesson.thumbnail), class: "card-img-top" %>
+                <%= image_tag url_for(lesson.thumbnail), class: "card-img-top", height: '250', width: '50' %>
               <% end %>
 
               <div class="card-body">

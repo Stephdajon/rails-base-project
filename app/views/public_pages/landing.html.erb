@@ -1,13 +1,13 @@
 <main>
 
-  <section class="py-1 text-center container">
-    <div class="row py-lg-5">
+  <section class="text-center container">
+    <div class="row py-lg-4">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">LANDING PAGE</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+        <h1 class="fw-light">Go Learning Academy</h1>
+        <p class="lead text-muted">Learning is the process of acquiring new understanding, knowledge, behaviors, skills, values, attitudes, and preferences. The ability to learn is possessed by humans, animals, and some machines; there is also evidence for some kind of learning in certain plants.</p>
         <p>
-          <a href="#" class="btn btn-primary my-2">Get Started</a>
-          <a href="#" class="btn btn-secondary my-2"><i class="fas fa-cart-plus"> </i> Shop now</a>
+          <a href="#" class="btn btn-primary ">Get Started</a>
+          <a href="#" class="btn btn-secondary "><i class="fas fa-cart-plus"> </i> Shop now</a>
         </p>
       </div>
     </div>
@@ -20,10 +20,9 @@
         <% @lessons.each do |lesson|%>
           <div class="col">
             <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title><%= lesson.name %></title><rect width="100%" height="100%" fill="#55595c" /> <image xlink:href="https://c8.alamy.com/comp/DR0N8R/books-on-a-table-and-one-with-learn-to-code-cover-book-concept-DR0N8R.jpg" x="0" y="0" height="225" width="100%"/>
-                <%# <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text> %>
-              </svg>
-
+                 <% if lesson.thumbnail.attached? %>
+                    <%= image_tag url_for(lesson.thumbnail), height: '250', width: '50', class: "card-img-top"%>
+                  <% end %>
               <div class="card-body">
                 <h4 class="card-text"><%= lesson.name %></h3>
                 <h3 class="card-text"><%= lesson.price.to_i %> PHP </h3>

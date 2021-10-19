@@ -1,28 +1,21 @@
-<main class="container form-signin text-center w-50">
-
+<main class="form-signin text-center">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <h1 class="h3 mb-3 fw-normal">Signin as Review Center</h1>
+    <div class="form-floating mb-3">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'name@example.com', class: 'form-control shadow-none', id: 'floatingInput' %>
+      <%= f.label :email, for: 'floatingInput' %>
+    </div>
 
-    <h1 class="h3 mb-3 fw-normal">Log-in</h1>
-
-    <div class="mx-auto w-50">
-      <div class="form-label mt-3">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'name@example.com', class:'form-control w-100' %>
-      </div>
-
-      <div class="form-label">
-        <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Password', class:'form-control w-100' %>
-      </div>
+    <div class="form-floating">
+      <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Password', class: 'form-control shadow-none', id: 'floatingPassword' %>
+      <%= f.label :password, for: 'floatingPassword' %>
     </div>
 
     <div class="actions">
-      <%= f.submit "Log in", class: 'w-50 btn btn-lg btn-primary' %>
+      <%= f.submit "Log in", class: 'w-100 btn btn-lg btn-primary mt-2' %> 
     </div>
-
-    <% if devise_mapping.rememberable? %>
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
-    <% end %>
   <% end %>
 
   <%= render "review_centers/shared/links" %>
+
 </main>

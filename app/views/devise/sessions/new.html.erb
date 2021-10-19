@@ -1,13 +1,13 @@
 <main class="form-signin text-center">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <h1 class="h3 mb-3 fw-normal">Enter Credentials</h1>
-    <div class="form-floating">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'name@example.com', class: 'form-control', id: 'floatingInput' %>
+    <div class="form-floating mb-3">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'name@example.com', class: 'form-control shadow-none', id: 'floatingInput' %>
       <%= f.label :email, for: 'floatingInput' %>
     </div>
 
     <div class="form-floating">
-      <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Password', class: 'form-control', id: 'floatingPassword' %>
+      <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Password', class: 'form-control shadow-none', id: 'floatingPassword' %>
       <%= f.label :password, for: 'floatingPassword' %>
     </div>
 

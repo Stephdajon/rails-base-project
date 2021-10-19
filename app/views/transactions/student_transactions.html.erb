@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>MY TRANSACTIONS</h1>
+
+  <% @transactions.each do |transaction| %>
+  <br>
+    <div style="border:2px solid; padding:15px;">
+      <h2> Lesson Title </h2>
+        <p><%= transaction.name %></p>
+      <h2>Details </h2>
+        <p> <%= transaction.details %> </p>
+      <h2>Price </h2>
+        <p> <%= transaction.price.to_i %> PHP </p>
+      <h2>Reference Number </h2>
+        <p> <%= transaction.reference_number %> </p>
+      <h2>Date of transaction </h2>
+        <p><%= transaction.created_at.strftime("%A %b %e, %Y ") %></p>
+      <h2>Status </h2>
+        <p> <%= transaction.status ==  0 && 'PAID' %> </p>
+    </div>
+  <% end %>
+</div>

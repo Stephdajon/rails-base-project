@@ -1,23 +1,24 @@
 <div class="container">
   <h1><%= @teacher_subject.subject.name %></h1>
   <div>
-    <span>Title</span>
-    <h1><%= @lesson.name %></h1>
+    <h2>Title</h2>
+    <span><%= @lesson.name %></span>
   </div>
    
   <% if @lesson.video.attached? %>
-    <%= cl_video_tag url_for(@lesson.video), controls: true, controlsList: "nodownload", poster: url_for(@lesson.thumbnail) %>
+    <%= cl_video_tag url_for(@lesson.video), controls: true, controlsList: "nodownload", poster: url_for(@lesson.thumbnail), style: 'height:10%; width:30%;' %>
   <% end %>
 
   <div>
-    <span>Price</span>
-    <h2><%= number_to_currency(@lesson.price, unit: 'Php ') %></h2>
+    <h1>Price</h1>
+    <span><%= number_to_currency(@lesson.price, unit: 'Php ') %></span>
   </div>
 
   <div>
-    <span>Details</span>
-    <h2><%= @lesson.details %></h2>
+    <h2>Details</h2>
+    <span><%= @lesson.details %></span>
   </div>
+  <%= link_to "Back", rc_lessons_path, class: 'w-20 btn btn-lg btn-secondary mt-2' %><br><br>
 </div>
 
 <div class="container">

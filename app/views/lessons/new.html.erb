@@ -1,51 +1,54 @@
-<%= form_with scope: :lesson, url: rc_lessons_path do |f| %>
-
-<div class='errors'>
-</div>
-
-  <div>
-    <%= f.label :teacher_subject_id %>
-    <%= f.select :teacher_subject_id, @teacher_subjects.collect { |teacher_subject| [ teacher_subject.subject.name, teacher_subject.id ] } %>
+<main class="container">
+  <%= form_with scope: :lesson, url: rc_lessons_path do |f| %>
+  <h1>Sell a Lesson</h1>
+  <div class='errors'>
   </div>
 
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :details %>
-    <%= f.text_area :details %>
-  </div>
+    <div class="">
+      <%= f.label :teacher_subject_id %>
+      <%= f.select(:teacher_subject_id, @teacher_subjects.collect { |teacher_subject| [ teacher_subject.subject.name, teacher_subject.id ] }, {include_blank: "Select Subject "}, { :class => 'form-select mb-3 shadow-none' })%>
+    </div>
 
-  <div>
-    <%= f.label :price %>
-    <%= f.number_field :price, step: :any %>
-  </div>
+    <div class="">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control shadow-none' %>
+    </div>
+    <div class="">
+      <%= f.label :details %>
+      <%= f.text_area :details, class: 'form-control shadow-none' %>
+    </div>
 
-  <div>
-    <%= f.label :video %>
-    <%= f.file_field :video, accept: 'video/*', direct_upload: true, class: 'upload-video', id: 'upload-video' %>
-  </div>
+    <div class="">
+      <%= f.label :price %>
+      <%= f.number_field :price, step: :any, class: 'form-control shadow-none' %>
+    </div>
 
-  <div>
-    <video class='preview-video', controls='true'></video>
-  </div>
+    <div class="">
+      <%= f.label :video %>
+      <%= f.file_field :video, accept: 'video/*', direct_upload: true, class: 'upload-video', id: 'upload-video', class: 'form-control shadow-none' %>
+    </div>
+    <br>
 
-  <div>
-    <%= f.label :thumbnail %>
-    <%= f.file_field :thumbnail, accept: 'image/png, image/jpg, image/jpeg', direct_upload: true, class: 'upload-image', id: 'upload-thumbnail' %>
-  </div>
+    <div class="l">
+      <video class='preview-video', controls='true', class="form-control shadow-none"></video>
+    </div>
+    <br>
 
-  <div>
-    <img class='preview-image' />
-  </div>
+    <div class="">
+      <%= f.label :thumbnail %>
+      <%= f.file_field :thumbnail, accept: 'image/png, image/jpg, image/jpeg', direct_upload: true, class: 'upload-image', id: 'upload-thumbnail', class: 'form-control shadow-none' %>
+    </div>
 
-  <div>
-    <%= f.submit id:'save_lesson',  disable_with: false %>
-  </div>
-<% end %>
+    <div class="">
+      <img class='preview-image' />
+    </div>
 
-
+    <div class="">
+      <%= f.submit id:'save_lesson',  disable_with: false, class: 'w-20 btn btn-lg btn-primary mt-2' %>
+      <%= link_to "Back", rc_lessons_path, class: 'w-20 btn btn-lg btn-secondary mt-2' %><br><br>
+    </div>
+  <% end %>
+</main>
 
 <%= javascript_pack_tag 'upload_attachments' %>
 <%= javascript_pack_tag 'direct_uploads' %>
