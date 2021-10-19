@@ -17,6 +17,7 @@ gem 'devise'
 gem 'hamlit-rails'
 
 gem 'stripe'
+gem 'figaro'
 
 gem 'cloudinary'
 gem "image_processing", ">= 1.2"
