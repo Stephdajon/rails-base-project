@@ -1,7 +1,7 @@
 <br><br>
-<div class="container" style="display:flex; justify-content:center; position:fixed; top:0; margin-top:105px; margin-left:340px;">
+<div class="container" >
   <% if notice %>
-    <div class="alert alert-success d-flex align-items-center" role="alert">
+    <div class="alert alert-success d-flex align-items-center" role="alert" >
       <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
       <div>
         <%= notice %>
@@ -34,6 +34,6 @@
   if (alert) {
     setTimeout(() => {
       alert.style.display = 'none'
-    }, 3000);
+    }, 5000);
   }
 </script>
