@@ -1,0 +1,12 @@
+development: 
+  publishable_key: <%= Rails.application.credentials[:stripe][:development][:publishable_key] %>
+  secret_key: <%= Rails.application.credentials[:stripe][:development][:secret_key] %>
+  webhooks: <%= Rails.application.credentials[:stripe][:production][:webhooks] %>
+  secure: true
+
+production:
+  publishable_key: <%= Rails.application.credentials[:stripe][:production][:publishable_key] %>
+  secret_key: <%= Rails.application.credentials[:stripe][:production][:secret_key] %>
+  webhooks: <%= Rails.application.credentials[:stripe][:production][:webhooks] %>
+  secure: true
+  
