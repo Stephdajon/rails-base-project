@@ -11,6 +11,7 @@ class LessonsController < ApplicationController
 
   def show
     @lesson = Lesson.find_by(id: params[:id])
+    @teacher_subject = @lesson.teacher_subject
   end
 
   def new

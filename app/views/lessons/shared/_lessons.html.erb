@@ -1,0 +1,22 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+  <% lessons.each do |lesson| %>
+    <div class="col">
+      <div class="card shadow-sm">
+        <% if lesson.thumbnail.attached? %>
+          <%= image_tag url_for(lesson.thumbnail), class: "card-img-top" %>
+        <% end %>
+
+        <div class="card-body">
+          <h5 class="card-title"><%= lesson.name %></h5>
+          <p class="card-text"><%= lesson.details %></p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <%= link_to 'View', rc_lesson_path(lesson.rc_course.review_center, lesson), type: "button", class: "btn btn-sm btn-outline-secondary" %>
+            </div>
+            <small class="text-muted">9 mins</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
