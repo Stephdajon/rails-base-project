@@ -19,6 +19,9 @@ Rails.application.routes.draw do
     resources :lessons
   end
 
+  #TEACHER PAGES
+  get '/home' => 'teachers#home', as: 'teacher_home'
+
   # STUDENT PAGES
 
   get '/student/my_carts', to: 'user_carts#user_carts', as: 'user_carts'

@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>Review Centers</h1>
+  <% if @review_centers.any? %>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <% @review_centers.each do |review_center| %>
+        <div class="col">
+          <div class="card shadow-sm">
+
+            <div class="card-body">
+              <h5 class="card-title"><%= review_center.name %></h5>
+              <p class="card-text"><span>Review Center Details</span></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <%= link_to 'View Lessons', rc_lessons_path(review_center), type: "button", class: "btn btn-sm btn-outline-secondary" %>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <h5>You are currently not a teacher from any review centers.</h5>
+  <% end %>
+</div>
+
+
+
+<div class="container">
+  <h1>Recently Uploaded Lessons</h1>
+  <% if @lessons.any? %>
+    <%= render 'lessons/shared/lessons', lessons: @lessons %>
+  <% else %>
+    <h5>You don't have any uploaded lessons.</h5>
+  <% end %>
+</div>
