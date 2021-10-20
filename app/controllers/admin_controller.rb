@@ -44,6 +44,7 @@ class AdminController < ApplicationController
 
   def required_admin
     return if current_user.type == 'Admin'
+
     redirect_to root_path, alert: 'You are not authorized to perform this action'
   end
 end
