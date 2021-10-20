@@ -1,5 +1,5 @@
 development: 
-  cloud_name: <%= Rails.application.credentials.config[:production][:cloudinary][:cloud_name] %>
+  cloud_name: <%= Rails.application.credentials.config[:development][:cloudinary][:cloud_name] %>
   api_key: <%= Rails.application.credentials.config[:development][:cloudinary][:api_key] %>
   api_secret: <%= Rails.application.credentials.config[:development][:cloudinary][:api_secret] %>
   secure: true
