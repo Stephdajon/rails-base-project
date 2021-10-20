@@ -1,21 +1,21 @@
-<main class="form-signin text-center">
+<main class="form-signin text-center w-50 shadow-lg p-3 mb-5 rounded">
   <%= form_for(resource, as: resource_name, url: rc_signup_create_path) do |f| %>
-    <%#= render "devise/shared/error_messages", resource: resource %>
+    <%# = render "devise/shared/error_messages", resource: resource %>
 
     <h1 class="h3 mb-3 fw-normal">Signup Review Center</h1>
-    
-    <div class="form-floating mb-3">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'name@example.com', class: 'form-control shadow-none', id: 'floatingInput' %>
-      <%= f.label :email %>
-        <% resource.errors.full_messages_for(:email).each do |message| %>
-          <p style="color:red;"><%= message %></p>
-        <% end %>
-    </div>
 
     <div class="form-floating mb-3">
       <%= f.text_field :name, autofocus: true, autocomplete: "email", placeholder: 'name', class: 'form-control shadow-none', id: 'floatingInput' %>
       <%= f.label :name, for: 'floatingInput' %>
        <% resource.errors.full_messages_for(:name).each do |message| %>
+          <p style="color:red;"><%= message %></p>
+        <% end %>
+    </div>
+    
+    <div class="form-floating mb-3">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'name@example.com', class: 'form-control shadow-none', id: 'floatingInput' %>
+      <%= f.label :email %>
+        <% resource.errors.full_messages_for(:email).each do |message| %>
           <p style="color:red;"><%= message %></p>
         <% end %>
     </div>

@@ -1,8 +1,31 @@
-<main class="form-signin text-center">
+<main class="form-signin text-center w-50 shadow-lg p-3 mb-5 rounded">
   <%= form_for(resource, as: resource_name, url: signup_create_path) do |f| %>
     <%#= render "devise/shared/error_messages", resource: resource %>
 
     <h1 class="h3 mb-3 fw-normal">Signup User</h1>
+
+    <%#= f.select :type, [ 'Student','Teacher' ], :prompt => 'Select One' %>
+    <%= f.select(:type, ['Student', 'Teacher'], {include_blank: "Select Role"}, { :class => 'form-select mb-3' }) %>
+      <%#= f.label :Role %>
+      <% resource.errors.full_messages_for(:type).each do |message| %>
+        <p style="color:red;"><%= message %></p>
+     <% end %>
+
+    <div class="form-floating mb-3">
+      <%= f.text_field :firstname, autofocus: true, autocomplete: "email", placeholder: 'First Name', class: 'form-control shadow-none', id: 'floatingInput' %>
+      <%= f.label :firstname, for: 'floatingInput' %>
+       <% resource.errors.full_messages_for(:firstname).each do |message| %>
+          <p style="color:red;"><%= message %></p>
+        <% end %>
+    </div>
+
+    <div class="form-floating mb-3">
+      <%= f.text_field :lastname, autofocus: true, autocomplete: "email", placeholder: 'Last Name', class: 'form-control shadow-none', id: 'floatingInput' %>
+      <%= f.label :lastname, for: 'floatingInput' %>
+       <% resource.errors.full_messages_for(:lastname).each do |message| %>
+          <p style="color:red;"><%= message %></p>
+        <% end %>
+    </div>
     
     <div class="form-floating mb-3">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'name@example.com', class: 'form-control shadow-none', id: 'floatingInput' %>
@@ -11,37 +34,14 @@
           <p style="color:red;"><%= message %></p>
         <% end %>
     </div>
-
-     <div class="form-floating mb-3">
+     
+    <div class="form-floating mb-3">
       <%= f.text_field :username, autofocus: true, autocomplete: "email", placeholder: 'Username', class: 'form-control shadow-none', id: 'floatingInput' %>
       <%= f.label :username, for: 'floatingInput' %>
        <% resource.errors.full_messages_for(:username).each do |message| %>
           <p style="color:red;"><%= message %></p>
         <% end %>
     </div>
-
-     <div class="form-floating mb-3">
-      <%= f.text_field :firstname, autofocus: true, autocomplete: "email", placeholder: 'Firstname', class: 'form-control shadow-none', id: 'floatingInput' %>
-      <%= f.label :firstname, for: 'floatingInput' %>
-       <% resource.errors.full_messages_for(:firstname).each do |message| %>
-          <p style="color:red;"><%= message %></p>
-        <% end %>
-    </div>
-
-     <div class="form-floating mb-3">
-      <%= f.text_field :lastname, autofocus: true, autocomplete: "email", placeholder: 'Lastname', class: 'form-control shadow-none', id: 'floatingInput' %>
-      <%= f.label :lastname, for: 'floatingInput' %>
-       <% resource.errors.full_messages_for(:lastname).each do |message| %>
-          <p style="color:red;"><%= message %></p>
-        <% end %>
-    </div>
-    
-      <%#= f.select :type, [ 'Student','Teacher' ], :prompt => 'Select One' %>
-      <%= f.select(:type, ['Student', 'Teacher'], {include_blank: "Select Role"}, { :class => 'form-select mb-3' }) %>
-      <%#= f.label :Role %>
-       <% resource.errors.full_messages_for(:type).each do |message| %>
-          <p style="color:red;"><%= message %></p>
-        <% end %>
 
     <div class="form-floating mb-3">
       <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Password', class: 'form-control mb-0 shadow-none', id: 'floatingPassword' %>

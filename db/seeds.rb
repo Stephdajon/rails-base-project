@@ -95,7 +95,8 @@ Subject.create!([
 TeacherSubject.create!([
   {
     rc_teacher_id: 1,
-    subject_id: 1
+    subject_id: 1,
+    rc_course_id: 1
   }
 ])
 

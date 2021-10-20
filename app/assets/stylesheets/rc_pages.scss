@@ -4,20 +4,36 @@
 
 .navbar-brand{
   margin-right: 0 !important;
-  padding-left: 1rem !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  width: 15%;
+  padding-left: 1rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  width: 12%;
   #drag1{
     padding: 0;
-    width: 55%;
+    width: 45%;
   }
 }
 
-.forgot-pass{
-  text-decoration: none !important;
+.nav-link{
+  padding: 0;
 }
 
 a{
   text-decoration: none !important;
+}
+
+//RC edit profile
+.edit-form {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px;
+  margin: auto;
+}
+
+// RC forgot password form
+.forgot-pass-form{
+  width: 100%;
+  max-width: 350px;
+  padding: 15px;
+  margin: auto;
 }
