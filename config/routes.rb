@@ -50,7 +50,6 @@ Rails.application.routes.draw do
   end
 
   # STUDENT PAGES
-
   get '/student/my_carts', to: 'user_carts#user_carts', as: 'user_carts'
   post '/student/add_to_cart/:lesson_id', to: 'user_carts#add_to_cart', as: 'add_to_cart'
   delete '/student/remove_to_cart/:user_cart_id', to: 'user_carts#remove_to_cart', as: 'remove_to_cart'
@@ -60,6 +59,13 @@ Rails.application.routes.draw do
 
   # ADMIN PAGES
   get '/admin', to: 'admin#index', as: 'admin'
+  get '/admin/user_list', to: 'admin#user_list', as: 'admin_users_list'
+  get '/admin/review_center_list', to: 'admin#review_center_list', as: 'admin_review_center_list'
+  get '/admin/pending_users', to: 'admin#pending_users', as: 'admin_pending_users'
+  get '/admin/pending_rc', to: 'admin#pending_rc', as: 'admin_pending_rc'
+  patch '/admin/approved_user/:id', to: 'admin#approve_users', as: 'approve_users'
+  patch '/admin/approve_rc/:id', to: 'admin#approve_rc', as: 'approve_rc'
+  get '/admin/transactions', to: 'admin#transactions', as: 'admin_transactions'
 
   # PUBLIC PAGES
 
