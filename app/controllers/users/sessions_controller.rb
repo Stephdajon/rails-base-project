@@ -17,7 +17,12 @@ class Users::SessionsController < Devise::SessionsController
     when 'Admin'
       respond_with resource, location: admin_path
     when 'Student'
+      if current_user.status == 'pending'
+        redirect_to new_user_session_path, notice: 'We send you an email once the admin approved your account. Thankyou for your patience.'
+        sign_out resource
+      else
       respond_with resource, location: root_path
+      end
     when 'Teacher'
       respond_with resource, location: teacher_home_path
     end
