@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!, except: [:lesson_details]
-  before_action :required_students, only: [:my_lessons, :lesson_details, :paid_lesson_access]
+  before_action :required_students, only: %i[my_lessons lesson_details paid_lesson_access]
   before_action :required_payment, only: [:paid_lesson_access]
 
   def lesson_details

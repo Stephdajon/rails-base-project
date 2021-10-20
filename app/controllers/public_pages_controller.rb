@@ -6,8 +6,5 @@ class PublicPagesController < ApplicationController
 
     @parameter = params[:search].downcase
     @results = Lesson.all.where('lower(name) LIKE :search', search: "%#{@parameter}%")
-
   end
-
-
 end
