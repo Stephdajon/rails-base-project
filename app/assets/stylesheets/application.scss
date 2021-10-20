@@ -23,6 +23,10 @@ body {
 }
 
 
+.navbar{
+  background-color: #e2c194;
+}
+
 //Start landing page style
 .bd-placeholder-img {
   font-size: 1.125rem;
@@ -57,10 +61,16 @@ body {
   z-index: 2;
 }
 
-.form-signin input[type="email"] {
+.form-signin input[type="name"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0; 
 }
 
 .form-signin input[type="password"] {
