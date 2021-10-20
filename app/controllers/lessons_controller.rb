@@ -12,6 +12,7 @@ class LessonsController < ApplicationController
   def show
     @lesson = Lesson.find_by(id: params[:id])
     @teacher_subject = @lesson.teacher_subject
+    @related_lessons = @teacher_subject.lessons.where.not(id: @lesson.id)
   end
 
   def new
@@ -50,7 +51,7 @@ class LessonsController < ApplicationController
   end
 
   def authorized?
-    return if @rc_teacher || current_review_center
+    return if (@rc_teacher && @rc_teacher.status == 'approved') || current_review_center
 
     flash[:error] = 'Not allowed to access restricted page.'
     redirect_to root_path and return

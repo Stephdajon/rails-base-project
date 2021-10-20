@@ -39,6 +39,7 @@ FactoryBot.define do
   end
 
   factory :rc_teacher do
+    status { 'approved' }
     review_center
   end
 
