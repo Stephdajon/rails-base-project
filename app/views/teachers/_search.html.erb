@@ -1,0 +1,8 @@
+<% if @teachers.any? %>
+  <% @teachers.each do |teacher| %>
+    <div class="teacherOption">
+      <h5 id="option-username"><%= teacher.username %></h5>
+      <%= teacher.firstname.capitalize + " " + teacher.lastname.capitalize %>
+    </div>
+  <% end %>
+<% end %>

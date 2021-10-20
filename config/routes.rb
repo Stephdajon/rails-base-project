@@ -32,6 +32,9 @@ Rails.application.routes.draw do
   
   #TEACHER PAGES
   get '/home' => 'teachers#home', as: 'teacher_home'
+  get 'teachers/invitations/new' => 'teachers#new_invitation', as: 'new_invitation'
+  get '/teachers/search' => 'teachers#search'
+  post 'teachers/invitations' => 'teachers#create_invitation', as: 'create_invitation'
 
   # STUDENT PAGES
 
