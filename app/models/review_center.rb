@@ -6,7 +6,6 @@ class ReviewCenter < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :email, length: { maximum: 45 }
-  validates :password_confirmation, presence: true
   validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 75 }
   validates :status, presence: true, on: :update
 end
