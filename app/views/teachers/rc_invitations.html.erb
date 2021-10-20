@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Invitations from review centers</h1>
+
+  <% if @rc_teacher_invitations.empty? %>
+    <span>No existing invitation</span>
+  <% else %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Review Center</th>
+          <th class= "text-center">Invited at</th>
+          <th class= "text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+     
+        <%  @rc_teacher_invitations.each do |rc_teacher| %>
+          <tr>
+            <td><%= rc_teacher.review_center.name %></td>
+            <td class= "text-center"><%= rc_teacher.created_at.to_formatted_s(:long) %></td>
+            <td class= "d-flex justify-content-center">
+              <%= button_to 'Accept', accept_invitation_path, params: {id: rc_teacher.id} %>
+              <%= button_to 'Reject', reject_invitation_path, params: {id: rc_teacher.id} %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

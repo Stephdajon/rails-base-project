@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>Invitations</h1>
+
+  <%= link_to 'Back', :back, class:"nav-link" %>
+  <%= link_to 'Invite teacher', new_invitation_path, class:"nav-link" %>
+
+  <% if @rc_teachers_invitations.empty? %>
+    <span>No existing invitations.</span>
+  <% else %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th class= "text-center">Last Name</th>
+          <th class= "text-center">Status</th>
+          <th class= "text-center">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%  @rc_teachers_invitations.each do |rc_teacher| %>
+          <tr>
+            <td><%= rc_teacher.teacher.firstname %></td>
+            <td class= "text-center"><%= rc_teacher.teacher.lastname %></td>
+            <td class= "text-center"><%= rc_teacher.status %></td>
+            <td class= "text-center">
+              <%= link_to 'Delete Invitation', delete_invitation_path(rc_teacher), class:"nav-link",
+                method: :delete,
+                data: { confirm: "Are you sure you want to delete the invitation to #{rc_teacher.teacher.username}?" }
+              %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
