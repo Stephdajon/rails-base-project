@@ -25,7 +25,7 @@
 
     <div class="">
       <%= f.label :video %>
-      <%= f.file_field :video, accept: 'video/*', direct_upload: true, class: 'upload-video', id: 'upload-video', class: 'form-control shadow-none' %>
+      <%= f.file_field :video, accept: 'video/*', direct_upload: true, class: 'upload-video form-control shadow-none', id: 'upload-video' %>
     </div>
     <br>
 
@@ -36,7 +36,7 @@
 
     <div class="">
       <%= f.label :thumbnail %>
-      <%= f.file_field :thumbnail, accept: 'image/png, image/jpg, image/jpeg', direct_upload: true, class: 'upload-image', id: 'upload-thumbnail', class: 'form-control shadow-none' %>
+      <%= f.file_field :thumbnail, accept: 'image/png, image/jpg, image/jpeg', direct_upload: true, class: 'upload-image form-control shadow-none', id: 'upload-thumbnail' %>
     </div>
 
     <div class="">
