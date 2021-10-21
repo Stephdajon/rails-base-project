@@ -1,4 +1,47 @@
+const errorMessage = (error) => {
+  let errorContent;
+
+  if (error.includes('Status')) {
+    const status = error.slice(error.indexOf('Status')).split(" ");
+    const statusCode = parseInt(status[status.length - 1])
+
+    if (statusCode === 413) {
+      errorContent = 'File is exceeding maximum of 100MB';
+    } else if (statusCode === 0) {
+      errorContent = 'Something went wrong from our end. Please try again later';
+    }
+    else {
+      errorContent = 'Something went wrong. Please try again';
+    }
+  } else {
+    errorContent = 'Something went wrong. Please try again';
+  }
+
+  return errorContent;
+}
+
+const removePreviousPendingProgress = () => {
+  const directUploadProgress = document.querySelectorAll('.direct-upload--pending')
+  if (directUploadProgress){
+    Array.from(directUploadProgress).forEach(function(element, index) {
+      if (index != 0) {
+        element.remove()
+      }
+    })
+  }
+
+  const directUploadComplete = document.querySelectorAll('.direct-upload--complete')
+  if (directUploadComplete){
+    Array.from(directUploadComplete).forEach(function(element, index) {
+      if (index != 0) {
+        element.remove()
+      }
+    })
+  }
+}
+
 addEventListener("direct-upload:initialize", event => {
+  removePreviousPendingProgress();
   const { target, detail } = event
   const { id, file } = detail
   target.insertAdjacentHTML("beforebegin", `
@@ -17,10 +60,13 @@ addEventListener("direct-upload:start", event => {
 })
 
 addEventListener("direct-upload:progress", event => {
+  removePreviousPendingProgress();
   const { id, progress } = event.detail
   const progressElement = document.getElementById(`direct-upload-progress-${id}`)
   progressElement.style.width = `${progress}%`
+  document.getElementById('save_lesson').disabled = true;
 })
+
 
 addEventListener("direct-upload:error", event => {
   event.preventDefault()
@@ -28,15 +74,13 @@ addEventListener("direct-upload:error", event => {
   const element = document.getElementById(`direct-upload-${id}`)
   element.classList.add("direct-upload--error")
   element.setAttribute("title", error)
+
+  element.innerHTML = errorMessage(error)
+  document.getElementById('save_lesson').disabled = false
 })
 
 addEventListener("direct-upload:end", event => {
   const { id } = event.detail
   const element = document.getElementById(`direct-upload-${id}`)
   element.classList.add("direct-upload--complete")
-})
-
-
-addEventListener('cloudinaryfail', event => {
-  console.log('Something Went Wrong')
 })
