@@ -8,10 +8,6 @@ class AdminController < ApplicationController
     @users = User.all
   end
 
-  # def student_list
-  #   @students = Student.all
-  # end
-
   def pending_users
     @students = Student.all.where(status: 'pending')
   end
@@ -22,6 +18,7 @@ class AdminController < ApplicationController
 
   def approve_users
     @student = Student.find(params[:id])
+    UserMailer.confirmation_email(@student).deliver_later
     @student.update(status: 'active')
     redirect_to admin_pending_users_path, notice: 'Successfully approve student signup'
   end
