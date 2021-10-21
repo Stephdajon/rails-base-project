@@ -16,7 +16,7 @@ class CheckoutController < ApplicationController
       line_items: [{
         name: @lesson.name,
         description: @lesson.details,
-        amount: @lesson.price.to_i,
+        amount: @lesson.price.to_i * 100,
         currency: 'usd',
         quantity: 1
       }],

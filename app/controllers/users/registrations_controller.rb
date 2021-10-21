@@ -9,7 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource.persisted?
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
-        # UserMailer.welcome_email(resource).deliver_later
+        UserMailer.welcome_email(@student).deliver_later
         sign_out(resource)
         respond_with resource, location: new_user_session_path
       else

@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!, except: [:lesson_details]
-  before_action :required_students, only: [:my_lessons]
+  before_action :required_students, only: %i[my_lessons lesson_details paid_lesson_access]
   before_action :required_payment, only: [:paid_lesson_access]
 
   def lesson_details
@@ -28,8 +28,7 @@ class CoursesController < ApplicationController
   end
 
   def required_students
-    return if current_user.type == 'Student'
-
-    redirect_to root_path, alert: 'You are not authorized to perform this action'
+    authenticate_user!
+    redirect_to root_path, alert: 'You are not authorized to perform this action' unless current_user.type == 'Student'
   end
 end
