@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Teachers</h1>
+
+  <%= link_to 'Invitations', rc_teachers_invitations_path, class:"nav-link" %>
+  <%= link_to 'Invite teacher', new_invitation_path, class:"nav-link" %>
+
+  <% if @rc_teachers.empty? %>
+    <span>No existing teacher for your review center.</span>
+  <% else %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th class= "text-center">Last Name</th>
+          <th class= "text-center">Status</th>
+          <th class= "text-center">Subjects</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%  @rc_teachers.each do |rc_teacher| %>
+          <tr>
+            <td><%= rc_teacher.teacher.firstname %></td>
+            <td class= "text-center"><%= rc_teacher.teacher.lastname %></td>
+            <td class= "text-center"><%= rc_teacher.status %></td>
+            <td class= "d-flex justify-content-center">
+              <% if rc_teacher.teacher_subjects.any? %>
+                <% rc_teacher.teacher_subjects.each do |teacher_subject| %>
+                  <%= teacher_subject.subject.name %>
+                <% end %>
+              <% else %>
+                <span>No assigned subject.</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

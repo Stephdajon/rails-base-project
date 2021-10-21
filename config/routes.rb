@@ -6,21 +6,18 @@ Rails.application.routes.draw do
     post '/signin',         to: 'users/sessions#create',  as: 'signin_create'
   end
 
-  devise_for :review_centers, path: 'rc', path_names: { sign_in: 'signin',  sign_up: 'signup', sign_out: 'signout' }, controllers: { sessions: 'review_centers/sessions', registrations: 'review_centers/registrations' }, only: [:sessions, :registrations, :passwords]
+  devise_for :review_centers, path: 'reviewcenter', path_names: { sign_in: 'signin',  sign_up: 'signup', sign_out: 'signout' }, controllers: { sessions: 'review_centers/sessions', registrations: 'review_centers/registrations' }, only: [:sessions, :registrations, :passwords]
 
   devise_scope :review_center do
-    post '/rc/signup',         to: 'review_centers/registrations#create',  as: 'rc_signup_create'
-    post '/rc/signin',         to: 'review_centers/sessions#create',  as: 'rc_signin_create'
+    post '/reviewcenter/signup',         to: 'review_centers/registrations#create',  as: 'rc_signup_create'
+    post '/reviewcenter/signin',         to: 'review_centers/sessions#create',  as: 'rc_signin_create'
+    get 'teachers' => 'rc_pages#teachers', as: 'rc_teachers'
   end
 
   authenticated :review_center do
     root to: 'rc_pages#home', as: 'authenticated_rc_root'
   end
 
-  
-  scope '/teacher/:review_center_id', as: 'rc' do
-    resources :lessons
-  end
 
   # PAYMENT API
 
@@ -29,12 +26,28 @@ Rails.application.routes.draw do
     get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
     get 'success', to: 'checkout#success', as: 'checkout_success'
   end
+
+  # REVIEW CENTER PAGES
+  scope '/reviewcenter' do
+    get 'teachers' => 'rc_pages#teachers', as: 'teachers'
+    get 'teachers/invitations' => 'rc_pages#teacher_invitations', as: 'rc_teachers_invitations'
+  end
   
-  #TEACHER PAGES
-  get '/home' => 'teachers#home', as: 'teacher_home'
-  get 'teachers/invitations/new' => 'teachers#new_invitation', as: 'new_invitation'
-  get '/teachers/search' => 'teachers#search'
-  post 'teachers/invitations' => 'teachers#create_invitation', as: 'create_invitation'
+  # TEACHER PAGES
+  scope '/teacher/:review_center_id', as: 'rc' do
+    resources :lessons
+  end
+
+  scope '/teacher' do
+    get '/home' => 'teachers#home', as: 'teacher_home'
+    get '/invitations/new' => 'teachers#new_invitation', as: 'new_invitation'
+    get '/search' => 'teachers#search'
+    post '/invitations' => 'teachers#create_invitation', as: 'create_invitation'
+    get '/invitations' => 'teachers#rc_invitations', as: 'invitations'
+    post '/invitations/accept' => 'teachers#accept_invitation', as: 'accept_invitation'
+    post '/invitations/reject' => 'teachers#reject_invitation', as: 'reject_invitation'
+    delete '/invitations/:id' => 'teachers#delete_invitation', as: 'delete_invitation'
+  end
 
   # STUDENT PAGES
 

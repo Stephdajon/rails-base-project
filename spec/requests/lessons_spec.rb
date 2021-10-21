@@ -8,11 +8,11 @@ RSpec.describe 'Lessons', type: :request do
   let!(:rc_course) { create(:rc_course, review_center: review_center, course: course) }
 
   def rc_teacher
-    create(:rc_teacher, review_center: review_center, user_id: teacher.id)
+    build(:rc_teacher, review_center: review_center, user_id: teacher.id)
   end
 
   def teacher_subject
-    rc_teacher
+    rc_teacher.save
     create(:teacher_subject, rc_teacher: RcTeacher.first, subject_id: subject1.id, rc_course: rc_course)
   end
 
@@ -21,7 +21,6 @@ RSpec.describe 'Lessons', type: :request do
   end
 
   before do
-    rc_teacher
     teacher_subject
 
     sign_in teacher, scope: :user

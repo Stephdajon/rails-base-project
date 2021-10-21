@@ -19,6 +19,10 @@
             <%= link_to 'Home', authenticated_rc_root_path, class:"nav-link active" %>
           </li>
 
+          <li class="nav-item">
+            <%= link_to 'Teachers', teachers_path, class:"nav-link" %>
+          </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Profile
@@ -54,7 +58,11 @@
           <% elsif current_user and current_user.type == "Teacher" %>
 
             <li class="nav-item">
-              <%= link_to 'My Portal', teacher_home_path, class:"nav-link active btn btn-secondary" %>
+              <%= link_to 'Home', teacher_home_path, class:"nav-link active btn" %>
+            </li>
+
+            <li class="nav-item">
+              <%= link_to 'Invitations', invitations_path, class:"nav-link active btn" %>
             </li>
 
           <% elsif current_user and current_user.type == "Admin" %>

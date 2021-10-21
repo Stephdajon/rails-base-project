@@ -23,5 +23,9 @@
 
 <div class="container">
   <h1>Other lessons for this subject</h1>
-  <%= render 'lessons/shared/lessons', lessons: @teacher_subject.lessons %>
+  <% if @related_lessons.any? %>
+    <%= render 'lessons/shared/lessons', lessons: @related_lessons %>
+  <% else %>
+    <span>No other lessons uploaded for this subject.</span>
+  <% end %>
 </div>
