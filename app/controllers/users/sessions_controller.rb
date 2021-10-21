@@ -28,7 +28,7 @@ class Users::SessionsController < Devise::SessionsController
         redirect_to new_user_session_path, notice: 'We send you an email once the Review Center approved your account. Thankyou for your patience.'
         sign_out resource
       else
-      respond_with resource, location: teacher_home_path
+        respond_with resource, location: teacher_home_path
       end
     end
   end
