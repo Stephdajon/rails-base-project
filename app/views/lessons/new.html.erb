@@ -5,8 +5,9 @@
   </div>
 
     <div class="">
-      <%= f.label :teacher_subject_id %>
-      <%= f.select(:teacher_subject_id, @teacher_subjects.collect { |teacher_subject| [ teacher_subject.subject.name, teacher_subject.id ] }, {include_blank: "Select Subject "}, { :class => 'form-select mb-3 shadow-none' })%>
+      <% @options = @teacher_subjects.collect { |teacher_subject| [ teacher_subject.subject.name, teacher_subject.id ] } %>
+      <%= f.label :teacher_subject_id, 'Subject' %>
+      <%= f.select(:teacher_subject_id, @options, {}, { :class => 'form-select mb-3 shadow-none' })%>
     </div>
 
     <div class="">
