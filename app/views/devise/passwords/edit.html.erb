@@ -1,25 +1,25 @@
-<h2>Change your password</h2>
+<main class="form-signin text-center shadow-lg p-3 mb-5 rounded">
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+    <h1 class="h3 mb-3 fw-normal">Change your password</h1>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-  </div>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="form-floating mb-3">
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'form-control shadow-none', id: 'floatingInput' %>
+      <%= f.label :password, "New password", for: 'floatingInput' %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
+    <div class="form-floating mb-3">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control shadow-none', id: 'floatingInput' %>
+      <%= f.label :password_confirmation, "Confirm new password", for: 'floatingInput' %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="actions">
+      <%= f.submit "Change my password", class: 'w-100 btn btn-md btn-primary mt-2' %><br>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</main>
