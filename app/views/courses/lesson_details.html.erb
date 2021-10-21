@@ -16,7 +16,7 @@
         </div>
         <div class="col-auto d-none d-lg-block">
           <% if @lesson.thumbnail.attached? %>
-              <%= image_tag url_for(@lesson.thumbnail), class: "bd-placeholder-img", height: '310', width: '200' %>
+              <%= image_tag url_for(@lesson.thumbnail), class: "bd-placeholder-img", height: '310', width: '300' %>
             <% end %>
         </div>
       </div>
@@ -44,7 +44,7 @@
           <div class="col-sm-6">
             <h2>lessons</h2>
             <% @lessons.each do |lesson| %>
-              <%= link_to paid_lesson_access_path(lesson.id) do %> <button class="btn btn-success"><%= lesson.name %></button> <% end %>
+              <%= link_to paid_lesson_access_path(lesson.id) do %> <button class="btn btn-success m-1"><%= lesson.name %></button> <% end %>
             <% end %>
           </div>
         </div>
