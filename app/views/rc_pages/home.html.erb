@@ -1,4 +1,23 @@
 <div class="container">
+<<<<<<< Updated upstream
   <h1>Home Page for Review Center</h1>
   <%= link_to new_invitation_path do %><button> Add invatation</button><% end %>
+=======
+  <h1><%= current_review_center.name %></h1>
+  <h1>Courses</h1>
+  <% if @rc_courses.any? %>
+    <% @rc_courses.each do |rc_course| %>
+      <%= rc_course.course.name %>
+      <%= link_to 'View Details', rc_course_path(rc_course) %>
+    <% end %>
+  <% else %>
+    <h1>You have not added any course.</h1>
+  <% end %>
+
+  <h1>Recently uploaded lessons</h1>
+  <% if @recently_uploaded_lessons.any? %>
+    <%= render 'rc_pages/shared/lessons', lessons: @recently_uploaded_lessons %>
+  <% else %>
+  <% end %>
+>>>>>>> Stashed changes
 </div>

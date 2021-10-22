@@ -1,0 +1,39 @@
+<div class="container">
+  <%= link_to "Back", :back, class: 'w-20 btn btn-lg btn-secondary mt-2' %><br><br>
+  <h1><%= @subject.name %></h1>
+  <div>
+    <h2>Title</h2>
+    <h2><%= @lesson.name %></h2>
+    <div>
+      <% if @enrolled_lessons.count.zero? %>
+        <span>No student purchased this lesson.</span>
+      <% else %>
+        <%= pluralize(@enrolled_lessons.count, 'student') %> purchased this lesson.</h5>
+        <%#= link_to 'View students',  %>
+      <% end %>
+    </div>
+  </div>
+   
+  <% if @lesson.video.attached? %>
+    <%= video_tag url_for(@lesson.video), controls: true, controlsList: "nodownload", poster: url_for(@lesson.thumbnail), style: 'height:10%; width:30%;' %>
+  <% end %>
+
+  <div>
+    <h1>Price</h1>
+    <span><%= number_to_currency(@lesson.price, unit: 'Php ') %></span>
+  </div>
+
+  <div>
+    <h2>Details</h2>
+    <span><%= @lesson.details %></span>
+  </div>
+</div>
+
+<div class="container">
+  <h1>Other lessons for this subject</h1>
+  <% if @related_lessons.any? %>
+    <%= render 'rc_pages/shared/lessons', lessons: @related_lessons %>
+  <% else %>
+    <span>No other lessons uploaded for this subject.</span>
+  <% end %>
+</div>

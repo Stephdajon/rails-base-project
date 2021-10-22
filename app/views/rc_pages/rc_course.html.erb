@@ -1,0 +1,7 @@
+<h1><%= @rc_course.course.name %></h1>
+
+<h1>Subjects</h1>
+<% @subjects.each do |subject| %>
+  <%= subject.name %>
+  <%= link_to 'View Details', rc_subject_path(@rc_course, subject) %>
+<% end %>
