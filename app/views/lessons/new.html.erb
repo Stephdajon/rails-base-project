@@ -1,5 +1,5 @@
 <main class="container">
-  <%= form_with scope: :lesson, url: rc_lessons_path do |f| %>
+  <%= form_with scope: :lesson, url: rc_teacher_lessons_path do |f| %>
   <h1>Sell a Lesson</h1>
   <div class='errors'>
   </div>
@@ -46,7 +46,7 @@
 
     <div class="">
       <%= f.submit id:'save_lesson',  disable_with: false, class: 'w-20 btn btn-lg btn-primary mt-2' %>
-      <%= link_to "Back", rc_lessons_path, class: 'w-20 btn btn-lg btn-secondary mt-2' %><br><br>
+      <%= link_to "Back", rc_teacher_lessons_path, class: 'w-20 btn btn-lg btn-secondary mt-2' %><br><br>
     </div>
   <% end %>
 </main>
