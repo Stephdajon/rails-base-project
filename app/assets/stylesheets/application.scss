@@ -23,6 +23,13 @@ body {
   background-color: #ecd0a9 !important;
 }
 
+.main{
+  min-height: 100vh; /* will cover the 100% of viewport */
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 100px; /* height of your footer */
+}
 
 .navbar{
   background-color: #e2c194;
@@ -119,7 +126,19 @@ body {
 
 //End Navbar users style
 
-// #carouselExampleDark{
-//   display: flex;
-//   justify-content: center;
-// }
+//Start footer style
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #E2C194;
+  .container {
+    width: auto;
+    max-width: 680px;
+    padding: 0 15px;
+  }  
+}
+
+//End footer style
+

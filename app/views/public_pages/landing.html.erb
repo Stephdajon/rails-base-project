@@ -40,61 +40,61 @@
     -->
   </section>
 
-  <div class="album py-5 bg-light">
-    <div class="container">
+<div class="album py-5 bg-white">
+  <div class="container">
 
-      <% if params[:search]%>
-        <% if !@results.length.zero? %>
-          <h1>Search Result</h1><br>
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <% @results.each do |result|%>
-              <div class="col">
-                <div class="card shadow-sm">
-                    <% if result.thumbnail.attached? %>
-                        <%= image_tag url_for(result.thumbnail), height: '250', width: '50', class: "card-img-top"%>
-                      <% end %>
-                  <div class="card-body">
-                    <h4 class="card-text"><%= result.name %></h3>
-                    <h3 class="card-text"><%= result.price.to_i %> PHP </h3>
-                    <h3 class="card-text"><%= result.price.to_i %> PHP </h3>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group">
-                        <%= link_to lesson_details_path(result.teacher_subject.subject.name.split(' ').join, result.teacher_subject.subject.course_id, result.id) do %><button type="button" class="btn btn-md btn-primary"><i class="fas fa-eye"> </i> View</button><% end %>
-                      </div>
-                      <small class="text-muted"><strong>Uploaded Since </strong> <%= result.created_at.strftime("%A %b %e, %Y ") %></small>
+    <% if params[:search]%>
+      <% if !@results.length.zero? %>
+        <h1>Search Result</h1><br>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <% @results.each do |result|%>
+            <div class="col">
+              <div class="card shadow-sm">
+                  <% if result.thumbnail.attached? %>
+                      <%= image_tag url_for(result.thumbnail), height: '250', width: '50', class: "card-img-top"%>
+                    <% end %>
+                <div class="card-body">
+                  <h4 class="card-text"><%= result.name %></h3>
+                  <h3 class="card-text"><%= result.price.to_i %> PHP </h3>
+                  <h3 class="card-text"><%= result.price.to_i %> PHP </h3>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <%= link_to lesson_details_path(result.teacher_subject.subject.name.split(' ').join, result.teacher_subject.subject.course_id, result.id) do %><button type="button" class="btn btn-md btn-primary"><i class="fas fa-eye"> </i> View</button><% end %>
                     </div>
+                    <small class="text-muted"><strong>Uploaded Since </strong> <%= result.created_at.strftime("%A %b %e, %Y ") %></small>
                   </div>
-                </div>
-              </div>
-            <% end %>
-          </div><br><br>
-        <% else %>
-          <h1>No result found.. </h1><br><br>
-        <%end%>
-      <% end %>
-
-      <h1>Lessons</h1><br>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <% @lessons.each do |lesson|%>
-          <div class="col">
-            <div class="card shadow-sm">
-                 <% if lesson.thumbnail.attached? %>
-                    <%= image_tag url_for(lesson.thumbnail), height: '250', width: '50', class: "card-img-top"%>
-                  <% end %>
-              <div class="card-body">
-                <h4 class="card-text"><%= lesson.name %></h3>
-                <h3 class="card-text"><%= lesson.price.to_i %> PHP </h3>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <%= link_to lesson_details_path(lesson.teacher_subject.subject.name.split(' ').join, lesson.teacher_subject.subject.course_id, lesson.id) do %><button type="button" class="btn btn-md btn-primary"><i class="fas fa-eye"> </i> View</button><% end %>
-                  </div>
-                  <small class="text-muted"><strong>Uploaded Since </strong> <%= lesson.created_at.strftime("%A %b %e, %Y ") %></small>
                 </div>
               </div>
             </div>
+          <% end %>
+        </div><br><br>
+      <% else %>
+        <h1>No result found.. </h1><br><br>
+      <%end%>
+    <% end %>
+
+    <h1>Lessons</h1><br>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <% @lessons.each do |lesson|%>
+        <div class="col">
+          <div class="card shadow-sm">
+                <% if lesson.thumbnail.attached? %>
+                  <%= image_tag url_for(lesson.thumbnail), height: '250', width: '50', class: "card-img-top"%>
+                <% end %>
+            <div class="card-body">
+              <h4 class="card-text"><%= lesson.name %></h3>
+              <h3 class="card-text"><%= lesson.price.to_i %> PHP </h3>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <%= link_to lesson_details_path(lesson.teacher_subject.subject.name.split(' ').join, lesson.teacher_subject.subject.course_id, lesson.id) do %><button type="button" class="btn btn-md btn-primary"><i class="fas fa-eye"> </i> View</button><% end %>
+                </div>
+                <small class="text-muted"><strong>Uploaded Since </strong> <%= lesson.created_at.strftime("%A %b %e, %Y ") %></small>
+              </div>
+            </div>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
-</main>
+</div>
+
