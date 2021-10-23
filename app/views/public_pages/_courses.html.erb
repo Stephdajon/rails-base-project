@@ -1,0 +1,16 @@
+ <div class="nav-item dropdown">
+    <p class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Courses
+    </p>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <li><%= link_to 'Edit Account', edit_user_registration_path, class:"dropdown-item" %>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><%= link_to 'Edit Account', edit_user_registration_path, class:"dropdown-item" %></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class:"dropdown-item" %></a></li>
+        </ul>
+      </li>
+      <li><hr class="dropdown-divider"></li>
+      <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class:"dropdown-item" %></a></li>
+    </ul>
+  </div>

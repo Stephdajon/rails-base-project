@@ -25,7 +25,7 @@ class LessonsController < ApplicationController
 
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to rc_lessons_path(@review_center), notice: 'Successfully uploaded a lesson' }
+        format.html { redirect_to rc_teacher_lessons_path(@review_center), notice: 'Successfully uploaded a lesson' }
       else
         @lesson.video.purge
         @lesson.thumbnail.purge

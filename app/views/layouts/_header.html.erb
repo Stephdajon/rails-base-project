@@ -2,6 +2,7 @@
   <div class="container-fluid">
 
     <%= link_to image_tag('GoLearning.png', id: "drag1") , root_path, class:"navbar-brand", style: 'width:200px;' %>
+    <%# <%= render 'public_pages/courses' %>
     <%= form_tag(root_path, method: :get, class: 'd-flex', style: 'width:35%;') do %>
       <%= search_field_tag :search, params[:search], class: 'form-control me-2 rounded-pill', placeholder: 'Search Lesson Here...', :required => true %>
       <% button_tag "Search" %>
@@ -66,36 +67,40 @@
             </li>
 
           <% elsif current_user.type == "Admin" %>
-
-            <li class="nav-item">
-              <%= link_to 'Dashboard', admin_path, class:"nav-link active" %>
-            </li>
-
-            <li class="nav-item">
-              <%= link_to 'Users', admin_users_list_path, class:"nav-link active" %>
-            </li>
             
+            <%= link_to 'Dashboard', admin_path, class:"nav-link active d-inline" %>
+            <!--
+            <li class="nav-item dropdown">
+              <a class="nav-link active dropdown-toggle d-inline" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <%= link_to 'Dashboard', admin_path, class:"nav-link active d-inline" %>
+              </a>
+              <ul class="dropdown-menu bg-secondary" aria-labelledby="navbarDropdown">
+                <li class="nav-item">
+                <%= link_to 'Users', admin_users_list_path, class:"nav-link active" %>
+              </li>
+              
+              <li class="nav-item">
+                <%= link_to 'Review Centers', admin_review_center_list_path, class:"nav-link active" %>
+              </li>
+
+              <li class="nav-item">
+                <%= link_to 'Pending Users', admin_pending_users_path, class:"nav-link active text-warning" %>
+              </li>
+
+              <li class="nav-item">
+                <%= link_to 'Pending Review Centers', admin_pending_rc_path, class:"nav-link active text-warning" %>
+              </li>
+              </ul>
+            </li>
+             -->
             <li class="nav-item">
-              <%= link_to 'Review Centers', admin_review_center_list_path, class:"nav-link active" %>
-            </li>
-
-            <li class="nav-item">
-              <%= link_to 'Pending Users', admin_pending_users_path, class:"nav-link active" %>
-            </li>
-
-             <li class="nav-item">
-              <%= link_to 'Pending Review Centers', admin_pending_rc_path, class:"nav-link active" %>
-            </li>
-            
-
-             <li class="nav-item">
               <%= link_to 'Transactions', admin_transactions_path, class:"nav-link active" %>
             </li>
 
           <% end %>
           
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Profile
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

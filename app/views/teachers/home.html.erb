@@ -11,7 +11,7 @@
               <p class="card-text"><span>Review Center Details</span></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <%= link_to 'View Lessons', rc_lessons_path(review_center), type: "button", class: "btn btn-sm btn-outline-secondary" %>
+                  <%= link_to 'View Lessons', rc_teacher_lessons_path(review_center), type: "button", class: "btn btn-sm btn-outline-secondary" %>
                 </div>
                 <small class="text-muted">9 mins</small>
               </div>
@@ -24,8 +24,6 @@
     <h5>You are currently not a teacher from any review centers.</h5>
   <% end %>
 </div>
-
-
 
 <div class="container">
   <h1>Recently Uploaded Lessons</h1>

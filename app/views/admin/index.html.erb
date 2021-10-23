@@ -1,3 +1,25 @@
 <div class="container">
-  <h1>HELLO ADMIN <%= current_user.email%> </h1>
+  <%# <%= current_user.firstname  %>
+  <h1>Admin's Dashboard </h1>
+ 
+  <div class="row row-cols-1 row-cols-md-2">
+    <div class="col">
+      <div class="card shadow-sm" style="width: 35rem;">
+        <%= image_tag ("users.jpeg") %>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to 'Users List', admin_users_list_path,  class:"btn btn-success d-block" %></h5>
+          <h5 class="card-title"><%= link_to 'Pending Users', admin_pending_users_path, class:"btn btn-warning d-block" %></h5>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card shadow-sm" style="width: 33.8rem;">
+        <%= image_tag ("ReviewCenter.png") %>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to 'Review Centers List', admin_review_center_list_path,  class:"btn btn-success d-block" %></h5>
+          <h5 class="card-title"><%= link_to 'Pending Review Center', admin_pending_rc_path,  class:"btn btn-warning d-block" %></h5>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
