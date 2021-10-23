@@ -1,4 +1,5 @@
 class Lesson < ApplicationRecord
+  has_many :enrolled_lessons, dependent: :destroy
   belongs_to :rc_course
   belongs_to :teacher_subject
   has_one_attached :video

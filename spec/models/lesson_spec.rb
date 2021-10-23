@@ -11,6 +11,7 @@ RSpec.describe Lesson, type: :model do
   context 'when validating associations' do
     it { is_expected.to belong_to(:rc_course) }
     it { is_expected.to belong_to(:teacher_subject) }
+    it { is_expected.to have_many(:enrolled_lessons) }
   end
 
   context 'when attachements' do

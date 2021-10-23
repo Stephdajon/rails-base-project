@@ -20,6 +20,14 @@ RSpec.describe 'Lessons', type: :request do
     build(:lesson, teacher_subject: teacher_subject, rc_course: rc_course)
   end
 
+  def video
+    Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/sample_video2.mp4'), 'video/mp4')
+  end
+
+  def thumbnail
+    Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/img4.jpg'), 'image/jpg')
+  end
+
   before do
     teacher_subject
 
@@ -28,26 +36,26 @@ RSpec.describe 'Lessons', type: :request do
 
   describe 'GET index' do
     it 'has a success status' do
-      get rc_lessons_path(review_center)
+      get rc_teacher_lessons_path(review_center)
       expect(response).to have_http_status(:ok)
     end
 
     it 'redirects to root path user is not authorized' do
       sign_out teacher
-      get rc_lessons_path(review_center)
+      get rc_teacher_lessons_path(review_center)
       expect(response).to redirect_to(root_path)
     end
   end
 
   describe 'GET :rc_course/lessons/new' do
     it 'has a success status' do
-      get new_rc_lesson_path(review_center)
+      get new_rc_teacher_lesson_path(review_center)
       expect(response).to have_http_status(:ok)
     end
 
     it 'redirects to root path user is not authorized' do
       sign_out teacher
-      get new_rc_lesson_path(review_center)
+      get new_rc_teacher_lesson_path(review_center)
       expect(response).to redirect_to(root_path)
     end
   end
@@ -55,37 +63,41 @@ RSpec.describe 'Lessons', type: :request do
   describe 'POST :rc_course/lessons/' do
     subject(:unauthorized_user) { Teacher.create(username: 'unauthorized', firstname: 'unauthorized', lastname: 'unauthorized', email: 'unauthorized@email.com', password: 'password', password_confirmation: 'password') }
 
+    it 'creates a lesson' do
+      expect { post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price, video: video, thumbnail: thumbnail } } }.to change(Lesson, :count).by(1)
+    end
+
     it 'redirects to index after create' do
-      post rc_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price }, format: :js }
-      expect(response).to redirect_to(rc_lessons_path(review_center))
+      post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price, video: video, thumbnail: thumbnail } }
+      expect(response).to redirect_to(rc_teacher_lessons_path(review_center))
     end
 
     it 'renders :rc_course/lessons/new if creation fails' do
-      post rc_lessons_path(review_center), params: { lesson: { name: nil, details: nil, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: nil }, format: :js }
+      post rc_teacher_lessons_path(review_center), params: { lesson: { name: nil, details: nil, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: nil }, format: :js }
       expect(response).to render_template(:errors)
     end
 
     it 'does not create a lesson if user is not authorized' do
       sign_out teacher
       sign_in unauthorized_user, scope: :user
-      expect { post rc_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price }, format: :js } }.to change(Lesson, :count).by(0)
+      expect { post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price }, format: :js } }.to change(Lesson, :count).by(0)
     end
 
     it 'redirects if user is not authorized' do
       sign_out teacher
       sign_in unauthorized_user, scope: :user
-      post rc_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price }, format: :js }
+      post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price }, format: :js }
       expect(response).to redirect_to(root_path)
     end
 
     it 'does not create a lesson if user is not authenticated' do
       sign_out teacher
-      expect { post rc_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price }, format: :js } }.to change(Lesson, :count).by(0)
+      expect { post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price }, format: :js } }.to change(Lesson, :count).by(0)
     end
 
     it 'redirects to root path if user is not authenticated' do
       sign_out teacher
-      post rc_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price }, format: :js }
+      post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price }, format: :js }
       expect(response).to redirect_to(root_path)
     end
   end
