@@ -1,4 +1,36 @@
-<div class="container">
+<h1 class="container">Home Page for Review Center</h1>
+<div class="container d-flex flex-row">
+  
+  <!--
+  <%= link_to new_invitation_path do %><button> Add invatation</button><% end %>
+  -->
+  <div class="card p-3 mx-2 shadow" style="width: 15rem;">
+    <%= image_tag "GoLearning.png", class:"card-img-top" %>
+    <div class="card-body">
+      <h5 class="card-title">Psychology</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Subjects</a>
+    </div>
+  </div>
+
+  <div class="card p-3 mx-2 shadow" style="width: 15rem;">
+    <%= image_tag "GoLearning.png", class:"card-img-top" %>
+    <div class="card-body">
+      <h5 class="card-title">Architecture</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Subjects</a>
+    </div>
+  </div>
+
+  <div class="card p-3 mx-2 shadow" style="width: 15rem;">
+    <%= image_tag "GoLearning.png", class:"card-img-top" %>
+    <div class="card-body">
+      <h5 class="card-title">Engineering</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Subjects</a>
+    </div>
+  </div>
+  
   <h1><%= current_review_center.name %></h1>
   <h1>Courses</h1>
   <% if @rc_courses.any? %>
