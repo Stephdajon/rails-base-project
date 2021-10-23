@@ -31,10 +31,13 @@ Rails.application.routes.draw do
   scope '/reviewcenter' do
     get 'teachers' => 'rc_pages#teachers', as: 'teachers'
     get 'teachers/invitations' => 'rc_pages#teacher_invitations', as: 'rc_teachers_invitations'
+    get '/:rc_course_id' =>  'rc_pages#rc_course', as: 'rc_course'
+    get '/:rc_course_id/subject/:subject_id' =>  'rc_pages#rc_subject', as: 'rc_subject'
+    get '/:rc_course_id/subject/:subject_id/lesson/:lesson_id' =>  'rc_pages#rc_lesson', as: 'rc_lesson'
   end
   
   # TEACHER PAGES
-  scope '/teacher/:review_center_id', as: 'rc' do
+  scope '/teacher/:review_center_id', as: 'rc_teacher' do
     resources :lessons
   end
 
