@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Add Reviews</h1>
+  <%= form_with model: @review, url: create_review_path(@lesson), local: true do |f| %>
+    <div class="main-rating">
+      <% @review.errors.full_messages_for(:rating).each do |message| %>
+        <p style="color:red;"><%= message %></p>
+      <% end %>
+      <div class="ratings mb-3">
+        <span class="fa fa-star-o" id="star" style="color:yellow; cursor:pointer;"></span>
+        <span class="fa fa-star-o" id="star" style="color:yellow; cursor:pointer;"></span>
+        <span class="fa fa-star-o" id="star" style="color:yellow; cursor:pointer;"></span>
+        <span class="fa fa-star-o" id="star" style="color:yellow; cursor:pointer;"></span>
+        <span class="fa fa-star-o" id="star" style="color:yellow; cursor:pointer;"></span>
+      </div>
+      <div class="ml-3 rating-value-display"><span id="rating-value-display">0</span>/5</div>
+    </div>
+    <%= f.hidden_field :rating, id: "rating-value" %>
+    <div class="form-group purple-border">
+      <%= f.text_area :comment, class: "form-control mt-3", placeholder: 'Type your comment here...' %>
+    </div>
+    <% @review.errors.full_messages_for(:comment).each do |message| %>
+        <p style="color:red;"><%= message %></p>
+      <% end %>
+    <br>
+    <%= link_to lesson_details_path(@lesson.teacher_subject.subject.name.split.join, @lesson.teacher_subject.subject.course_id, @lesson.id) do %> <button class="btn btn-md btn-light"> Back </button><% end %>
+    <%= f.submit "Add Review", class: "btn btn-md btn-primary" %>
+  <% end %>
+</div>
+
+<script>
+  // $('#star-rating-new-review').raty({
+  //   path: '/assets/',
+  //   half: true,
+  //   scoreName: 'review[rating]'
+  // });
+  
+  
+</script>
+
+<%= javascript_pack_tag "reviews.js"%>

@@ -1,29 +1,42 @@
 <div class="container">
   <h1 class="text-center">Lesson Details</h1>
   <div class="row">
-    <div class="col-md-6 mx-auto">
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+    <div class="col-md-8 mx-auto">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style=" background-color: #ffff !important;">
         <div class="col p-4 d-flex flex-column position-static">
           <h3 class="card-title mb-3"><%= @lesson.name %></h3>
-          <BLOCKQUOTE class="card-text mb-auto">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</BLOCKQUOTE>
-          <h2 class="card-text"><span>₱ </span><%= @lesson.price.to_i %></h2>
+          <BLOCKQUOTE class="card-text mb-2">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</BLOCKQUOTE>
+          <h2 class="card-text"><span></span>$ <%= @lesson.price_cents %></h2>
+          <div class="d-flex justify-content-between mb-2">
+            <div class="star-rating mb-2">
+              <div class="star-rating-front" style="width: <%= @lesson.review_score_percentage %>%; color:#ffcc33 !important;">★★★★★</div>
+              <div class="star-rating-back">★★★★★</div>
+            </div>
+            <div class="average-score-display mr-3 pt-2" style="margin-right:8px !important; margin-left:-10px;">
+              <p ><%= @lesson.avg_score %> Ratings </p> 
+            </div>
+            <div class="average-score-display ml-3 pt-2">
+              <%= link_to reviews_path(@lesson.id) do %> <p><%= @lesson.reviews.count %> reviews </p> <% end %>
+            </div>
+          </div>
           <div style="display:flex; justify-content:space-between;">
             <%= link_to add_to_cart_path(@lesson.id), method: :post do %> <button type="button" class="btn btn-sm btn-primary"><i class="fas fa-shopping-basket"> </i> Add to cart</button><% end %>
             <% if current_user %>
               <%= button_to 'Buy now', checkout_create_path, method: :post, params: {id: @lesson.id}, remote: true, class: 'btn btn-sm btn-warning' %> 
             <% end %>
+              <%= link_to new_review_path(@lesson.id) do %> <button type="button" class="btn btn-sm btn-primary"> Add Reviews</button><% end %>
           </div>
         </div>
         <div class="col-auto d-none d-lg-block">
           <% if @lesson.thumbnail.attached? %>
-              <%= image_tag url_for(@lesson.thumbnail), class: "bd-placeholder-img", height: '310', width: '300'  %>
+              <%= image_tag url_for(@lesson.thumbnail), class: "bd-placeholder-img mt-4", height: '300', width: '310', style: 'padding-bottom:25px;padding-right:20px;'  %>
             <% end %>
         </div>
       </div>
     </div>
-    <div class="row align-items-md-stretch">
-      <div class="col-md-6">
-        <div class="h-100 p-5 border rounded-3 d-flex">
+    <div class="row align-items-md-stretch" >
+      <div class="col-md-6" style="margin-bottom:30px;">
+        <div class="h-100 p-5 border rounded-3 d-flex" style=" background-color: #ffff !important;">
           <div class="col-sm-6">
             <h2>Other Details</h2>
             <p><strong class="text-primary">Review Center :</strong> <%= @lesson.teacher_subject.rc_teacher.review_center.name.capitalize %></p>

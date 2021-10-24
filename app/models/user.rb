@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :username, :firstname, :lastname, :type, presence: true, length: { maximum: 20 }
   validates :username, uniqueness: { case_sensitive: false }, length: { maximum: 20 }
+  has_many :reviews
+  has_many :lessons
 end

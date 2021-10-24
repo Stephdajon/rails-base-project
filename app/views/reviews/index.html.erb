@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>Total Ratings</h2>
+  <div class="star-rating mb-2">
+      <div class="star-rating-front" style="width: <%= @review_lesson.review_score_percentage %>%">★★★★★</div>
+    <div class="star-rating-back">★★★★★</div>
+    </div>
+  <h2>Average Ratings</h2>
+      <div class="average-score-display ml-3 pt-2">
+    <p><%= @review_lesson.avg_score %> Ratings </p> 
+  </div>
+  <h1>All Reviews</h1>
+  <% @reviews.each do |review| %>
+    <ul>
+    <div>
+      <h4><%= review.user.firstname.capitalize%> <%= review.user.lastname.capitalize%></h4>
+    </div>
+      <div class="star-rating mb-2">
+        <div class="star-rating-front" style="width: <%= review.rating.to_i.round(1).to_f* 96.6/6 %>%">★★★★★</div>
+        <div class="star-rating-back">★★★★★</div>
+      </div>
+    <%# <div class="average-score-display ml-3 pt-2"> %>
+       <p><%#= review.rating.to_i.round(1).to_f %>
+        <%# ratings  %>
+        </p>
+    <%# </div> %>
+      <div><%= review.comment%></div>
+    </ul>
+  <% end %>
+    <%= link_to lesson_details_path(@review_lesson.teacher_subject.subject.name.split.join, @review_lesson.teacher_subject.subject.course_id, @review_lesson.id) do %> <button class="btn btn-md btn-light"> Back </button><% end %>
+    <%= link_to new_review_path do %> <button class="btn btn-md btn-primary"> Add Review </button><% end %>
+</div>

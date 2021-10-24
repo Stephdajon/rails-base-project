@@ -9,7 +9,7 @@
       <h2> Details </h2>
     <p class="card-text" style="wid"><%= lesson.description %></p>
       <h2> Price</h2>
-    <p><%= lesson.price.to_i %> PHP</p>
+    <p>$ <%= lesson.price %> </p>
     <%= link_to paid_lesson_access_path(lesson.lesson_id) do %> <button class="btn btn-md btn-primary"> View </button> <% end %>
     </div>
   <% end %>

@@ -6,7 +6,9 @@ class Lesson < ApplicationRecord
   has_one_attached :thumbnail
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
-
+  has_one :user, through: :reviews
+	has_many :reviews, dependent: :destroy
+  monetize :price, as: :price_cents
   validates :name, presence: true
   validates :price, presence: true, numericality: { greater_than: 60, less_than: 1_000_000 }
   validates :video, presence: true
@@ -40,6 +42,7 @@ class Lesson < ApplicationRecord
     end
   end
 
+<<<<<<< HEAD
   def tag_list
     tags.map(&:name).join(', ')
   end
@@ -47,6 +50,21 @@ class Lesson < ApplicationRecord
   def tag_list=(names)
     self.tags = names.split(',').map do |n|
       Tag.where(name: n.strip).first_or_create!
+=======
+  def avg_score
+    unless self.reviews.empty?
+      reviews.average(:rating).round(2).to_f
+    else
+      0.0
+    end
+  end
+
+  def review_score_percentage
+    unless self.reviews.empty?
+      reviews.average(:rating).round(1).to_f* 96.6/6
+    else
+      0.0
+>>>>>>> Added a reviews features to the lessons able a student to give a feedback to the lessons
     end
   end
 end

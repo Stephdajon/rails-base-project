@@ -1,0 +1,39 @@
+<div id="all_lesson">
+        <h1>All Lessons </h1><br><br>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 scrollable">
+          <% lessons.each do |lesson|%>
+            <div class="col">
+              <div class="card shadow-sm">
+                  <% if lesson.thumbnail.attached? %>
+                      <%= image_tag url_for(lesson.thumbnail), height: '250', width: '50', class: "card-img-top"%>
+                    <% end %>
+                <div class="card-body">
+                  <h4 class="card-text"><%= lesson.name %></h3>
+                  <div class="d-flex justify-content-between">
+                    <h3 class="card-text">$ <%= lesson.price_cents %> </h3>
+                    <div class="average-score-display ml-3 pt-2">
+                      <p><%= lesson.avg_score %> Ratings </p> 
+                    </div>
+                    <div class="average-score-display ml-3 pt-2">
+                      <p><%= lesson.reviews.count %> reviews </p>
+                    </div>
+                    <%# <div class="star-rating mb-2"> %>
+                      <div class="star-rating-front" style="width: <%#= lesson.review_score_percentage.to_i %>%">
+                      <%# ★★★★★ %>
+                      </div>
+                      <%# <div class="star-rating-back">★★★★★</div> %>
+                    <%# </div> %>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <%= link_to lesson_details_path(lesson.teacher_subject.subject.name.split(' ').join, lesson.teacher_subject.subject.course_id, lesson.id) do %><button type="button" class="btn btn-md btn-primary"><i class="fas fa-eye"> </i> View</button><% end %>
+                    </div>
+                    <small class="text-muted"><strong>Uploaded Since </strong> <%= lesson.created_at.strftime("%A %b %e, %Y ") %></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div><br><br>
+
+      </div>
