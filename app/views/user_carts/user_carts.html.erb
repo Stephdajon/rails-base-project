@@ -9,7 +9,7 @@
       <h2> Description </h2>
       <p class="card-text" style="wid">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
       <h2> Price </h2>
-      <p><%= cart.lesson.price.to_i %> PHP</p>
+      <p>$ <%= cart.lesson.price %> </p>
       <div style="display:flex; justify-content:space-evenly;">
         <%= link_to lesson_details_path(cart.lesson.teacher_subject.subject.name.split(' ').join, cart.lesson.teacher_subject.subject.course_id, cart.lesson.id) do %><button type="button" class="btn btn-sm btn-primary"><i class="fas fa-eye"> </i> View Details</button><% end %>
         <%= button_to 'Buy now', checkout_create_path, method: :post, params: {id: cart.lesson.id}, remote: true, class: 'btn btn-sm btn-warning' %> 

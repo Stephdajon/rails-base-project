@@ -7,9 +7,7 @@ class ReviewsController < ApplicationController
     @reviews = @review_lesson.reviews
   end
 
-  def review
-    
-  end
+  def review; end
 
   def new
     @review = Review.new
@@ -36,5 +34,4 @@ class ReviewsController < ApplicationController
   def find_lesson
     @lesson = Lesson.find(params[:lesson_id])
   end
-
 end
