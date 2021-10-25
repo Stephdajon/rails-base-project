@@ -34,7 +34,11 @@ Rails.application.routes.draw do
     get '/:rc_course_id' =>  'rc_pages#rc_course', as: 'rc_course'
     get '/:rc_course_id/subject/:subject_id' =>  'rc_pages#rc_subject', as: 'rc_subject'
     get '/:rc_course_id/subject/:subject_id/lesson/:lesson_id' =>  'rc_pages#rc_lesson', as: 'rc_lesson'
-    # post '/:rc_course_id/subject/:subject_id' => 'rc_pages#assign_subject', as: 'create_teacher_subject'
+  end
+
+  scope 'rcteacher/:id' do
+    get '/subjects/new' => 'teacher_subjects#new', as: 'new_teacher_subject'
+    post '/subjects' => 'teacher_subjects#create', as: 'create_teacher_subject'
   end
   
   # TEACHER PAGES

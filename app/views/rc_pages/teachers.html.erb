@@ -14,6 +14,7 @@
           <th class= "text-center">Last Name</th>
           <th class= "text-center">Status</th>
           <th class= "text-center">Subjects</th>
+          <th class= "text-center">Action</th>
         </tr>
       </thead>
 
@@ -22,15 +23,18 @@
           <tr>
             <td><%= rc_teacher.teacher.firstname %></td>
             <td class= "text-center"><%= rc_teacher.teacher.lastname %></td>
-            <td class= "text-center"><%= rc_teacher.status %></td>
+            <td class= "text-center"><%= rc_teacher.status.capitalize %></td>
             <td class= "d-flex justify-content-center">
               <% if rc_teacher.teacher_subjects.any? %>
                 <% rc_teacher.teacher_subjects.each do |teacher_subject| %>
-                  <%= teacher_subject.subject.name %>
+                  <%= teacher_subject.subject.name %>, 
                 <% end %>
               <% else %>
                 <span>No assigned subject.</span>
               <% end %>
+            </td>
+            <td class= "text-center">
+              <%= link_to 'Assign Subject', new_teacher_subject_path(rc_teacher) %>
             </td>
           </tr>
         <% end %>
