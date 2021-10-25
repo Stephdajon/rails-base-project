@@ -19,8 +19,8 @@
             <td><%= rc_teacher.review_center.name %></td>
             <td class= "text-center"><%= rc_teacher.created_at.to_formatted_s(:long) %></td>
             <td class= "d-flex justify-content-center">
-              <%= button_to 'Accept', accept_invitation_path, params: {id: rc_teacher.id} %>
-              <%= button_to 'Reject', reject_invitation_path, params: {id: rc_teacher.id} %>
+              <%= link_to 'Accept', accept_invitation_path(rc_teacher), method: :patch %>
+              <%= link_to 'Reject', reject_invitation_path(rc_teacher), method: :patch %>
             </td>
           </tr>
         <% end %>

@@ -36,8 +36,22 @@ RSpec.describe 'Teachers', type: :request do
       expect(response).to redirect_to(new_invitation_path)
     end
 
-    it 'does not create a rc_teacher if invitation or record already exist' do
+    it 'does not create a rc_teacher if record already exist and status is approved' do
+      create(:rc_teacher, user_id: teacher.id, review_center: review_center, status: 'approved')
+
+      sign_in review_center, scope: :review_center
+      expect { post create_invitation_path, params: { rc_teacher: { username: teacher.username, review_center_id: review_center.id, status: 'pending' } } }.to change(RcTeacher, :count).by(0)
+    end
+
+    it 'does not create a rc_teacher if invitation already exist and status is pending' do
       create(:rc_teacher, user_id: teacher.id, review_center: review_center, status: 'pending')
+
+      sign_in review_center, scope: :review_center
+      expect { post create_invitation_path, params: { rc_teacher: { username: teacher.username, review_center_id: review_center.id, status: 'pending' } } }.to change(RcTeacher, :count).by(0)
+    end
+
+    it 'does not create a rc_teacher if invitation already exist and status is rejected' do
+      create(:rc_teacher, user_id: teacher.id, review_center: review_center, status: 'rejected')
 
       sign_in review_center, scope: :review_center
       expect { post create_invitation_path, params: { rc_teacher: { username: teacher.username, review_center_id: review_center.id, status: 'pending' } } }.to change(RcTeacher, :count).by(0)
@@ -59,14 +73,14 @@ RSpec.describe 'Teachers', type: :request do
     it 'updates rc_teacher status to "approved"' do
       create(:rc_teacher, user_id: teacher.id, review_center: review_center, status: 'pending')
       sign_in teacher, scope: :user
-      post accept_invitation_path, params: { id: RcTeacher.first.id }
+      patch accept_invitation_path(RcTeacher.first)
       expect(response).to redirect_to(teacher_home_path)
     end
 
     it 'updates rc_teacher status to "rejected"' do
       create(:rc_teacher, user_id: teacher.id, review_center: review_center, status: 'pending')
       sign_in teacher, scope: :user
-      post reject_invitation_path, params: { id: RcTeacher.first.id }
+      patch reject_invitation_path(RcTeacher.first)
       expect(response).to redirect_to(invitations_path)
     end
   end
@@ -76,6 +90,15 @@ RSpec.describe 'Teachers', type: :request do
       create(:rc_teacher, user_id: teacher.id, review_center: review_center, status: 'pending')
       sign_in review_center, scope: :review_center
       expect { delete delete_invitation_path(RcTeacher.first) }.to change(RcTeacher, :count).by(-1)
+    end
+  end
+
+  describe 'resend invitation' do
+    it 'updates status to "pending"' do
+      create(:rc_teacher, user_id: teacher.id, review_center: review_center, status: 'rejected')
+      sign_in review_center, scope: :review_center
+      patch resend_invitation_path(RcTeacher.first)
+      expect(RcTeacher.first.status).to eq('pending')
     end
   end
 end

@@ -1,11 +1,12 @@
 class TeachersController < ApplicationController
   before_action :authorized?, only: %i[home rc_invitations accept_invitation]
-  before_action :authenticate_review_center!, only: %i[new_invitation create_invitation delete_invitation]
+  before_action :authenticate_review_center!, only: %i[new_invitation create_invitation delete_invitation resend_invitation]
 
   def home
-    @review_centers = current_user.rc_teachers.map { |rc_teacher| ReviewCenter.find(rc_teacher.review_center_id) }.uniq
+    rc_teachers = current_user.rc_teachers
+    @review_centers = rc_teachers.map { |rc_teacher| ReviewCenter.find(rc_teacher.review_center_id) }.uniq
 
-    teacher_subject_ids = current_user.rc_teachers.map { |rc_teacher| rc_teacher.teacher_subjects.pluck(:id) }.flatten
+    teacher_subject_ids = rc_teachers.map { |rc_teacher| rc_teacher.teacher_subjects.pluck(:id) }.flatten
     @lessons = Lesson.where(teacher_subject_id: teacher_subject_ids)
   end
 
@@ -45,13 +46,18 @@ class TeachersController < ApplicationController
   end
 
   def accept_invitation
-    @rc_teacher = RcTeacher.find(params[:id])
+    @rc_teacher = RcTeacher.find_by(id: params[:id])
     redirect_to teacher_home_path, notice: 'Invitation has been accepted.' if @rc_teacher.update(status: 'approved')
   end
 
   def reject_invitation
-    @rc_teacher = RcTeacher.find(params[:id])
+    @rc_teacher = RcTeacher.find_by(id: params[:id])
     redirect_to invitations_path, notice: 'Invitation has been rejected.' if @rc_teacher.update(status: 'rejected')
+  end
+
+  def resend_invitation
+    @rc_teacher = RcTeacher.find_by(id: params[:id], status: 'rejected')
+    redirect_to rc_teachers_invitations_path, notice: 'Invitation has been resent.' if @rc_teacher.update(status: 'pending')
   end
 
   def delete_invitation

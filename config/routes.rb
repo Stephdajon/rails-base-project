@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     get '/:rc_course_id' =>  'rc_pages#rc_course', as: 'rc_course'
     get '/:rc_course_id/subject/:subject_id' =>  'rc_pages#rc_subject', as: 'rc_subject'
     get '/:rc_course_id/subject/:subject_id/lesson/:lesson_id' =>  'rc_pages#rc_lesson', as: 'rc_lesson'
+    # post '/:rc_course_id/subject/:subject_id' => 'rc_pages#assign_subject', as: 'create_teacher_subject'
   end
   
   # TEACHER PAGES
@@ -47,8 +48,9 @@ Rails.application.routes.draw do
     get '/search' => 'teachers#search'
     post '/invitations' => 'teachers#create_invitation', as: 'create_invitation'
     get '/invitations' => 'teachers#rc_invitations', as: 'invitations'
-    post '/invitations/accept' => 'teachers#accept_invitation', as: 'accept_invitation'
-    post '/invitations/reject' => 'teachers#reject_invitation', as: 'reject_invitation'
+    patch '/invitations/accept/:id' => 'teachers#accept_invitation', as: 'accept_invitation'
+    patch '/invitations/reject/:id' => 'teachers#reject_invitation', as: 'reject_invitation'
+    patch '/invitations/resend/:id' => 'teachers#resend_invitation', as: 'resend_invitation'
     delete '/invitations/:id' => 'teachers#delete_invitation', as: 'delete_invitation'
   end
 
