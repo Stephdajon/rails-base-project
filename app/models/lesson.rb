@@ -6,7 +6,7 @@ class Lesson < ApplicationRecord
   has_one_attached :thumbnail
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
-  has_one :user, through: :reviews
+  has_many :users, through: :reviews
   has_many :reviews, dependent: :destroy
   monetize :price, as: :price_cents
   validates :name, presence: true
