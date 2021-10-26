@@ -35,6 +35,11 @@ Rails.application.routes.draw do
     get '/:rc_course_id/subject/:subject_id' =>  'rc_pages#rc_subject', as: 'rc_subject'
     get '/:rc_course_id/subject/:subject_id/lesson/:lesson_id' =>  'rc_pages#rc_lesson', as: 'rc_lesson'
   end
+
+  scope 'rcteacher/:id' do
+    get '/subjects/new' => 'teacher_subjects#new', as: 'new_teacher_subject'
+    post '/subjects' => 'teacher_subjects#create', as: 'create_teacher_subject'
+  end
   
   # TEACHER PAGES
   scope '/teacher/:review_center_id', as: 'rc_teacher' do
@@ -47,8 +52,9 @@ Rails.application.routes.draw do
     get '/search' => 'teachers#search'
     post '/invitations' => 'teachers#create_invitation', as: 'create_invitation'
     get '/invitations' => 'teachers#rc_invitations', as: 'invitations'
-    post '/invitations/accept' => 'teachers#accept_invitation', as: 'accept_invitation'
-    post '/invitations/reject' => 'teachers#reject_invitation', as: 'reject_invitation'
+    patch '/invitations/accept/:id' => 'teachers#accept_invitation', as: 'accept_invitation'
+    patch '/invitations/reject/:id' => 'teachers#reject_invitation', as: 'reject_invitation'
+    patch '/invitations/resend/:id' => 'teachers#resend_invitation', as: 'resend_invitation'
     delete '/invitations/:id' => 'teachers#delete_invitation', as: 'delete_invitation'
   end
 

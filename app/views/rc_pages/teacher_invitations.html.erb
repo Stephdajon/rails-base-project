@@ -28,6 +28,12 @@
                 method: :delete,
                 data: { confirm: "Are you sure you want to delete the invitation to #{rc_teacher.teacher.username}?" }
               %>
+              <% if rc_teacher.status == 'rejected' %>
+                <%= link_to 'Resend Invitation', resend_invitation_path(rc_teacher), class:"nav-link",
+                  method: :patch,
+                  data: { confirm: "Are you sure you want to resend the invitation to #{rc_teacher.teacher.username}?" }
+                %>
+              <% end %>
             </td>
           </tr>
         <% end %>

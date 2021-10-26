@@ -3,21 +3,44 @@
   <% if @review_centers.any? %>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <% @review_centers.each do |review_center| %>
-        <div class="col">
-          <div class="card shadow-sm">
+        <% rc_teacher = current_user.rc_teachers.find_by(review_center_id: review_center.id) %>
 
-            <div class="card-body">
-              <h5 class="card-title"><%= review_center.name %></h5>
-              <p class="card-text"><span>Review Center Details</span></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <%= link_to 'View Lessons', rc_teacher_lessons_path(review_center), type: "button", class: "btn btn-sm btn-outline-secondary" %>
+        <% if rc_teacher.status == 'approved' || rc_teacher.status == 'pending' %>
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title"><%= review_center.name %></h5>
+                <p class="card-text"><span>Review Center Details</span></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <% if rc_teacher.status == 'approved' %>
+                      <%= link_to 'View Lessons', rc_teacher_lessons_path(review_center), type: "button", class: "btn btn-sm btn-outline-secondary" %>
+                    <% else %>
+                      <%= link_to 'Accept Invitation', accept_invitation_path(rc_teacher), class: "btn btn-sm btn-outline-success", method: :patch %>
+                      <%= link_to 'Reject invitation', reject_invitation_path(rc_teacher), class: "btn btn-sm btn-outline-danger", method: :patch, data: { confirm: 'Are you sure you want to reject this invitation?' } %>
+                    <% end %>
+                  </div>
+                  <small class="text-muted">9 mins</small>
                 </div>
-                <small class="text-muted">9 mins</small>
               </div>
             </div>
           </div>
-        </div>
+        <% else %>
+         <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">No Review Center</h5>
+                <p class="card-text"><span>You are not part of any review center.</span></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <%= link_to 'Apply Now', teacher_home_path, type: "button", class: "btn btn-sm btn-outline-secondary" %>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   <% else %>

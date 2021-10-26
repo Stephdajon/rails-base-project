@@ -53,7 +53,7 @@ class LessonsController < ApplicationController
   def authorized?
     return if (@rc_teacher && @rc_teacher.status == 'approved') || current_review_center
 
-    flash[:error] = 'Not allowed to access restricted page.'
+    flash[:alert] = 'Not allowed to access restricted page.'
     redirect_to root_path and return
   end
 
