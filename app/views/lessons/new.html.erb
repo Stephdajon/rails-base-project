@@ -5,7 +5,7 @@
   </div>
 
     <div class="">
-      <% @options = @teacher_subjects.collect { |teacher_subject| [ teacher_subject.subject.name, teacher_subject.id ] } %>
+      <% @options = @teacher_subjects.collect { |teacher_subject| [ "#{teacher_subject.subject.name} - (#{teacher_subject.rc_course.course.name})".html_safe, teacher_subject.id ] } %>
       <%= f.label :teacher_subject_id, 'Subject' %>
       <%= f.select(:teacher_subject_id, @options, {}, { :class => 'form-select mb-3 shadow-none' })%>
     </div>
