@@ -39,6 +39,7 @@ class ReviewsController < ApplicationController
   def required_buy
     lesson = EnrolledLesson.find_by(user_id: current_user.id, lesson_id: @lesson.id)
     return if lesson
+    
     redirect_to lesson_details_path(@lesson.teacher_subject.subject.name.split.join, @lesson.teacher_subject.subject.course_id, @lesson.id), alert: 'Buy first to add a reviews'
   end
 end
