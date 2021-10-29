@@ -1,12 +1,12 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!, except: [:lesson_details]
-  before_action :required_students, only: %i[my_lessons lesson_details paid_lesson_access]
+  before_action :required_students, only: %i[my_lessons paid_lesson_access]
   before_action :required_payment, only: [:paid_lesson_access]
 
   def lesson_details
     @lesson_details = Course.find(params[:course_id])
     @lesson = Lesson.find(params[:lesson_id])
-    @lessons = Lesson.where(teacher_subject_id: @lesson.teacher_subject.subject_id)
+    @lessons = Lesson.where(teacher_subject_id: @lesson.teacher_subject.subject_id).paginate(page: params[:page], per_page: 4)
   end
 
   def paid_lesson_access
@@ -14,7 +14,7 @@ class CoursesController < ApplicationController
   end
 
   def my_lessons
-    @lessons = EnrolledLesson.where(user_id: current_user.id)
+    @lessons = EnrolledLesson.where(user_id: current_user.id).paginate(page: params[:page], per_page: 10)
   end
 
   private

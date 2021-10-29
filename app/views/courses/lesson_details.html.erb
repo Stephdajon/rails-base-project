@@ -22,7 +22,9 @@
           <div style="display:flex; justify-content:space-between;">
             <%= link_to add_to_cart_path(@lesson.id), method: :post do %> <button type="button" class="btn btn-sm btn-primary"><i class="fas fa-shopping-basket"> </i> Add to cart</button><% end %>
             <% if current_user %>
-              <%= button_to 'Buy now', checkout_create_path, method: :post, params: {id: @lesson.id}, remote: true, class: 'btn btn-sm btn-warning' %> 
+              <% if current_user.type == "Student" %>
+                <%= button_to 'Buy now', checkout_create_path, method: :post, params: {id: @lesson.id}, remote: true, class: 'btn btn-sm btn-warning' %> 
+              <% end %>
             <% end %>
               <%= link_to new_review_path(@lesson.id) do %> <button type="button" class="btn btn-sm btn-primary"> Add Reviews</button><% end %>
           </div>
@@ -56,6 +58,9 @@
           </div>
           <div class="col-sm-6">
             <h2>lessons</h2>
+             <div class="digg_pagination">
+              <%= will_paginate @lessons, class: 'text-xl' %>
+            </div><br>
             <% @lessons.each do |lesson| %>
               <%= link_to paid_lesson_access_path(lesson.id) do %> <button class="btn btn-success m-1"><%= lesson.name %></button> <% end %>
             <% end %>

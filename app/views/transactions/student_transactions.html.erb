@@ -1,21 +1,30 @@
 <div class="container">
-  <h1>MY TRANSACTIONS</h1>
-
-  <% @transactions.each do |transaction| %>
-  <br>
-    <div style="border:2px solid; padding:15px;">
-      <h2> Lesson Title </h2>
-        <p><%= transaction.name %></p>
-      <h2>Details </h2>
-        <p> <%= transaction.details %> </p>
-      <h2>Price </h2>
-        <p> $ <%= transaction.price %>  </p>
-      <h2>Reference Number </h2>
-        <p> <%= transaction.reference_number %> </p>
-      <h2>Date of transaction </h2>
-        <p><%= transaction.created_at.strftime("%A %b %e, %Y ") %></p>
-      <h2>Status </h2>
-        <p> <%= transaction.status ==  0 && 'PAID' %> </p>
-    </div>
-  <% end %>
+  <h1 class="display-4 text-center" style="color:black;">Transactions</h1><br>
+  <table class="table table-light table-borderless">
+    <thead>
+      <tr>
+          <th scope="col">Item</th>
+          <th scope="col">Price</th>
+          <th scope="col">Reference Number</th>
+          <th scope="col">Transaction Date</th>
+          <th scope="col">Seller</th>
+          <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <td scope="row"> <%= transaction.name %> </td>
+        <td>$ <%= transaction.price_cents %></td>
+        <td><%= transaction.reference_number %></td>
+        <td><%= transaction.created_at.strftime("%A %b %e, %Y ") %></td>
+        <td><%= transaction.lesson.teacher_subject.rc_teacher.user.email %></td>
+        <td><%= transaction.status ==  0 && 'PAID' %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="digg_pagination">
+  <%= will_paginate @transactions, class: 'mb-3 text-xl' %>
 </div>

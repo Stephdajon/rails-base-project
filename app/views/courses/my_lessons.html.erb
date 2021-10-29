@@ -1,17 +1,59 @@
-<div class="container">
-  <h1>My Lesson</h1>
+<div class="px-4 px-lg-0">
+  <!-- For demo purpose -->
+  <div class="container text-white text-center">
+    <h1 class="display-4" style="color:black;">Enrolled Lessons</h1><br>
+  </div>
+  <!-- End -->
 
-  <% @lessons.each do |lesson| %>
-  <br><br>
-    <div style="border:2px solid; padding:15px;">
-      <h2> Lesson Title </h2>
-    <p><%= lesson.title %></p>
-      <h2> Details </h2>
-    <p class="card-text" style="wid"><%= lesson.description %></p>
-      <h2> Price</h2>
-    <p>$ <%= lesson.price %> </p>
-    <%= link_to paid_lesson_access_path(lesson.lesson_id) do %> <button class="btn btn-md btn-primary"> View </button> <% end %>
+  <div class="pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 p-2 bg-white rounded shadow-sm mb-5">
+
+          <!-- Shopping lesson table -->
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="p-2 px-3 text-uppercase">Lesson</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Price</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">View</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @lessons.each do |lesson| %>
+                  <tr>
+                    <th scope="row" class="border-0">
+                      <div class="p-2">
+                        <% if lesson.lesson.thumbnail.attached? %>
+                          <%= image_tag url_for(lesson.lesson.thumbnail), class: "card-img-top", style: "width:100px; margin-right: 40px;"%>
+                        <% end %>
+                        <div class="ml-3 d-inline-block align-middle">
+                          <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle"><%= link_to lesson_details_path(lesson.lesson.teacher_subject.subject.name.split(' ').join, lesson.lesson.teacher_subject.subject.course_id, lesson.lesson.id) do %><%= lesson.lesson.name %><% end %></a></h5><span class="text-muted font-weight-normal font-italic d-block">Subject: <%= lesson.lesson.teacher_subject.subject.name %></span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="border-0 align-middle"><strong>$ <%= lesson.lesson.price_cents %></strong></td>
+                    <td class="border-0 align-middle">
+                      <%= link_to paid_lesson_access_path(lesson.lesson_id) do %><button class="btn btn-md btn-primary"><i class="fas fa-eye"> </i> </button> <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="digg_pagination">
+            <%= will_paginate @lessons, class: 'mb-3 text-xl' %>
+          </div>
+          <!-- End -->
+        </div>
+      </div>
     </div>
-  <% end %>
-
+  </div>
 </div>

@@ -1,6 +1,5 @@
 class CheckoutController < ApplicationController
   before_action :authenticate_user!
-  # before_action :required_students
 
   def create
     @lesson = Lesson.find(params[:id])
@@ -16,7 +15,7 @@ class CheckoutController < ApplicationController
       line_items: [{
         name: @lesson.name,
         description: @lesson.details,
-        amount: @lesson.price.to_i * 100,
+        amount: @lesson.price_cents.to_i * 100,
         currency: 'usd',
         quantity: 1
       }],
@@ -63,12 +62,4 @@ class CheckoutController < ApplicationController
 
     return @user_cart.destroy if @user_cart
   end
-
-  # private
-
-  # def required_students
-  #   return if current_user.type == 'Student'
-
-  #   redirect_to root_path, alert: 'You are not authorized to perform this action'
-  # end
 end
