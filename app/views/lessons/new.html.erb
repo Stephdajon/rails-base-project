@@ -4,27 +4,27 @@
   <div class='errors'>
   </div>
 
-    <div class="">
+    <div>
       <% @options = @teacher_subjects.collect { |teacher_subject| [ teacher_subject.subject.name, teacher_subject.id ] } %>
       <%= f.label :teacher_subject_id, 'Subject' %>
       <%= f.select(:teacher_subject_id, @options, {}, { :class => 'form-select mb-3 shadow-none' })%>
     </div>
 
-    <div class="">
+    <div>
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control shadow-none' %>
     </div>
-    <div class="">
+    <div>
       <%= f.label :details %>
       <%= f.text_area :details, class: 'form-control shadow-none' %>
     </div>
 
-    <div class="">
+    <div>
       <%= f.label :price %>
       <%= f.number_field :price, step: :any, class: 'form-control shadow-none' %>
     </div>
 
-    <div class="">
+    <div>
       <%= f.label :video %>
       <%= f.file_field :video, accept: 'video/*', direct_upload: true, class: 'upload-video form-control shadow-none', id: 'upload-video' %>
     </div>
@@ -35,16 +35,22 @@
     </div>
     <br>
 
-    <div class="">
+    <div>
       <%= f.label :thumbnail %>
       <%= f.file_field :thumbnail, accept: 'image/png, image/jpg, image/jpeg', direct_upload: true, class: 'upload-image form-control shadow-none', id: 'upload-thumbnail' %>
     </div>
 
-    <div class="">
+    <div>
       <img class='preview-image' />
     </div>
 
-    <div class="">
+    <div>
+      <%= f.label :tag_list, 'Tags'  %>
+      <%= f.text_field :tag_list, class: 'form-control' %>
+      <div>Tags must be separated by comma.</div>
+    </div>
+
+    <div>
       <%= f.submit id:'save_lesson',  disable_with: false, class: 'w-20 btn btn-lg btn-primary mt-2' %>
       <%= link_to "Back", rc_teacher_lessons_path, class: 'w-20 btn btn-lg btn-secondary mt-2' %><br><br>
     </div>

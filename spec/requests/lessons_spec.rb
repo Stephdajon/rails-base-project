@@ -100,5 +100,15 @@ RSpec.describe 'Lessons', type: :request do
       post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price }, format: :js }
       expect(response).to redirect_to(root_path)
     end
+
+    context 'when adding tags' do
+      it 'creates a new tag' do
+        expect { post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price, video: video, thumbnail: thumbnail, tag_list: 'structural, design' } } }.to change(Tag, :count).by(2)
+      end
+
+      it 'creates a new tagging' do
+        expect { post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price, video: video, thumbnail: thumbnail, tag_list: 'structural, design' } } }.to change(Tagging, :count).by(2)
+      end
+    end
   end
 end

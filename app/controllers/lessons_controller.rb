@@ -37,7 +37,7 @@ class LessonsController < ApplicationController
   private
 
   def lesson_params
-    params.require(:lesson).permit(:name, :details, :price, :teacher_subject_id, :rc_course_id, :video, :thumbnail, :status)
+    params.require(:lesson).permit(:name, :details, :price, :teacher_subject_id, :rc_course_id, :video, :thumbnail, :status, :tag_list)
   end
 
   def find_review_center
