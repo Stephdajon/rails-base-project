@@ -67,6 +67,9 @@ Rails.application.routes.draw do
   get '/student/details/:lesson_id', to: 'courses#paid_lesson_access', as: 'paid_lesson_access'
   get '/student/my_lessons', to: 'courses#my_lessons', as: 'my_lessons'
   get '/student/my_transactions', to: 'transactions#student_transactions', as: 'my_transactions'
+  get '/student/:lesson_id/review/new', to: 'reviews#new', as: 'new_review'
+  post '/student/:lesson_id/review/new', to: 'reviews#create', as: 'create_review'
+  get '/student/:lesson_id/reviews/', to: 'reviews#index', as: 'reviews'
 
   # ADMIN PAGES
   get '/admin', to: 'admin#index', as: 'admin'

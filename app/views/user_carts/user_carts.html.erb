@@ -1,20 +1,73 @@
-<div class="container">
-  <h1>My Carts</h1>
+<div class="px-4 px-lg-0">
+  <!-- For demo purpose -->
+  <div class="container text-white text-center">
+    <h1 class="display-4" style="color:black;">Shopping Cart</h1><br>
+  </div>
+  <!-- End -->
 
-  <% @user_carts.each do |cart| %>
-  <br><br>
-    <div style="border:2px solid; padding:15px;">
-      <h2> Lesson Title </h2>
-      <p><%= cart.lesson.name %></p>
-      <h2> Description </h2>
-      <p class="card-text" style="wid">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-      <h2> Price </h2>
-      <p><%= cart.lesson.price.to_i %> PHP</p>
-      <div style="display:flex; justify-content:space-evenly;">
-        <%= link_to lesson_details_path(cart.lesson.teacher_subject.subject.name.split(' ').join, cart.lesson.teacher_subject.subject.course_id, cart.lesson.id) do %><button type="button" class="btn btn-sm btn-primary"><i class="fas fa-eye"> </i> View Details</button><% end %>
-        <%= button_to 'Buy now', checkout_create_path, method: :post, params: {id: cart.lesson.id}, remote: true, class: 'btn btn-sm btn-warning' %> 
-        <%= link_to remove_to_cart_path(cart.id), method: :delete, data: { confirm: "Are you sure you want to remove to cart this lesson?" } do %><button type="button" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"> </i> Remove to cart</button><% end %>
+  <div class="pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 p-2 bg-white rounded shadow-sm mb-5">
+
+          <!-- Shopping cart table -->
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="p-2 px-3 text-uppercase">Lesson</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Price</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">View</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Buy</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Remove</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @user_carts.each do |cart| %>
+                  <tr>
+                    <th scope="row" class="border-0">
+                      <div class="p-2">
+                        <% if cart.lesson.thumbnail.attached? %>
+                          <%= image_tag url_for(cart.lesson.thumbnail), class: "card-img-top", style: "width:100px; margin-right: 40px;"%>
+                        <% end %>
+                        <div class="ml-3 d-inline-block align-middle">
+                          <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle"><%= link_to lesson_details_path(cart.lesson.teacher_subject.subject.name.split(' ').join, cart.lesson.teacher_subject.subject.course_id, cart.lesson.id) do %><%= cart.lesson.name %><% end %></a></h5><span class="text-muted font-weight-normal font-italic d-block">Subject: <%= cart.lesson.teacher_subject.subject.name %></span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="border-0 align-middle"><strong>$ <%= cart.lesson.price_cents %></strong></td>
+                    <td class="border-0 align-middle">
+                      <%= link_to lesson_details_path(cart.lesson.teacher_subject.subject.name.split(' ').join, cart.lesson.teacher_subject.subject.course_id, cart.lesson.id) do %><i class="fas fa-eye"> </i><% end %>
+                    </td>
+                    <td class="border-0 align-middle">
+                      <%= button_to 'Checkout', checkout_create_path, method: :post, params: {id: cart.lesson.id}, remote: true, style: "color:green; background:none; border:none;" %> 
+                    </td>
+                    <td class="border-0 align-middle">
+                      <%= link_to remove_to_cart_path(cart.id), method: :delete, data: { confirm: "Are you sure you want to remove to cart this lesson?" } do %>
+                        <i class="fas fa-trash-alt" style="color:red;"> </i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+            <div class="digg_pagination">
+              <%= will_paginate @user_carts, class: 'mb-3 text-xl' %>
+            </div>
+          <!-- End -->
+        </div>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>

@@ -6,7 +6,9 @@ class Lesson < ApplicationRecord
   has_one_attached :thumbnail
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
-
+  has_many :users, through: :reviews
+  has_many :reviews, dependent: :destroy
+  monetize :price, as: :price_cents
   validates :name, presence: true
   validates :price, presence: true, numericality: { greater_than: 60, less_than: 1_000_000 }
   validates :video, presence: true
@@ -47,6 +49,22 @@ class Lesson < ApplicationRecord
   def tag_list=(names)
     self.tags = names.split(',').map do |n|
       Tag.where(name: n.strip).first_or_create!
+    end
+  end
+
+  def avg_score
+    if reviews.empty?
+      0.0
+    else
+      reviews.average(:rating).round(2).to_f
+    end
+  end
+
+  def review_score_percentage
+    if reviews.empty?
+      0.0
+    else
+      reviews.average(:rating).round(1).to_f * 96.6 / 6
     end
   end
 end

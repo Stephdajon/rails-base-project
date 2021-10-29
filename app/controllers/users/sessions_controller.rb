@@ -25,7 +25,7 @@ class Users::SessionsController < Devise::SessionsController
       end
     when 'Teacher'
       if current_user.status == 'pending'
-        redirect_to new_user_session_path, notice: 'We send you an email once the Review Center approved your account. Thankyou for your patience.'
+        redirect_to new_user_session_path, notice: 'We send you an email once the admin approved your account. Thankyou for your patience.'
         sign_out resource
       else
         respond_with resource, location: teacher_home_path

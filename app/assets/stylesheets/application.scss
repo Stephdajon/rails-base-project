@@ -13,10 +13,18 @@
  *= require_tree .
  *= require_self
  */
+ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/solid';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/brands';
+@import '@fortawesome/fontawesome-free/scss/v4-shims';
+
 
  @import url('https://fonts.googleapis.com/css2?family=Rakkas&family=Ubuntu:ital@1&display=swap');
 
 @import "bootstrap/scss/bootstrap";
+
 
 body {
   font-family: 'Rakkas', serif !important;
@@ -28,7 +36,7 @@ body {
   overflow: hidden;
   display: block;
   position: relative;
-  padding-bottom: 100px; /* height of your footer */
+  // background-color: #ecd0a9 !important;
 }
 
 .navbar{
@@ -129,7 +137,6 @@ body {
 //Start footer style
 
 footer {
-  position: absolute;
   bottom: 0;
   width: 100%;
   background-color: #E2C194;
@@ -137,8 +144,20 @@ footer {
     width: auto;
     max-width: 680px;
     padding: 0 15px;
+  color:black !important; 
   }  
 }
 
 //End footer style
 
+#popup {
+  height: 50px;
+  width: 200px;
+  text-align: center;
+  vertical-align:middle;
+  background-color: cornflowerblue;
+  color: white;
+  display: none;
+  padding-top: 8px;
+  position: absolute;
+}

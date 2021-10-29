@@ -3,7 +3,7 @@ class UserCartsController < ApplicationController
   before_action :required_students, only: [:user_carts]
 
   def user_carts
-    @user_carts = UserCart.where(user_id: current_user.id)
+    @user_carts = UserCart.where(user_id: current_user.id).paginate(page: params[:page], per_page: 10)
   end
 
   def add_to_cart

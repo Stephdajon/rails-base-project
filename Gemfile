@@ -18,6 +18,8 @@ gem 'hamlit-rails'
 
 gem 'stripe'
 gem 'figaro'
+gem 'will_paginate'
+gem 'money-rails', '~>1.12'
 
 gem 'cloudinary'
 gem "image_processing", ">= 1.2"
