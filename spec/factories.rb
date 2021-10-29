@@ -8,11 +8,20 @@ FactoryBot.define do
     password_confirmation { 'password' }
   end
 
+  factory :student do
+    username { 'stringg' }
+    firstname { 'stringg' }
+    lastname { 'stringg' }
+    email { 'userg@email.com' }
+    password { 'password1' }
+    password_confirmation { 'password1' }
+  end
+
   factory :user do
-    username { 'string' }
-    firstname { 'string' }
-    lastname { 'string' }
-    email { 'user@email.com' }
+    username { 'strings' }
+    firstname { 'strings' }
+    lastname { 'strings' }
+    email { 'users@email.com' }
     password { 'password' }
     password_confirmation { 'password' }
   end
@@ -51,8 +60,13 @@ FactoryBot.define do
   factory :lesson do
     name { 'String' }
     details { 'String' }
-    price { 100 }
+    price_cents { 100 }
     teacher_subject
     rc_course
+  end
+
+  factory :review do
+    rating { 1 }
+    comment { 'String' }
   end
 end

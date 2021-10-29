@@ -64,50 +64,50 @@ RSpec.describe 'Lessons', type: :request do
     subject(:unauthorized_user) { Teacher.create(username: 'unauthorized', firstname: 'unauthorized', lastname: 'unauthorized', email: 'unauthorized@email.com', password: 'password', password_confirmation: 'password') }
 
     it 'creates a lesson' do
-      expect { post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price, video: video, thumbnail: thumbnail } } }.to change(Lesson, :count).by(1)
+      expect { post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price_cents: lesson.price_cents, video: video, thumbnail: thumbnail } } }.to change(Lesson, :count).by(1)
     end
 
     it 'redirects to index after create' do
-      post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price, video: video, thumbnail: thumbnail } }
+      post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price_cents: lesson.price_cents, video: video, thumbnail: thumbnail } }
       expect(response).to redirect_to(rc_teacher_lessons_path(review_center))
     end
 
     it 'renders :rc_course/lessons/new if creation fails' do
-      post rc_teacher_lessons_path(review_center), params: { lesson: { name: nil, details: nil, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: nil }, format: :js }
+      post rc_teacher_lessons_path(review_center), params: { lesson: { name: nil, details: nil, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price_cents: nil }, format: :js }
       expect(response).to render_template(:errors)
     end
 
     it 'does not create a lesson if user is not authorized' do
       sign_out teacher
       sign_in unauthorized_user, scope: :user
-      expect { post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price }, format: :js } }.to change(Lesson, :count).by(0)
+      expect { post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price_cents: lesson.price_cents }, format: :js } }.to change(Lesson, :count).by(0)
     end
 
     it 'redirects if user is not authorized' do
       sign_out teacher
       sign_in unauthorized_user, scope: :user
-      post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price }, format: :js }
+      post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price_cents: lesson.price_cents }, format: :js }
       expect(response).to redirect_to(root_path)
     end
 
     it 'does not create a lesson if user is not authenticated' do
       sign_out teacher
-      expect { post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price }, format: :js } }.to change(Lesson, :count).by(0)
+      expect { post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price_cents: lesson.price_cents }, format: :js } }.to change(Lesson, :count).by(0)
     end
 
     it 'redirects to root path if user is not authenticated' do
       sign_out teacher
-      post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price }, format: :js }
+      post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price_cents: lesson.price_cents }, format: :js }
       expect(response).to redirect_to(root_path)
     end
 
     context 'when adding tags' do
       it 'creates a new tag' do
-        expect { post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price, video: video, thumbnail: thumbnail, tag_list: 'structural, design' } } }.to change(Tag, :count).by(2)
+        expect { post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price_cents: lesson.price_cents, video: video, thumbnail: thumbnail, tag_list: 'structural, design' } } }.to change(Tag, :count).by(2)
       end
 
       it 'creates a new tagging' do
-        expect { post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price: lesson.price, video: video, thumbnail: thumbnail, tag_list: 'structural, design' } } }.to change(Tagging, :count).by(2)
+        expect { post rc_teacher_lessons_path(review_center), params: { lesson: { name: lesson.name, details: lesson.details, teacher_subject_id: lesson.teacher_subject_id, rc_course_id: lesson.rc_course_id, price_cents: lesson.price_cents, video: video, thumbnail: thumbnail, tag_list: 'structural, design' } } }.to change(Tagging, :count).by(2)
       end
     end
   end
