@@ -94,3 +94,23 @@ production:
 
   # Cache manifest.json for performance
   cache_manifest: true
+
+rules: [
+  {
+    test: /\.scss$/,
+    use: [
+      {
+        loader: 'css-loader',
+        options: {
+          sourceMap: true
+        }
+      },
+      {
+        loader: 'resolve-url-loader'
+      },
+      {
+        loader: 'sass-loader'
+      }
+    ]
+  }
+]
