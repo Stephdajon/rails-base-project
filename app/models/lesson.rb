@@ -4,6 +4,8 @@ class Lesson < ApplicationRecord
   belongs_to :teacher_subject
   has_one_attached :video
   has_one_attached :thumbnail
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
 
   validates :name, presence: true
   validates :price, presence: true, numericality: { greater_than: 60, less_than: 1_000_000 }
@@ -35,6 +37,16 @@ class Lesson < ApplicationRecord
     elsif thumbnail.blob.byte_size > 100_000_000
       logo.purge
       errors.add(:video, 'size is too big')
+    end
+  end
+
+  def tag_list
+    tags.map(&:name).join(', ')
+  end
+
+  def tag_list=(names)
+    self.tags = names.split(',').map do |n|
+      Tag.where(name: n.strip).first_or_create!
     end
   end
 end
