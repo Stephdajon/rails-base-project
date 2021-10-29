@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>Add courses to <%= current_review_center.name.capitalize %></h1>
+  
+  <%= form_with scope: :rc_course, url: create_rc_course_path, local: true do |f| %>
+    <% if @courses.any? %>
+      <% @courses.each do |course| %>
+        <div>
+          <% rc_course = RcCourse.find_by(course_id: course.id) %>
+          <%= f.check_box :course_id, { multiple: true, disabled: rc_course.present? }, course.id, false %>
+          <%= f.label :course_id, course.name%>
+          <% if rc_course.present? %>
+            <span class='text-muted'>(Added)</span>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  
+    <%= f.submit "Add Selected Courses" %>
+  <% end %>
+</div>

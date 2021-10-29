@@ -1,47 +1,36 @@
-<h1 class="container">Home Page for Review Center</h1>
-<div class="container d-flex flex-row">
-  
-  <!--
-  <%= link_to new_invitation_path do %><button> Add invatation</button><% end %>
-  -->
-  <div class="card p-3 mx-2 shadow" style="width: 15rem;">
-    <%= image_tag "GoLearning.png", class:"card-img-top" %>
-    <div class="card-body">
-      <h5 class="card-title">Psychology</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Subjects</a>
-    </div>
-  </div>
+<h1 class="container"><%= current_review_center.name.upcase %></h1>
 
-  <div class="card p-3 mx-2 shadow" style="width: 15rem;">
-    <%= image_tag "GoLearning.png", class:"card-img-top" %>
-    <div class="card-body">
-      <h5 class="card-title">Architecture</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Subjects</a>
-    </div>
-  </div>
-
-  <div class="card p-3 mx-2 shadow" style="width: 15rem;">
-    <%= image_tag "GoLearning.png", class:"card-img-top" %>
-    <div class="card-body">
-      <h5 class="card-title">Engineering</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Subjects</a>
-    </div>
-  </div>
-  
-  <h1><%= current_review_center.name %></h1>
-  <h1>Courses</h1>
-  <% if @rc_courses.any? %>
-    <% @rc_courses.each do |rc_course| %>
-      <%= rc_course.course.name %>
-      <%= link_to 'View Details', rc_course_path(rc_course) %>
+<div class="container">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <% if @rc_courses.any? %>
+      <% @rc_courses.each do |rc_course| %>
+        <div class="col">
+          <div class="card shadow-sm">
+            <%= image_tag "GoLearning.png", class:"card-img-top" %>
+            <div class="card-body">
+              <h5 class="card-title"><%= rc_course.course.name %></h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <%= link_to 'Subjects', rc_course_path(rc_course), class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  <% else %>
-    <h1>You have not added any course.</h1>
-  <% end %>
 
+    <div class="col">
+      <div class="card shadow-sm">
+        <%= image_tag "GoLearning.png", class:"card-img-top" %>
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <p class="card-text">You have not added any course.</p>
+          <%= link_to 'Add course', new_rc_course_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="container">
   <h1>Recently uploaded lessons</h1>
   <% if @recently_uploaded_lessons.any? %>
     <%= render 'rc_pages/shared/lessons', lessons: @recently_uploaded_lessons %>
