@@ -4,8 +4,7 @@ class ReviewsController < ApplicationController
   before_action :required_buy, only: [:new]
 
   def index
-    @review_lesson = Lesson.find(@lesson.id)
-    @reviews = @review_lesson.reviews
+    @reviews = @lesson.reviews
   end
 
   def review; end
@@ -15,8 +14,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
-    @review.lesson_id = @lesson.id
+    @review = @lesson.reviews.new(review_params)
     @review.user_id = current_user.id
 
     if @review.save
