@@ -7,7 +7,7 @@
         <h5><%= rc_course.course.name %></h5>
         <% rc_course.course.subjects.each do |subject| %>
           <div>
-            <% teacher_subject = TeacherSubject.find_by(subject_id: subject.id) %>
+            <% teacher_subject = @rc_teacher.teacher_subjects.find_by(subject_id: subject.id) %>
             <%= f.check_box :subject_id, { multiple: true, disabled: teacher_subject.present? }, subject.id, false %>
             <%= f.label :subject_id, subject.name%>
             <% if teacher_subject.present? %>

@@ -1,6 +1,7 @@
 class TeacherSubjectsController < ApplicationController
   before_action :find_rc_teacher
   before_action :authorized?
+  before_action :selected_subjects?, only: :create
 
   def new
     @teacher_subject = @rc_teacher.teacher_subjects.build
@@ -37,5 +38,9 @@ class TeacherSubjectsController < ApplicationController
     return if current_review_center && @rc_teacher.review_center == current_review_center
 
     redirect_to authenticated_rc_root_path, alert: 'Unauthorized action'
+  end
+
+  def selected_subjects?
+    return redirect_to new_teacher_subject_path(@rc_teacher), alert: 'Atleast one subject must be selected.' if params[:teacher_subject].nil?
   end
 end

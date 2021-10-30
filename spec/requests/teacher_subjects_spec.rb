@@ -56,5 +56,10 @@ RSpec.describe 'TeacherSubjects', type: :request do
     it 'does not create teacher_subject if rc_teacher is not associated with review center' do
       expect { post create_teacher_subject_path(rc_teacher_not_associated), params: { teacher_subject: { rc_teacher_id: rc_teacher_not_associated.id, rc_course_id: rc_course.id, subject_id: [subject1.id] } } }.to change(TeacherSubject, :count).by(0)
     end
+
+    it 'redirects to new_teacher_subject_path if no subject is selected.' do
+      post create_teacher_subject_path(rc_teacher)
+      expect(response).to redirect_to(new_teacher_subject_path(rc_teacher))
+    end
   end
 end
