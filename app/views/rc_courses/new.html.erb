@@ -5,7 +5,7 @@
     <% if @courses.any? %>
       <% @courses.each do |course| %>
         <div>
-          <% rc_course = RcCourse.find_by(course_id: course.id) %>
+          <% rc_course = current_review_center.rc_courses.find_by(course_id: course.id) %>
           <%= f.check_box :course_id, { multiple: true, disabled: rc_course.present? }, course.id, false %>
           <%= f.label :course_id, course.name%>
           <% if rc_course.present? %>
