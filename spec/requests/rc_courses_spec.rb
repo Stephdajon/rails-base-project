@@ -43,5 +43,10 @@ RSpec.describe 'RcCourses', type: :request do
     it 'creates multiple teacher_subjects' do
       expect { post create_rc_course_path, params: { rc_course: { review_center_id: review_center.id, course_id: [course_not_yet_added.id, course_not_yet_added2.id] } } }.to change(RcCourse, :count).by(2)
     end
+
+    it 'redirects to new if no course is selected' do
+      post create_rc_course_path
+      expect(response).to redirect_to(new_rc_course_path)
+    end
   end
 end

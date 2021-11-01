@@ -1,5 +1,6 @@
 class RcCoursesController < ApplicationController
   before_action :authenticate_review_center!
+  before_action :selected_courses?, only: :create
 
   def new
     @courses = Course.all.order(:name)
@@ -24,5 +25,9 @@ class RcCoursesController < ApplicationController
 
   def rc_course_params
     params.require(:rc_course).permit(:review_center_id, course_id: [])
+  end
+
+  def selected_courses?
+    return redirect_to new_rc_course_path, alert: 'Atleast one course must be selected.' if params[:rc_course].nil?
   end
 end
