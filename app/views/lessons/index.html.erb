@@ -27,5 +27,6 @@
     </div>
   <% else %>
     <h5>You don't have any uploaded lessons.</h5>
+    <%= link_to 'New Lesson', new_rc_teacher_lesson_path(@review_center), class: 'w-20 btn btn-lg btn-warning mt-2' %>
   <% end %>
 </div>
