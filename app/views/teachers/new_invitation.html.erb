@@ -1,14 +1,20 @@
-<div class="container">
-  <h1>Invite a teacher</h1>
+<div class="container card text-dark shadow-lg">
+  <%= image_tag "invite.png", class:"card-img"%>
   
-  <%= form_with scope: :rc_teacher, url: create_invitation_path, local: true do |f| %>
-    <%= f.label :username %>
-    <%= f.text_field :username, id: 'search-field' %>
+  <div class="card-img-overlay">
+    <h1 class="text-center mt-3">Invite a teacher</h1>
+    <%= form_with scope: :rc_teacher, url: create_invitation_path, local: true do |f| %>
+      <%= f.label :username %>
+      <%= f.text_field :username, id: 'search-field', class:"form-control me-2" %>
+    
+      <div id="search-options"></div>
+      <div class="text-center">
+        <%= f.submit 'Send Invitation', class:"btn btn-secondary mt-3 p-2" %>
+        <%= link_to 'See Invitations', rc_teachers_invitations_path, class:"nav-link" %>
+      </div>
+      
+    <% end %>
+    <%= javascript_pack_tag 'search_ajax' %>
+  </div>
   
-    <div id="search-options"></div>
-  
-    <%= f.submit 'Send Invitation' %>
-  <% end %>
 </div>
-
-<%= javascript_pack_tag 'search_ajax' %>
