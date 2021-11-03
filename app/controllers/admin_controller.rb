@@ -8,7 +8,7 @@ class AdminController < ApplicationController
     @users = User.all
   end
 
-  def user_details 
+  def user_details
     @user = User.find(params[:id])
     @user_details = EnrolledLesson.where(user_id: @user).paginate(page: params[:page], per_page: 10)
   end
