@@ -27,7 +27,11 @@
             <th scope="row"><%= user.created_at.strftime("%A %b %e, %Y ") %></th>
             <th scope="row"><%= user.updated_at.strftime("%A %b %e, %Y ") %></th>
             <th scope="row">
-              <%#= link_to approve_users_path(student.id), method: :patch do %><button class="btn btn-md btn-warning">Show</button><%# end %>
+              <% if user.type == "Student" %>
+                <%= link_to admin_user_details_path(user.id) do %><button class="btn btn-md btn-warning">Show</button><% end %>
+              <% elsif user.type == "Teacher" %>
+                <%= link_to admin_teacher_details_path(user.id) do %><button class="btn btn-md btn-warning">Show</button><% end %>
+              <% end %>
             </th>
           </tr>
         <% end %>

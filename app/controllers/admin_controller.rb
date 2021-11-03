@@ -8,6 +8,20 @@ class AdminController < ApplicationController
     @users = User.all
   end
 
+  def user_details 
+    @user = User.find(params[:id])
+    @user_details = EnrolledLesson.where(user_id: @user).paginate(page: params[:page], per_page: 10)
+  end
+
+  def teacher_details
+    @user = User.find(params[:id])
+    rc_teachers = @user.rc_teachers
+    @review_centers = rc_teachers.map { |rc_teacher| ReviewCenter.find(rc_teacher.review_center_id) }.uniq
+
+    teacher_subject_ids = rc_teachers.map { |rc_teacher| rc_teacher.teacher_subjects.pluck(:id) }.flatten
+    @lessons = Lesson.where(teacher_subject_id: teacher_subject_ids).paginate(page: params[:page], per_page: 10)
+  end
+
   def pending_users
     @students = User.all.where(status: 'pending')
   end

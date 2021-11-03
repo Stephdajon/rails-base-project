@@ -1,0 +1,36 @@
+<div class="container">
+  <table class="table table-striped">
+    <h1>Student Details</h1>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Lessons</th>
+        <th scope="col">Email</th>
+        <th scope="col">Subjects</th>
+        <th scope="col">Course</th>
+        <th scope="col">Price</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user_details.each do |user_detail|%>
+        <% if @user.type == "Student" %>
+          <tr>
+            <th scope="row" class="border-0">
+                <div class="p-2">
+                  <% if user_detail.lesson.thumbnail.attached? %>
+                      <%= image_tag url_for(user_detail.lesson.thumbnail), class: "card-img-top", style: "width:100px; margin-right: 40px;"%>
+                  <% end %>
+                  <td class="border-0 align-middle"><strong><%= @user.email  %></strong></td>
+                  <td class="border-0 align-middle"><strong><%= user_detail.lesson.name  %></strong></td>
+                  <td class="border-0 align-middle"><strong><%= user_detail.lesson.teacher_subject.subject.name %></strong></td>
+                  
+                </div>
+            </th>
+            <td class="border-0 align-middle"><strong>$ <%= user_detail.lesson.price_cents %></strong></td>
+            <td class="border-0 align-middle"> <%= link_to admin_users_list_path do %><button class="btn btn-md btn-warning">Back</button><% end %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
