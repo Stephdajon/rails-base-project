@@ -4,53 +4,53 @@
   <div class='errors'>
   </div>
 
-    <div class="">
+    <div class="mb-3">
       <% @options = @teacher_subjects.collect { |teacher_subject| [ "#{teacher_subject.subject.name} - (#{teacher_subject.rc_course.course.name})".html_safe, teacher_subject.id ] } %>
-      <%= f.label :teacher_subject_id, 'Subject' %>
+      <%= f.label :teacher_subject_id, 'Subject', class: "form-label" %>
       <%= f.select(:teacher_subject_id, @options, {}, { :class => 'form-select mb-3 shadow-none' })%>
     </div>
 
-    <div>
-      <%= f.label :name %>
+    <div class="mb-3">
+      <%= f.label :name%>
       <%= f.text_field :name, class: 'form-control shadow-none' %>
     </div>
-    <div>
+
+    <div class="mb-3">
       <%= f.label :details %>
       <%= f.text_area :details, class: 'form-control shadow-none' %>
     </div>
 
-    <div class="">
+    <div class="mb-3">
       <%= f.label :price_cents %>
       <%= f.number_field :price_cents, step: :any, class: 'form-control shadow-none' %>
     </div>
 
-    <div>
+    <div class="mb-3">
       <%= f.label :video %>
       <%= f.file_field :video, accept: 'video/*', direct_upload: true, class: 'upload-video form-control shadow-none', id: 'upload-video' %>
     </div>
     <br>
 
-    <div class="l">
-      <video class='preview-video', controls='true', class="form-control shadow-none"></video>
+    <div class="container__video mb-3">
+      <video class='preview-video content__video', controls='true', class="form-control shadow-none"></video>
     </div>
     <br>
 
-    <div>
+    <div class="mb-3">
       <%= f.label :thumbnail %>
       <%= f.file_field :thumbnail, accept: 'image/png, image/jpg, image/jpeg', direct_upload: true, class: 'upload-image form-control shadow-none', id: 'upload-thumbnail' %>
     </div>
 
-    <div>
-      <img class='preview-image' />
+    <div class="container__video mb-3">
+      <img class='preview-image content__video' />
     </div>
 
-    <div>
-      <%= f.label :tag_list, 'Tags'  %>
+    <div class="mb-3">
+      <%= f.label :tag_list, 'Tags (must be separated by comma)'  %>
       <%= f.text_field :tag_list, class: 'form-control' %>
-      <div>Tags must be separated by comma.</div>
     </div>
 
-    <div>
+    <div class="mb-3">
       <%= f.submit id:'save_lesson',  disable_with: false, class: 'w-20 btn btn-lg btn-primary mt-2' %>
       <%= link_to "Back", rc_teacher_lessons_path, class: 'w-20 btn btn-lg btn-secondary mt-2' %><br><br>
     </div>
