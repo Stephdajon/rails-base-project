@@ -74,6 +74,7 @@ Rails.application.routes.draw do
   # ADMIN PAGES
   get '/admin', to: 'admin#index', as: 'admin'
   get '/admin/user_list', to: 'admin#user_list', as: 'admin_users_list'
+  get '/admin/review_center_list/:id', to: 'admin#rc_details', as: 'admin_rc_details'
   get '/admin/review_center_list', to: 'admin#review_center_list', as: 'admin_review_center_list'
   get '/admin/pending_users', to: 'admin#pending_users', as: 'admin_pending_users'
   get '/admin/pending_rc', to: 'admin#pending_rc', as: 'admin_pending_rc'
