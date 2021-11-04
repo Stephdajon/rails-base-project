@@ -12,16 +12,20 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 d-flex justify-content-evenly">
+      <ul class="navbar-nav mb-lg-0 w-100 d-flex justify-content-evenly">
       
         <% if current_review_center %>
 
           <li class="nav-item">
-            <%= link_to 'Home', authenticated_rc_root_path, class:"nav-link active" %>
+            <%= link_to 'Home', authenticated_rc_root_path, class:"nav-link" %>
           </li>
 
           <li class="nav-item">
             <%= link_to 'Teachers', teachers_path, class:"nav-link" %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to 'Courses', new_rc_course_path, class: "nav-link" %>
           </li>
 
           <li class="nav-item dropdown">
@@ -40,67 +44,44 @@
           <% if current_user.type == "Student" %>
 
             <li class="nav-item">
-              <%= link_to 'Home', root_path, class:"nav-link active" %>
+              <%= link_to 'Home', root_path, class:"nav-link" %>
             </li>
 
             <li class="nav-item">
-              <%= link_to 'Shopping Cart', user_carts_path, class:"nav-link active" %>
+              <%= link_to 'Shopping Cart', user_carts_path, class:"nav-link" %>
             </li>
 
             <li class="nav-item">
-              <%= link_to 'Enrolled Lessons', my_lessons_path, class:"nav-link active" %>
+              <%= link_to 'Enrolled Lessons', my_lessons_path, class:"nav-link" %>
             </li>
 
             <li class="nav-item">
-              <%= link_to 'Transactions', my_transactions_path, class:"nav-link active" %>
+              <%= link_to 'Transactions', my_transactions_path, class:"nav-link" %>
             </li>
 
 
           <% elsif current_user.type == "Teacher" %>
 
             <li class="nav-item">
-              <%= link_to 'My Portal', teacher_home_path, class:"nav-link active" %>
+              <%= link_to 'My Portal', teacher_home_path, class:"nav-link" %>
             </li>
 
             <li class="nav-item">
-              <%= link_to 'Invitations', invitations_path, class:"nav-link active btn" %>
+              <%= link_to 'Invitations', invitations_path, class:"nav-link btn" %>
             </li>
 
           <% elsif current_user.type == "Admin" %>
             
-            <%= link_to 'Dashboard', admin_path, class:"nav-link active d-inline" %>
-            <!--
-            <li class="nav-item dropdown">
-              <a class="nav-link active dropdown-toggle d-inline" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <%= link_to 'Dashboard', admin_path, class:"nav-link active d-inline" %>
-              </a>
-              <ul class="dropdown-menu bg-secondary" aria-labelledby="navbarDropdown">
-                <li class="nav-item">
-                <%= link_to 'Users', admin_users_list_path, class:"nav-link active" %>
-              </li>
-              
-              <li class="nav-item">
-                <%= link_to 'Review Centers', admin_review_center_list_path, class:"nav-link active" %>
-              </li>
-
-              <li class="nav-item">
-                <%= link_to 'Pending Users', admin_pending_users_path, class:"nav-link active text-warning" %>
-              </li>
-
-              <li class="nav-item">
-                <%= link_to 'Pending Review Centers', admin_pending_rc_path, class:"nav-link active text-warning" %>
-              </li>
-              </ul>
-            </li>
-             -->
+            <%= link_to 'Dashboard', admin_path, class:"nav-link d-inline" %>
+            
             <li class="nav-item">
-              <%= link_to 'Transactions', admin_transactions_path, class:"nav-link active" %>
+              <%= link_to 'Transactions', admin_transactions_path, class:"nav-link" %>
             </li>
 
           <% end %>
           
           <li class="nav-item dropdown">
-            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Profile
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -112,7 +93,7 @@
 
         <% else %>
           <li class="nav-item">
-            <%= link_to 'Home', root_path, class:"nav-link" %>
+            <%= link_to 'Home', root_path, class:"nav-link " %>
           </li>
           <li class="nav-item">
             <%= link_to 'Login', new_user_session_path, class:"nav-link" %>
