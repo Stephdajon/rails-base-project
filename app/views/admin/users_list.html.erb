@@ -1,0 +1,22 @@
+<div class="teacher-img d-flex justify-content-center"><%= image_tag "users.png"%></div>
+<div class="container bg-clear">
+  <div >
+    <a class="btn btn-outline-success bg-gradient d-block" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      Users List <i class="fas fa-caret-down"></i>
+    </a>
+    <a class="btn btn-outline-warning bg-gradient d-block mt-3" data-bs-toggle="collapse" href="#collapse2Example" role="button" aria-expanded="false" aria-controls="collapseExample">
+      Pending Users <i class="fas fa-caret-down"></i>
+    </a>
+  </div>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+      <%= render "admin/user_list" %>
+    </div>
+  </div>
+  <div class="collapse" id="collapse2Example">
+    <div class="card card-body">
+      <%= render "admin/pending_users" %>
+    </div>
+  </div>
+  <%= link_to "Back", admin_path, class: 'w-20 btn btn-lg btn-secondary mt-2' %>
+</div>

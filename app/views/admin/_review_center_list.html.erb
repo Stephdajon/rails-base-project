@@ -1,0 +1,21 @@
+<div>
+  <% @review_centers.each do |rc|%>
+    <div class="list-group">
+      <div class="list-group-item list-group-item-action" aria-current="true">
+        <div class="d-flex w-100 justify-content-between">
+          <h4 class="mb-1"><%= rc.name.capitalize %></h4>
+           <small style="color:green;"><%= rc.status.capitalize %></small>
+        </div>
+        
+        <p class="mb-1"><%= rc.email %></p>
+
+        <div class="d-flex w-100 justify-content-between">
+          <small class="text-muted">Created: <%= rc.created_at.strftime("%A %b %e, %Y ") %></small>
+          <small class="text-muted">Updated: <%= rc.updated_at.strftime("%A %b %e, %Y ") %></small>
+        </div>    
+      </div>
+      <%= link_to admin_rc_details_path(rc.id) do %><button class="btn btn-md btn-warning">Show</button><% end %>
+    </div>
+    
+  <% end %>
+</div>
