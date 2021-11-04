@@ -3,7 +3,7 @@
 <!--
   <div class="card text-center bg-dark bg-gradient text-light card-img"><h1>Invitations</h1></div>
 -->  
-  <%= image_tag "Invitation-img.png", class:"teacher-img w-100"%>
+  <%= image_tag "Invitation-img.png", class:"invitation-img w-100"%>
 
   <% if @rc_teachers_invitations.empty? %>
     <div class="text-center w-100 bg-danger bg-gradient">No existing invitations.</div>
@@ -42,7 +42,7 @@
     </table>
   <% end %>
   <div>
-    <%= link_to 'Invite teacher', new_invitation_path, class:"nav-link bg-secondary bg-gradient text-light text-center mt-2" %>
+    <%= link_to 'Invite teacher', new_invitation_path, class:"nav-link btn btn-outline-dark bg-gradient text-center mt-2" %>
     <%= link_to "Back", :back, class: 'btn btn-lg btn-secondary bg-gradient mt-5' %>
   </div>
 </div>
