@@ -20,7 +20,7 @@
               <th scope="row" class="border-0">
                 <div class="p-2">
                   <% if lesson.thumbnail.attached? %>
-                      <%= image_tag url_for(lesson.thumbnail), class: "card-img-top", style: "width:100px; margin-right: 40px;"%>
+                      <%= image_tag url_for(lesson.thumbnail), style: "width:100px; margin-right: 40px;"%>
                   <% end %>
                 </div>
                 <td class="border-0 align-middle"><strong><%= lesson.rc_course.course.name %></strong></td>
