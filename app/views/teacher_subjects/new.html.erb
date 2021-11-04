@@ -1,23 +1,30 @@
-<h1>Assign Subject to teacher</h1>
+<div class="container">
+  <h1>Assign subjects to "<%= @rc_teacher.teacher.firstname %>"</h1>
+  
+  <%= form_with scope: :teacher_subject, url: create_teacher_subject_path(@rc_teacher), local: true do |f| %>
+    <% if @rc_courses.any? %>
+      <% @rc_courses.each do |rc_course| %>
+        <a class="btn btn-outline-secondary d-block btn mb-2 mt-2" data-bs-toggle="collapse" href="#rc_course<%= rc_course.id %>" role="button" aria-expanded="false" aria-controls="rc_course<%= rc_course.id %>">
+          <h5 class="pt-1 text-dark"><%= rc_course.course.name %></h5>
+        </a>
 
-<%= form_with scope: :teacher_subject, url: create_teacher_subject_path(@rc_teacher), local: true do |f| %>
-  <% if @rc_courses.any? %>
-    <% @rc_courses.each do |rc_course| %>
-      <div>
-        <h5><%= rc_course.course.name %></h5>
-        <% rc_course.course.subjects.each do |subject| %>
-          <div>
-            <% teacher_subject = @rc_teacher.teacher_subjects.find_by(subject_id: subject.id) %>
-            <%= f.check_box :subject_id, { multiple: true, disabled: teacher_subject.present? }, subject.id, false %>
-            <%= f.label :subject_id, subject.name%>
-            <% if teacher_subject.present? %>
-              <span class='text-muted'>(Assigned)</span>
+        <div class="collapse subject__assign" id="rc_course<%= rc_course.id %>">
+          <ul class="list-group list-group-flush">
+            <% rc_course.course.subjects.order(:name).each do |subject| %>
+              <li class="list-group-item bg-transparent">
+                <% teacher_subject = @rc_teacher.teacher_subjects.find_by(subject_id: subject.id) %>
+                <%= f.check_box :subject_id, { multiple: true, disabled: teacher_subject.present? }, subject.id, false %>
+                <%= f.label :subject_id, subject.name%>
+                <% if teacher_subject.present? %>
+                  <span class='text-muted'>(Assigned)</span>
+                <% end %>
+              </li>
             <% end %>
-          </div>
-        <% end %>
-      </div>
+          </ul>
+        </div>
+      <% end %>
     <% end %>
+  
+    <%= f.submit "Assign Selected Subjects", class: "btn btn-warning mb-2 mt-2" %>
   <% end %>
-
-  <%= f.submit "Assign Selected Subjects" %>
-<% end %>
+</div>
