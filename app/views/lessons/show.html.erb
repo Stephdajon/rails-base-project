@@ -1,27 +1,17 @@
 <div class="container">
-  <h1><%= @teacher_subject.subject.name %></h1>
-  <div>
-    <h2>Title</h2>
-    <span><%= @lesson.name %></span>
-  </div>
-   
+  <%= link_to "Back", rc_teacher_lessons_path, class: 'w-20 btn btn-lg btn-secondary mt-2' %><br><br>
   <% if @lesson.video.attached? %>
-    <%= cl_video_tag url_for(@lesson.video), controls: true, controlsList: "nodownload", poster: url_for(@lesson.thumbnail), style: 'height:10%; width:30%;' %>
+    <div class="container__video">
+      <%= cl_video_tag url_for(@lesson.video), controls: true, controlsList: "nodownload", poster: url_for(@lesson.thumbnail), class: "content__video" %>
+    </div>
   <% end %>
 
-  <div>
-    <h1>Price</h1>
-    <span><%= number_to_currency(@lesson.price_cents, unit: '$ ') %></span>
-  </div>
+  <h3 class="mt-3 mb-0"><%= @lesson.name %></span> | <%= @teacher_subject.subject.name %> | <%= number_to_currency(@lesson.price_cents, unit: '$ ') %> | <%= @lesson.details %></h3>
+  <div class="text-muted">Title | Subject | Price | Details</span>
 
-  <div>
-    <h2>Details</h2>
-    <span><%= @lesson.details %></span>
-  </div>
-  <%= link_to "Back", rc_teacher_lessons_path, class: 'w-20 btn btn-lg btn-secondary mt-2' %><br><br>
 </div>
 
-<div class="container">
+<div class="container mt-5">
   <h1>Other lessons for this subject</h1>
   <% if @related_lessons.any? %>
     <%= render 'lessons/shared/lessons', lessons: @related_lessons %>

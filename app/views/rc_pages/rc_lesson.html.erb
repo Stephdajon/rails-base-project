@@ -1,35 +1,28 @@
 <div class="container">
   <%= link_to "Back", :back, class: 'w-20 btn btn-lg btn-secondary mt-2' %><br><br>
-  <h1><%= @subject.name %></h1>
+
   <div>
-    <h2>Title</h2>
-    <h2><%= @lesson.name %></h2>
     <div>
       <% if @enrolled_lessons.count.zero? %>
-        <span>No student purchased this lesson.</span>
+        <span>No student has purchased this lesson yet.</span>
       <% else %>
         <%= pluralize(@enrolled_lessons.count, 'student') %> purchased this lesson.</h5>
-        <%#= link_to 'View students',  %>
       <% end %>
     </div>
   </div>
    
   <% if @lesson.video.attached? %>
-    <%= video_tag url_for(@lesson.video), controls: true, controlsList: "nodownload", poster: url_for(@lesson.thumbnail), style: 'height:10%; width:30%;' %>
+    <div class="container__video">
+      <%= video_tag url_for(@lesson.video), controls: true, controlsList: "nodownload", poster: url_for(@lesson.thumbnail), class: "content__video" %>
+    </div>
   <% end %>
 
-  <div>
-    <h1>Price</h1>
-    <span><%= number_to_currency(@lesson.price, unit: 'Php ') %></span>
-  </div>
+  <h3 class="mt-3 mb-0"><%= @lesson.name %></span> | <%= @subject.name %> | <%= number_to_currency(@lesson.price_cents, unit: '$ ') %> | <%= @lesson.details %></h3>
+  <div class="text-muted">Title | Subject | Price | Details</div>
 
-  <div>
-    <h2>Details</h2>
-    <span><%= @lesson.details %></span>
-  </div>
 </div>
 
-<div class="container">
+<div class="container mt-5">
   <h1>Other lessons for this subject</h1>
   <% if @related_lessons.any? %>
     <%= render 'rc_pages/shared/lessons', lessons: @related_lessons %>
