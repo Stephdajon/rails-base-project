@@ -27,7 +27,7 @@ class AdminController < ApplicationController
     @review_centers = ReviewCenter.all
     @pending_review_centers = ReviewCenter.all.where(status: 'pending')
   end
-    
+
   def rc_details
     @user = ReviewCenter.find(params[:id])
     rc_courses = @user.rc_courses
