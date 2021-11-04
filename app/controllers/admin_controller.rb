@@ -4,8 +4,9 @@ class AdminController < ApplicationController
 
   def index; end
 
-  def user_list
+  def users_list
     @users = User.all
+    @students = User.all.where(status: 'pending')
   end
 
   def user_details
@@ -22,12 +23,19 @@ class AdminController < ApplicationController
     @lessons = Lesson.where(teacher_subject_id: teacher_subject_ids).paginate(page: params[:page], per_page: 10)
   end
 
-  def pending_users
-    @students = User.all.where(status: 'pending')
+  def review_centers
+    @review_centers = ReviewCenter.all
+    @pending_review_centers = ReviewCenter.all.where(status: 'pending')
   end
 
-  def pending_rc
-    @review_centers = ReviewCenter.all.where(status: 'pending')
+  def rc_details
+    @user = ReviewCenter.find(params[:id])
+    rc_courses = @user.rc_courses
+    @rc_details = rc_courses.map { |rc_course| rc_course.lessons.first(5) }.flatten
+
+    @rc_teachers = @user.rc_teachers
+    teacher_subject_ids = @rc_teachers.map { |rc_teacher| rc_teacher.teacher_subjects.pluck(:id) }.flatten
+    @lessons = Lesson.where(teacher_subject_id: teacher_subject_ids).paginate(page: params[:page], per_page: 10)
   end
 
   def approve_users
@@ -41,20 +49,6 @@ class AdminController < ApplicationController
     @review_center = ReviewCenter.find(params[:id])
     @review_center.update(status: 'active')
     redirect_to admin_pending_rc_path, notice: 'Successfully approve review center signup'
-  end
-
-  def review_center_list
-    @review_centers = ReviewCenter.all
-  end
-
-  def rc_details
-    @user = ReviewCenter.find(params[:id])
-    rc_courses = @user.rc_courses
-    @rc_details = rc_courses.map { |rc_course| rc_course.lessons.first(5) }.flatten
-
-    @rc_teachers = @user.rc_teachers
-    teacher_subject_ids = @rc_teachers.map { |rc_teacher| rc_teacher.teacher_subjects.pluck(:id) }.flatten
-    @lessons = Lesson.where(teacher_subject_id: teacher_subject_ids).paginate(page: params[:page], per_page: 10)
   end
 
   def transactions
