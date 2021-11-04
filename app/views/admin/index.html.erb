@@ -1,15 +1,13 @@
-<br><br><br><br>
 <div class="container">
   <%# <%= current_user.firstname  %>
-  <h1>Admin's Dashboard </h1>
+  <div class="card text-center bg-dark bg-gradient text-light"><h1>Admin's <%= current_user.firstname  %> Dashboard </h1><div>
  
   <div class="row row-cols-1 row-cols-md-2">
     <div class="col">
       <div class="card shadow-sm" style="width: 35rem;">
         <%= image_tag ("users.jpg") %>
         <div class="card-body">
-          <h5 class="card-title"><%= link_to 'Users List', admin_users_list_path,  class:"btn btn-success d-block" %></h5>
-          <h5 class="card-title"><%= link_to 'Pending Users', admin_pending_users_path, class:"btn btn-warning d-block" %></h5>
+          <h5 class="card-title"><%= link_to 'Users', admin_users_list_path,  class:"btn btn-outline-success d-block" %></h5>
         </div>
       </div>
     </div>
@@ -17,8 +15,7 @@
       <div class="card shadow-sm" style="width: 33.8rem;">
         <%= image_tag ("ReviewCenter.png") %>
         <div class="card-body">
-          <h5 class="card-title"><%= link_to 'Review Centers List', admin_review_center_list_path,  class:"btn btn-success d-block" %></h5>
-          <h5 class="card-title"><%= link_to 'Pending Review Center', admin_pending_rc_path,  class:"btn btn-warning d-block" %></h5>
+          <h5 class="card-title"><%= link_to 'Review Centers', admin_review_centers_path,  class:"btn btn-outline-success d-block" %></h5>
         </div>
       </div>
     </div>
