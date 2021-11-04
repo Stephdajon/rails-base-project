@@ -47,6 +47,16 @@ class AdminController < ApplicationController
     @review_centers = ReviewCenter.all
   end
 
+  def rc_details
+    @user = ReviewCenter.find(params[:id])
+    rc_courses = @user.rc_courses
+    @rc_details = rc_courses.map { |rc_course| rc_course.lessons.first(5) }.flatten
+
+    @rc_teachers = @user.rc_teachers
+    teacher_subject_ids = @rc_teachers.map { |rc_teacher| rc_teacher.teacher_subjects.pluck(:id) }.flatten
+    @lessons = Lesson.where(teacher_subject_id: teacher_subject_ids).paginate(page: params[:page], per_page: 10)
+  end
+
   def transactions
     @transactions = Transaction.all
   end

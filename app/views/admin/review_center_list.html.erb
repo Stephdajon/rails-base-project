@@ -20,7 +20,7 @@
         <th scope="row"><%= rc.created_at.strftime("%A %b %e, %Y ") %></th>
         <th scope="row"><%= rc.updated_at.strftime("%A %b %e, %Y ") %></th>
         <th scope="row">
-          <button class="btn btn-md btn-warning">Show</button>
+          <%= link_to admin_rc_details_path(rc.id) do %><button class="btn btn-md btn-warning">Show</button><% end %>
         </th>
       </tr>
       <% end %>
