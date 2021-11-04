@@ -1,6 +1,12 @@
 <div class="container">
-  <h1>Review Centers</h1>
-  <% if @review_centers.any? %>
+  <p>
+    <a class="btn btn-primary d-block btn btn-secondary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      Review Centers
+    </a>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div>
+       <% if @review_centers.any? %>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <% @review_centers.each do |review_center| %>
         <% rc_teacher = current_user.rc_teachers.find_by(review_center_id: review_center.id) %>
@@ -46,6 +52,9 @@
   <% else %>
     <h5>You are currently not a teacher from any review centers.</h5>
   <% end %>
+    </div>
+  </div>
+  
 </div>
 
 <div class="container">

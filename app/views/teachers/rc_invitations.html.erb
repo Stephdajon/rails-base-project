@@ -1,8 +1,9 @@
+
 <div class="container">
-  <h1>Invitations from review centers</h1>
+<%= image_tag "invitation.png", class:"teacher-img card-img"%>
 
   <% if @rc_teacher_invitations.empty? %>
-    <span>No existing invitation</span>
+    <span class="d-flex justify-content-center">No existing invitation</span>
   <% else %>
     <table class="table">
       <thead>
