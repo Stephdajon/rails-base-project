@@ -1,30 +1,73 @@
-<div class="container">
-  <h1 class="display-4 text-center" style="color:black;">Transactions</h1><br>
-  <table class="table table-light table-borderless">
-    <thead>
-      <tr>
-          <th scope="col">Item</th>
-          <th scope="col">Price</th>
-          <th scope="col">Reference Number</th>
-          <th scope="col">Transaction Date</th>
-          <th scope="col">Seller</th>
-          <th scope="col">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @transactions.each do |transaction| %>
-      <tr>
-        <td scope="row"> <%= transaction.name %> </td>
-        <td>$ <%= transaction.price_cents %></td>
-        <td><%= transaction.reference_number %></td>
-        <td><%= transaction.created_at.strftime("%A %b %e, %Y ") %></td>
-        <td><%= transaction.lesson.teacher_subject.rc_teacher.user.email %></td>
-        <td><%= transaction.status ==  0 && 'PAID' %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
-<div class="digg_pagination">
-  <%= will_paginate @transactions, class: 'mb-3 text-xl' %>
+
+<%#  %>
+
+
+<div class="px-4 px-lg-0 container">
+  <!-- For demo purpose -->
+  <div class="container text-white text-center">
+    <h1 class="display-4" style="color:black;">Transactions</h1><br>
+  </div>
+  <!-- End -->
+
+  <div class="pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 p-2 bg-white rounded shadow-sm mb-5">
+
+          <!-- Shopping transaction table -->
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="p-2 px-3 text-uppercase">Item</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Price</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Reference Number</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Transaction Date</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Seller</div>
+                  </th>
+                  <th scope="col" class="border-0 bg-light">
+                    <div class="py-2 text-uppercase">Status</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @transactions.each do |transaction| %>
+                  <tr>
+                    <th scope="row" class="border-0">
+                      <div class="p-2">
+                        <% if transaction.lesson.thumbnail.attached? %>
+                          <%= image_tag url_for(transaction.lesson.thumbnail), class: "card-img-top", style: "width:100px; margin-right: 40px;"%>
+                        <% end %>
+                        <div class="ml-3 d-inline-block align-middle">
+                          <h5 class="mb-0"> <a href="" class="text-dark d-inline-block align-middle"><%= transaction.lesson.name %></a></h5><span class="text-muted font-weight-normal font-italic d-block">Subject: <%= transaction.lesson.teacher_subject.subject.name %></span>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="border-0 align-middle"><strong> $<%= transaction.lesson.price_cents %></strong></td>
+                    <td class="border-0 align-middle"><strong> <%= transaction.reference_number %></strong></td>
+                    <td class="border-0 align-middle"><strong> <%= transaction.created_at.strftime("%A %b %e, %Y ") %></strong></td>
+                    <td class="border-0 align-middle"><%= transaction.lesson.teacher_subject.rc_teacher.user.email %></strong></td>
+                    <td class="border-0 align-middle"><%= transaction.status ==  0 && 'PAID' %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+            <div class="digg_pagination">
+              <%= will_paginate @user_transactions, class: 'mb-3 text-xl' %>
+            </div>
+          <!-- End -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
