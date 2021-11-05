@@ -1,13 +1,13 @@
 <div class="container">
   <table class="table table-striped">
     <h1>Student Details</h1>
+    <%= link_to admin_users_list_path do %><button class="btn btn-md btn-secondary">Back</button><% end %>
     <thead class="thead-dark">
       <tr>
         <th scope="col">Lessons</th>
-        <th scope="col">Subjects</th>
+        <th scope="col">Teacher</th>
         <th scope="col">Course</th>
         <th scope="col">Price</th>
-        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -19,13 +19,12 @@
                   <% if user_detail.lesson.thumbnail.attached? %>
                       <%= image_tag url_for(user_detail.lesson.thumbnail), style: "width:100px; margin-right: 40px;"%>
                   <% end %>
-                  <td class="border-0 align-middle"><strong><%= user_detail.lesson.name  %></strong></td>
+                  <strong><%= user_detail.lesson.name %></strong>
+                  <td class="border-0 align-middle"><strong><%= "#{user_detail.lesson.teacher_subject.rc_teacher.teacher.firstname} #{user_detail.lesson.teacher_subject.rc_teacher.teacher.lastname}" %></strong></td>
                   <td class="border-0 align-middle"><strong><%= user_detail.lesson.teacher_subject.subject.name %></strong></td>
-                  
                 </div>
             </th>
             <td class="border-0 align-middle"><strong>$ <%= user_detail.lesson.price_cents %></strong></td>
-            <td class="border-0 align-middle"> <%= link_to admin_users_list_path do %><button class="btn btn-md btn-warning">Back</button><% end %></td>
           </tr>
         <% end %>
       <% end %>
