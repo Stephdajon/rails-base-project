@@ -1,0 +1,22 @@
+<div>
+  <% @review_centers.each do |rc|%>
+    <div class="list-group">
+      <div class="list-group-item list-group-item-action" aria-current="true">
+        <div class="d-flex w-100 justify-content-between">
+          <h4 class="mb-1"><%= rc.name.capitalize %></h4>
+          <small style="color:blue;"><%= rc.status.capitalize %></small>
+        </div>
+        <div class="d-flex w-100 justify-content-between">
+          <p class="mb-1"><%= rc.email %></p>
+          <%= link_to approve_rc_path(rc.id), method: :patch do %><button class="btn btn-md btn-primary">Approve</button><% end %>
+        </div>
+        
+        <div class="d-flex w-100 justify-content-between">
+          <small class="text-muted">Created: <%= rc.created_at.strftime("%A %b %e, %Y ") %></small>
+          <small class="text-muted">Updated: <%= rc.updated_at.strftime("%A %b %e, %Y ") %></small>
+        </div>
+        
+      </div>
+    </div>
+  <% end %>
+</div>
