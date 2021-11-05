@@ -1,6 +1,6 @@
 <div class="container">
   <h1 class="text-center">Lesson Details</h1>
-  <div class="row">
+  <div class="row" style="margin-top:25px;">
     <div class="col-md-8 mx-auto">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style=" background-color: #ffff !important;">
         <div class="col p-4 d-flex flex-column position-static">
@@ -20,13 +20,13 @@
             </div>
           </div>
           <div style="display:flex; justify-content:space-between;">
-            <%= link_to add_to_cart_path(@lesson.id), method: :post do %> <button type="button" class="btn btn-sm btn-primary"><i class="fas fa-shopping-basket"> </i> Add to cart</button><% end %>
+            <%= link_to add_to_cart_path(@lesson.id), method: :post do %> <button type="button" class="btn btn-sm btn-primary"> Add to cart</button><% end %>
             <% if current_user %>
               <% if current_user.type == "Student" %>
                 <%= button_to 'Buy now', checkout_create_path, method: :post, params: {id: @lesson.id}, remote: true, class: 'btn btn-sm btn-warning' %> 
               <% end %>
             <% end %>
-              <%= link_to new_review_path(@lesson.id) do %> <button type="button" class="btn btn-sm btn-primary"> Add Reviews</button><% end %>
+              <%= link_to new_review_path(@lesson.id) do %> <button type="button" class="btn btn-sm btn-success"> Add Reviews</button><% end %>
           </div>
         </div>
         <div class="col-auto d-none d-lg-block">
@@ -36,25 +36,24 @@
         </div>
       </div>
     </div>
-    <div class="row align-items-md-stretch" >
+    <div class="row align-items-md-stretch " style="height:40vh; margin-top:30px;">
       <div class="col-md-6" style="margin-bottom:30px;">
-        <div class="h-100 p-5 border rounded-3 d-flex" style=" background-color: #ffff !important;">
+        <div class="h-100 p-5 border rounded-3 d-flex align-items-center" style=" background-color: #ffff !important;">
           <div class="col-sm-6">
-            <h2>Other Details</h2>
+              <h1 style="">Other Details</h1>
             <p><strong class="text-primary">Review Center :</strong> <%= @lesson.teacher_subject.rc_teacher.review_center.name.capitalize %></p>
             <p><strong class="text-primary">Instructor : </strong> <%= @lesson.teacher_subject.rc_teacher.user.firstname.capitalize + ' ' +  @lesson.teacher_subject.rc_teacher.user.lastname.capitalize %></p>
           </div>
-          <div class="col-sm-6">
-            <h2>Course</h2>
-            <p><%= @lesson_details.name %></p>
-          </div>
+         
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="h-100 p-5 bg-white border rounded-3  d-flex">
+      <div class="col-md-6" style="margin-bottom:30px;">
+         <div class="h-100 p-5 bg-white border rounded-3  d-flex">
           <div class="col-sm-6">
             <h2>Subject</h2>
             <p><%= @lesson.teacher_subject.subject.name %></p>
+            <h2>Course</h2>
+            <p><%= @lesson_details.name %></p>
           </div>
           <div class="col-sm-6">
             <h2>lessons</h2>
@@ -66,6 +65,7 @@
             <% end %>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
