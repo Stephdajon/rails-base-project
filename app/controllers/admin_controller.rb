@@ -42,13 +42,13 @@ class AdminController < ApplicationController
     @student = User.find(params[:id])
     UserMailer.confirmation_email(@student).deliver_later
     @student.update(status: 'active')
-    redirect_to admin_pending_users_path, notice: 'Successfully approve student signup'
+    redirect_to admin_users_list_path, notice: 'Successfully approve student signup'
   end
 
   def approve_rc
     @review_center = ReviewCenter.find(params[:id])
-    @review_center.update(status: 'active')
-    redirect_to admin_pending_rc_path, notice: 'Successfully approve review center signup'
+    @review_center.update!(status: 'active')
+    redirect_to admin_review_centers_path, notice: 'Successfully approve review center signup'
   end
 
   def transactions
