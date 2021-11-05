@@ -15,8 +15,8 @@
           <div class="col">
             <div class="card shadow-sm">
               <div class="card-body">
-                <h5 class="card-title"><%= review_center.name %></h5>
-                <p class="card-text"><span>Review Center Details</span></p>
+                <h5 class="card-title text-center"><%= review_center.name.capitalize %></h5>
+                <%= image_tag "rc-list.png", class:"rc-invite mb-2"%>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <% if rc_teacher.status == 'approved' %>
@@ -26,7 +26,7 @@
                       <%= link_to 'Reject invitation', reject_invitation_path(rc_teacher), class: "btn btn-sm btn-outline-danger", method: :patch, data: { confirm: 'Are you sure you want to reject this invitation?' } %>
                     <% end %>
                   </div>
-                  <small class="text-muted">9 mins</small>
+                  
                 </div>
               </div>
             </div>
@@ -41,7 +41,6 @@
                   <div class="btn-group">
                     <%= link_to 'Apply Now', teacher_home_path, type: "button", class: "btn btn-sm btn-outline-secondary" %>
                   </div>
-                  <small class="text-muted">9 mins</small>
                 </div>
               </div>
             </div>
@@ -57,8 +56,8 @@
   
 </div>
 
-<div class="container">
-  <h1>Recently Uploaded Lessons</h1>
+<div class="container mt-5">
+ <h1>Recently Uploaded Lessons</h1>
   <% if @lessons.any? %>
     <%= render 'lessons/shared/lessons', lessons: @lessons %>
   <% else %>
