@@ -1,7 +1,18 @@
-<h1><%= @rc_course.course.name %></h1>
-
-<h1>Subjects</h1>
-<% @subjects.each do |subject| %>
-  <%= subject.name %>
-  <%= link_to 'View Details', rc_subject_path(@rc_course, subject) %>
-<% end %>
+<%= image_tag "courses.png", class:"course-img"%>
+<div class= "container d-flex justify-content-center">
+  <a class="btn btn-outline-dark bg-gradient d-block w-50 d-flex justify-content-between" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <%= @rc_course.course.name %> <i class="fas fa-caret-down"></i>
+  </a>
+</div>
+<div class="collapse" id="collapseExample">
+  <div class="container card-body w-50">
+    <% @subjects.each do |subject| %>
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between me-5 ms-5">
+          <%= subject.name %>
+          <%= link_to 'View Details', rc_subject_path(@rc_course, subject) %>  
+        </li>
+      </ul> 
+    <% end %>
+  </div>
+</div>

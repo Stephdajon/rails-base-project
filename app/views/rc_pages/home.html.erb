@@ -1,38 +1,28 @@
-<h1 class="container"><%= current_review_center.name.upcase %></h1>
+<h1 class="container text-center "><%= current_review_center.name.upcase %></h1>
 
 <div class="container">
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+  <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 g-3">
+  <%= image_tag "courses-offered.png", class: "card-img-top" %>
     <% if @rc_courses.any? %>
       <% @rc_courses.each do |rc_course| %>
         <div class="col">
-          <div class="card shadow-sm">
-            <%= image_tag "GoLearning.png", class:"card-img-top" %>
-            <div class="card-body">
-              <h5 class="card-title"><%= rc_course.course.name %></h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <%= link_to 'Subjects', rc_course_path(rc_course), class: "btn btn-primary" %>
-            </div>
+          <div >
+            <%= link_to rc_course_path(rc_course) do %> 
+              <h5 class="card-title btn btn-outline-success bg-gradient d-block"><%= rc_course.course.name %></h5>
+            <% end %>
           </div>
         </div>
       <% end %>
     <% end %>
-
-    <div class="col">
-      <div class="card shadow-sm">
-        <%= image_tag "GoLearning.png", class:"card-img-top" %>
-        <div class="card-body">
-          <h5 class="card-title"></h5>
-          <p class="card-text">You have not added any course.</p>
-          <%= link_to 'Add course', new_rc_course_path, class: "btn btn-primary" %>
-        </div>
-      </div>
-    </div>
 </div>
 
 <div class="container">
-  <h1>Recently uploaded lessons</h1>
-  <% if @recently_uploaded_lessons.any? %>
-    <%= render 'rc_pages/shared/lessons', lessons: @recently_uploaded_lessons %>
-  <% else %>
-  <% end %>
+  <div class=" mt-5 w-100"><h1>Recently uploaded lessons</h1></div>
+  <div class="container">
+    <% if @recently_uploaded_lessons.any? %>
+      <%= render 'rc_pages/shared/lessons', lessons: @recently_uploaded_lessons %>
+      <% else %>
+    <% end %>
+  </div>
+  
 </div>
