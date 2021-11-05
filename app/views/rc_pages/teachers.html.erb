@@ -2,11 +2,13 @@
 <div class="container">
   <div class="card text-center bg-dark bg-gradient text-light card-img"><h1>Teachers</h1></div>
   <%= image_tag "teacher.png", class:"teacher-img card-img"%>
+  <%= link_to 'Invitations', rc_teachers_invitations_path, class:"nav-link bg-dark bg-gradient text-light text-center" %>
+    <%= link_to 'Invite teacher', new_invitation_path, class:"nav-link bg-secondary bg-gradient text-light text-center " %>
   <% if @rc_teachers.empty? %>
     <span>No existing teacher for your review center.</span>
   <% else %>
     <table class="table">
-      <thead class="thead-dark table-secondary">
+      <thead class="thead-light table-secondary">
         <tr>
           <th>First Name</th>
           <th class= "text-center">Last Name</th>
@@ -39,8 +41,4 @@
       </tbody>
     </table>
   <% end %>
-  <div class=" container invite-link card-img-overlay">
-    <%= link_to 'Invitations', rc_teachers_invitations_path, class:"nav-link bg-secondary bg-gradient text-light text-center" %>
-    <%= link_to 'Invite teacher', new_invitation_path, class:"nav-link bg-secondary bg-gradient text-light text-center  mt-3" %>
-  </div>
 </div>
