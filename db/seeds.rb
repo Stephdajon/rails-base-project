@@ -6,131 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+course_subjects = {
+      'Civil Engineering':
+        ['Algebra', 'Plane Trigonometry', 'Spherical Trigonometry', 'Analytic Geometry', 'Descriptive Geometry', 'Solid Geometry', 'Differential Calculus', 'Integral Calculus', 'Highway and Railroad Surveying', 'Advance Surveying', 'Fluid properties', 'Hydrostatic Pressures', 'Fluid Flow', 'Bouyancy and Flotation', 'Relative Equilibrium of Liquids', 'Hydrodynamics', 'Water Supply', 'Soil Properties', 'Soil Classification', 'Fluid Through Soil Mass', 'Stresses in soil mass', 'Soil strength and Test', 'Bearing Capacity', 'Compaction', 'Consolidation and Settlement', 'Lateral Earth pressures', 'Slope Stability', 'Engineering Mechanics', 'Strength of materials', 'Theory of Structures', 'Analysis and Design of Concrete Structures', 'Analysis and Design of Steel Structures', 'Analysis and Design of Timber Structures', 'Analysis and Design of Foundation'],
+      Psychology:
+        ['Advanced Theories of Personality', 'Advanced Abnormal Psychology', 'Advanced Psychological Assessment', 'Psychological Counseling and Psychotherapy'],
+      Nursing:
+        ['Community Health Nursing', 'Care of Healthy/At Risk Mother and Child', 'Care of Clients with Physiologic and Psychosocial Alterations (Part A)', 'Care of Clients with Physiologic and Psychosocial Alterations (Part B)', 'Care of Clients with Physiologic and Psychosocial Alterations (Part C)']
+    }
 
-# USER 
-
-User.create!([
-
-  {
-    email: "test@student.com",
-    username: "student",
-    firstname: "student",
-    lastname: "boardemy",
-    type: 'Student',
-    status: 0,
-    password: "123456",
-    password_confirmation: "123456"
-  },
-  {
-    email: "test@teacher.com",
-    username: "teacher",
-    firstname: "teacher",
-    lastname: "boardemy",
-    type: 'Teacher',
-    status: 0,
-    password: "123456",
-    password_confirmation: "123456"
-  },
-  {
-    email: "test@admin.com",
-    username: "admin",
-    firstname: "admin",
-    lastname: "boardemy",
-    type: 'Admin',
-    status: 0,
-    password: "123456",
-    password_confirmation: "123456"
-  }
-])
-
-# Review Center Users
-
-ReviewCenter.create!([
-  {
-    email: "test@reviewcenter.com",
-    name: "test review center",
-    status: 'pending',
-    password: "123456",
-    password_confirmation: "123456"
-  },
-])
-
-# COURSE
-
-Course.create!([
-  {
-    name: 'Software Engineer',
-    status: 0
-  }
-])
-
-#RC COURSE 
-
-RcCourse.create!([
-  {
-    review_center_id: 1,
-    course_id: 1,
-  }
-])
-
-RcTeacher.create!([
-  {
-    user_id: 2,
-    review_center_id: 1
-  }
-])
-
-# SUBJECT
-
-Subject.create!([
-  {
-    name: 'Ruby on Rails',
-    course_id: 1
-    # status: 0
-  }
-])
-
-# TEACHER SUBJECT
-
-TeacherSubject.create!([
-  {
-    rc_teacher_id: 1,
-    subject_id: 1,
-    rc_course_id: 1
-  }
-])
-
-# LESSON
-
-Lesson.create!([
-  {
-    name: 'What is hash?',
-    details: 'sample',
-    teacher_subject_id: 1,
-    rc_course_id: 1,
-    price: 620
-    # status: 0
-  }
-])
-
-Lesson.create!([
-  {
-    name: 'Object Oriented Programming',
-    details: 'sample',
-    teacher_subject_id: 1,
-    rc_course_id: 1,
-    price: 560
-    # status: 0
-  }
-])
-
-Lesson.create!([
-  {
-    name: 'Ruby on Rails',
-    details: 'sample',
-    teacher_subject_id: 1,
-    rc_course_id: 1,
-    price: 590
-    # status: 0
-  }
-])
+course_subjects.each do |course_name, subjects|
+  course = Course.where(name: course_name).first_or_create!
+  subjects.each do |subject|
+    course.subjects.where(name: subject).first_or_create!
+  end
+end
