@@ -32,7 +32,7 @@
     <br>
 
     <div class="container__video mb-3">
-      <video class='preview-video content__video', controls='true', class="form-control shadow-none"></video>
+      <video class='preview-video content__video', controls='true', class="form-control shadow-none", height="250", width="450"></video>
     </div>
     <br>
 
@@ -40,9 +40,9 @@
       <%= f.label :thumbnail %>
       <%= f.file_field :thumbnail, accept: 'image/png, image/jpg, image/jpeg', direct_upload: true, class: 'upload-image form-control shadow-none', id: 'upload-thumbnail' %>
     </div>
-
+    <br>
     <div class="container__video mb-3">
-      <img class='preview-image content__video' />
+      <img class='preview-image content__video' height="250" width="450"/>
     </div>
 
     <div class="mb-3">

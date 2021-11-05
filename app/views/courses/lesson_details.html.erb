@@ -62,7 +62,7 @@
               <%= will_paginate @lessons, class: 'text-xl' %>
             </div><br>
             <% @lessons.each do |lesson| %>
-              <%= link_to paid_lesson_access_path(lesson.id) do %> <button class="btn btn-success m-1"><%= lesson.name %></button> <% end %>
+              <%= link_to paid_lesson_access_path(lesson.id) do %> <button class="text-success m-1" style="background:none; border:none; text-decoration:underline;"><%= lesson.name %></button> <% end %>
             <% end %>
           </div>
         </div>

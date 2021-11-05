@@ -18,7 +18,6 @@ Rails.application.routes.draw do
     root to: 'rc_pages#home', as: 'authenticated_rc_root'
   end
 
-
   # PAYMENT API
 
   scope '/checkout' do
@@ -44,6 +43,7 @@ Rails.application.routes.draw do
   end
   
   # TEACHER PAGES
+
   scope '/teacher/:review_center_id', as: 'rc_teacher' do
     resources :lessons
   end
@@ -61,28 +61,33 @@ Rails.application.routes.draw do
   end
 
   # STUDENT PAGES
-  get '/student/my_carts', to: 'user_carts#user_carts', as: 'user_carts'
-  post '/student/add_to_cart/:lesson_id', to: 'user_carts#add_to_cart', as: 'add_to_cart'
-  delete '/student/remove_to_cart/:user_cart_id', to: 'user_carts#remove_to_cart', as: 'remove_to_cart'
-  get '/student/details/:lesson_id', to: 'courses#paid_lesson_access', as: 'paid_lesson_access'
-  get '/student/my_lessons', to: 'courses#my_lessons', as: 'my_lessons'
-  get '/student/my_transactions', to: 'transactions#student_transactions', as: 'my_transactions'
-  get '/student/:lesson_id/review/new', to: 'reviews#new', as: 'new_review'
-  post '/student/:lesson_id/review/new', to: 'reviews#create', as: 'create_review'
-  get '/student/:lesson_id/reviews/', to: 'reviews#index', as: 'reviews'
+
+  scope '/student' do
+    get '/my_carts', to: 'user_carts#user_carts', as: 'user_carts'
+    post '/add_to_cart/:lesson_id', to: 'user_carts#add_to_cart', as: 'add_to_cart'
+    delete '/remove_to_cart/:user_cart_id', to: 'user_carts#remove_to_cart', as: 'remove_to_cart'
+    get '/details/:lesson_id', to: 'courses#paid_lesson_access', as: 'paid_lesson_access'
+    get '/my_lessons', to: 'courses#my_lessons', as: 'my_lessons'
+    get '/my_transactions', to: 'transactions#student_transactions', as: 'my_transactions'
+    get '/:lesson_id/review/new', to: 'reviews#new', as: 'new_review'
+    post '/:lesson_id/review/new', to: 'reviews#create', as: 'create_review'
+    get '/:lesson_id/reviews/', to: 'reviews#index', as: 'reviews'
+  end
 
   # ADMIN PAGES
-  get '/admin', to: 'admin#index', as: 'admin'
-  get '/admin/user_list/:id', to: 'admin#user_details', as: 'admin_user_details'
-  get '/admin/user_list/teacher/:id', to: 'admin#teacher_details', as: 'admin_teacher_details'
-  get '/admin/review_center_list/:id', to: 'admin#rc_details', as: 'admin_rc_details'
-  get '/admin/users_list', to: 'admin#users_list', as: 'admin_users_list'
-  get '/admin/review_centers', to: 'admin#review_centers', as: 'admin_review_centers'
 
-  patch '/admin/approved_user/:id', to: 'admin#approve_users', as: 'approve_users'
-  patch '/admin/approve_rc/:id', to: 'admin#approve_rc', as: 'approve_rc'
-  get '/admin/transactions', to: 'admin#transactions', as: 'admin_transactions'
-
+  scope '/' do
+  get '', to: 'admin#index', as: 'admin'
+  get '/user_list/:id', to: 'admin#user_details', as: 'admin_user_details'
+  get '/user_list/teacher/:id', to: 'admin#teacher_details', as: 'admin_teacher_details'
+  get '/review_center_list/:id', to: 'admin#rc_details', as: 'admin_rc_details'
+  get '/users_list', to: 'admin#users_list', as: 'admin_users_list'
+  get '/review_centers', to: 'admin#review_centers', as: 'admin_review_centers'
+  patch '/approved_user/:id', to: 'admin#approve_users', as: 'approve_users'
+  patch '/approve_rc/:id', to: 'admin#approve_rc', as: 'approve_rc'
+  get '/transactions', to: 'admin#transactions', as: 'admin_transactions'
+  end
+  
   # PUBLIC PAGES
 
   get '/course/:subject_title/:course_id/:lesson_id', to: 'courses#lesson_details', as: 'lesson_details'
