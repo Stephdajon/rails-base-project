@@ -3,9 +3,12 @@
     <div class="row py-lg-4 text-center container">
       <div class="col-lg-6 col-md-8 mx-auto">
         <%= image_tag "GoLearning.png" %>
-        <p class="lead mt-3">Grabs Opportunity and Let Education Always Remain Natural</p>
-          <%= link_to 'Get Started', new_user_session_path, class:"btn btn-primary my-2" %>
-          <a href="#lessons" class="btn btn-secondary my-2"><i class="fas fa-cart-plus"> </i> Shop now</a>
+
+        <p class="lead text-muted">Grabs Opportunity and Let Education Always Remain Natural</p>
+        <p>
+          <%= link_to 'Get Started', new_user_session_path, class:"btn btn-primary my-2", style: "font-weight:600 !important;" %>
+          <a href="#lessons" class="btn btn-secondary my-2" style="font-weight:600 !important;"> Shop now</a>
+
         </p>
       </div>
     </div>
@@ -22,11 +25,11 @@
       <% end %>
 
       <div class="d-flex flex-wrap" >
-        <button id="all_lesson_btn" style="margin-right:20px; margin-bottom:20px;" class="btn btn-md btn-dark rounded-pill">All Lessons</button>
-        <button id="all_lesson_by_ratings_btn" style="margin-right:20px; margin-bottom:20px;" class="btn btn-md btn-dark rounded-pill">By Ratings</button>
-        <button id="all_lesson_by_count_btn" style="margin-right:20px; margin-bottom:20px;" class="btn btn-md btn-dark rounded-pill">By Count</button>
-        <button id="all_lesson_by_new_btn" style="margin-right:20px; margin-bottom:20px;" class="btn btn-md btn-dark rounded-pill">By New</button>
-        <button id="all_lesson_by_old_btn" style="margin-right:20px; margin-bottom:20px;" class="btn btn-md btn-dark rounded-pill">By Old</button>
+        <button id="all_lesson_btn" style="margin-right:20px; margin-bottom:20px; font-weight:600 !important;" class="btn btn-md btn-dark rounded-pill">All Lessons</button>
+        <button id="all_lesson_by_ratings_btn" style="margin-right:20px; margin-bottom:20px; font-weight:600" class="btn btn-md btn-dark rounded-pill">By Ratings</button>
+        <button id="all_lesson_by_count_btn" style="margin-right:20px; margin-bottom:20px; font-weight:600" class="btn btn-md btn-dark rounded-pill">By Count</button>
+        <button id="all_lesson_by_new_btn" style="margin-right:20px; margin-bottom:20px; font-weight:600" class="btn btn-md btn-dark rounded-pill">By New</button>
+        <button id="all_lesson_by_old_btn" style="margin-right:20px; margin-bottom:20px; font-weight:600" class="btn btn-md btn-dark rounded-pill">By Old</button>
       </div><br><br>
       
       <%= render 'lessons', { lessons: @lessons} %>
@@ -35,6 +38,7 @@
       <%= render 'lessons_by_new', { lessons: @all_new_lessons} %>
       <%= render 'lessons_by_old', { lessons: @all_old_lessons} %>
       <%= render 'about_us' %>
+      <%= render 'developer_team' %>
     </div>
   </div>
 </main>
