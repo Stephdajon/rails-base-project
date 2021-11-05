@@ -76,7 +76,7 @@ Rails.application.routes.draw do
 
   # ADMIN PAGES
 
-  scope '/' do
+  scope '/admin' do
   get '', to: 'admin#index', as: 'admin'
   get '/user_list/:id', to: 'admin#user_details', as: 'admin_user_details'
   get '/user_list/teacher/:id', to: 'admin#teacher_details', as: 'admin_teacher_details'
