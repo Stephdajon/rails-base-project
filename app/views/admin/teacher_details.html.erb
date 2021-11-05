@@ -22,6 +22,7 @@
                 <% if lesson.thumbnail.attached? %>
                     <%= image_tag url_for(lesson.thumbnail), style: "width:100px; margin-right: 40px;"%>
                 <% end %>
+                <strong><%= lesson.name %></strong>
               </div>
               <td class="border-0 align-middle"><strong><%= lesson.rc_course.course.name %></strong></td>
               <td class="border-0 align-middle"><strong><%= lesson.teacher_subject.subject.name %></strong></td>

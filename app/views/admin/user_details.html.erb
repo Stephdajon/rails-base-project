@@ -5,7 +5,7 @@
     <thead class="thead-dark">
       <tr>
         <th scope="col">Lessons</th>
-        <th scope="col">Subjects</th>
+        <th scope="col">Teacher</th>
         <th scope="col">Course</th>
         <th scope="col">Price</th>
       </tr>
@@ -19,9 +19,9 @@
                   <% if user_detail.lesson.thumbnail.attached? %>
                       <%= image_tag url_for(user_detail.lesson.thumbnail), style: "width:100px; margin-right: 40px;"%>
                   <% end %>
-                  <td class="border-0 align-middle"><strong><%= user_detail.lesson.name  %></strong></td>
+                  <strong><%= user_detail.lesson.name %></strong>
+                  <td class="border-0 align-middle"><strong><%= "#{user_detail.lesson.teacher_subject.rc_teacher.teacher.firstname} #{user_detail.lesson.teacher_subject.rc_teacher.teacher.lastname}" %></strong></td>
                   <td class="border-0 align-middle"><strong><%= user_detail.lesson.teacher_subject.subject.name %></strong></td>
-                  
                 </div>
             </th>
             <td class="border-0 align-middle"><strong>$ <%= user_detail.lesson.price_cents %></strong></td>
